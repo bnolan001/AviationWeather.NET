@@ -2,8 +2,8 @@
 {
     public class TemperatureRangeDto
     {
-        public decimal MaxTemperature_C { get; set; }
+        public float? MaxTemperature_C { get; set; }
 
-        public decimal MinTemperature_C { get; set; }
+        public float? MinTemperature_C { get; set; }
     }
 }

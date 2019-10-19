@@ -1,0 +1,63 @@
+﻿namespace Testing.Unit.Data
+{
+    public class METARXML
+    {
+        public static readonly string SINGLE_STATION_METAR_KIAD = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
+            "<response xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XML-Schema-instance\" version=\"1.2\" xsi:noNamespaceSchemaLocation=\"http://aviationweather.gov/adds/schema/metar1_2.xsd\">" +
+            "  <request_index>15836447</request_index>" +
+            "  <data_source name = \"metars\" /> " +
+            "  <request type=\"retrieve\" />" +
+            "  <errors />" +
+            "  <warnings />" +
+            "  <time_taken_ms>4</time_taken_ms>" +
+            "  <data num_results = \"2\" > " +
+            "    <METAR> " +
+            "      <raw_text> KIAD 192252Z 15003KT 10SM FEW120 SCT180 BKN230 BKN250 14/06 A3001 RMK AO2 SLP164 T01440056</raw_text>" +
+            "      <station_id>KIAD</station_id>" +
+            "      <observation_time>2019-10-19T22:52:00Z</observation_time>" +
+            "      <latitude>38.93</latitude>" +
+            "      <longitude>-77.45</longitude>" +
+            "      <temp_c>14.4</temp_c>" +
+            "      <dewpoint_c>5.6</dewpoint_c>" +
+            "      <wind_dir_degrees>150</wind_dir_degrees>" +
+            "      <wind_speed_kt>3</wind_speed_kt>" +
+            "      <visibility_statute_mi>10.0</visibility_statute_mi>" +
+            "      <altim_in_hg>30.008858</altim_in_hg>" +
+            "      <sea_level_pressure_mb>1016.4</sea_level_pressure_mb>" +
+            "      <quality_control_flags>" +
+            "        <auto_station>TRUE</auto_station>" +
+            "      </quality_control_flags>" +
+            "      <sky_condition sky_cover = \"FEW\" cloud_base_ft_agl=\"12000\" />" +
+            "      <sky_condition sky_cover = \"SCT\" cloud_base_ft_agl=\"18000\" />" +
+            "      <sky_condition sky_cover = \"BKN\" cloud_base_ft_agl=\"23000\" />" +
+            "      <sky_condition sky_cover = \"BKN\" cloud_base_ft_agl=\"25000\" />" +
+            "      <flight_category>VFR</flight_category>" +
+            "      <metar_type>METAR</metar_type>" +
+            "      <elevation_m>93.0</elevation_m>" +
+            "    </METAR>" +
+            "    <METAR>" +
+            "      <raw_text>KIAD 192152Z 17005KT 10SM SCT200 BKN250 16/05 A3001 RMK AO2 SLP163 T01560050</raw_text>" +
+            "      <station_id>KIAD</station_id>" +
+            "      <observation_time>2019-10-19T21:52:00Z</observation_time>" +
+            "      <latitude>38.93</latitude>" +
+            "      <longitude>-77.45</longitude>" +
+            "      <temp_c>15.6</temp_c>" +
+            "      <dewpoint_c>5.0</dewpoint_c>" +
+            "      <wind_dir_degrees>170</wind_dir_degrees>" +
+            "      <wind_speed_kt>5</wind_speed_kt>" +
+            "      <visibility_statute_mi>10.0</visibility_statute_mi>" +
+            "      <altim_in_hg>30.008858</altim_in_hg>" +
+            "      <sea_level_pressure_mb>1016.3</sea_level_pressure_mb>" +
+            "      <quality_control_flags>" +
+            "        <auto_station>TRUE</auto_station>" +
+            "      </quality_control_flags>" +
+            "      <sky_condition sky_cover = \"SCT\" cloud_base_ft_agl=\"20000\" />" +
+            "      <sky_condition sky_cover = \"BKN\" cloud_base_ft_agl=\"25000\" />" +
+            "      <flight_category>VFR</flight_category>" +
+            "      <metar_type>SPECI</metar_type>" +
+            "      <elevation_m>93.0</elevation_m>" +
+            "    </METAR>" +
+            "  </data>" +
+            "</response>";
+    }
+}

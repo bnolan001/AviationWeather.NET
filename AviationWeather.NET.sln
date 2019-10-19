@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.28307.852
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AviationWeather.NET", "AviationWeather.NET\AviationWeather.NET.csproj", "{9ED9E522-94E3-46BE-BD95-6FB5D1C4D2FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing.Integration", "Testing.Integration\Testing.Integration.csproj", "{9E3F69D9-82BF-4711-8DA1-1811972BB405}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Testing.Integration", "Testing.Integration\Testing.Integration.csproj", "{9E3F69D9-82BF-4711-8DA1-1811972BB405}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing.Unit", "Testing.Unit\Testing.Unit.csproj", "{94A88905-16E1-431A-93F1-967A6FBA760E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{9E3F69D9-82BF-4711-8DA1-1811972BB405}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E3F69D9-82BF-4711-8DA1-1811972BB405}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E3F69D9-82BF-4711-8DA1-1811972BB405}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94A88905-16E1-431A-93F1-967A6FBA760E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94A88905-16E1-431A-93F1-967A6FBA760E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94A88905-16E1-431A-93F1-967A6FBA760E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94A88905-16E1-431A-93F1-967A6FBA760E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

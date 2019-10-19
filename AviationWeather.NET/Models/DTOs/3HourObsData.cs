@@ -2,9 +2,9 @@
 {
     public class _3HourObsData
     {
-        public decimal PressureTendency_Mb { get; set; }
+        public float? PressureTendency_Mb { get; set; }
 
-        public decimal Precipitation_In { get; set; }
+        public float? Precipitation_In { get; set; }
 
     }
 }

@@ -4,7 +4,7 @@ using FluentAssertions;
 using NUnit.Framework;
 using System.Collections.Generic;
 
-namespace Tests.Integration
+namespace Testing.Integration
 {
     public class XML_Tests
     {

@@ -2,6 +2,6 @@
 {
     public class _24HourObsDataDto : TemperatureRangeDto
     {
-        public decimal Precipitation_In { get; set; }
+        public float? Precipitation_In { get; set; }
     }
 }

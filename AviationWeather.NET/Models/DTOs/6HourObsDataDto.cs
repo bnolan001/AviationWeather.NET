@@ -2,6 +2,6 @@
 {
     public class _6HourObsDataDto
     {
-        public decimal Precipitation_In { get; set; }
+        public float Precipitation_In { get; set; }
     }
 }
