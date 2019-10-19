@@ -1,5 +1,7 @@
 ﻿using AviationWx.NET.Models.DTOs;
+using AviationWx.NET.Models.Enums;
 using AviationWx.NET.Models.XML.AWMETAR;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -37,17 +39,13 @@ namespace AviationWx.NET.Parsers
                     if (obs == null)
                     {
                         hashSet.Remove(metar.station_id.ToUpper());
-                        obs = new ObservationDto()
-                        {
-                            ICAO = metar.station_id
-                        };
+                        obs = new ObservationDto();
                         dtos.Add(obs);
                     }
-
-                    obs.METAR.Add(new METARDto()
-                    {
-                        RawMETAR = metar.raw_text
-                    });
+                    var metardto = new METARDto();
+                    ParseGeographicData(ref metardto, metar);
+                    ParseCurrentWeatherData(ref metardto, metar);
+                    obs.METAR.Add(metardto);
                 }
             }
             foreach(var icao in hashSet)
@@ -59,6 +57,39 @@ namespace AviationWx.NET.Parsers
             }
 
             return dtos;
+        }
+
+        private void ParseIdentifier(ref ObservationDto dto, METAR metar)
+        {
+            dto.ICAO = metar.station_id;
+        }
+
+        private void ParseGeographicData(ref METARDto dto, METAR metar)
+        {
+            dto.GeographicData = new GeographicData()
+            {
+                Latitude = metar.latitude,
+                Longitude = metar.longitude,
+                Elevation_M = metar.elevation_m
+            };
+        }
+
+        private void ParseCurrentWeatherData(ref METARDto dto, METAR metar)
+        {
+            dto.Altimeter_Hg = metar.altim_in_hg;
+            dto.Dewpoint_C = metar.dewpoint_c;
+            dto.ObsTime = DateTime.Parse(metar.observation_time);
+            dto.Precipitation_In = metar.precip_in;
+            dto.RawMETAR = metar.raw_text;
+            dto.SeaLevelPressure_Mb = metar.sea_level_pressure_mb;
+            dto.SkyCondition = metar.sky_condition.Select(sc => new SkyConditionDto() { SkyCondition = SkyConditionType.GetByName(sc.sky_cover), CloudBaseFt = sc.cloud_base_ft_agl }).ToList();
+            dto.Temperature_C = metar.temp_c;
+            dto.VerticalVisibility_Ft = metar.vert_vis_ft;
+            dto.Visibility_SM = metar.visibility_statute_mi;
+            dto.Weather = metar.wx_string;
+            dto.WindDirection_D = metar.wind_dir_degrees;
+            dto.WindGust_Kt = metar.wind_gust_kt;
+            dto.WindSpeed_Kt = metar.wind_speed_kt;
         }
     }
 }
