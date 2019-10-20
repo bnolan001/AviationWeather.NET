@@ -47,6 +47,10 @@ namespace AviationWx.NET.Models.DTOs
         
         public List<QualityControlFlagType> QualityControlFlags { get; set; }
 
+        public TemperatureRangeDto TemperatureRange { get; set; }
+
+        public METARType ObsType { get; set; }
+
         public METARDto()
         {
             SkyCondition = new List<SkyConditionDto>();

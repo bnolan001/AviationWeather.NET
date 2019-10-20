@@ -117,6 +117,13 @@ namespace AviationWx.NET.Parsers
             dto.WindGust_Kt = ParserHelpers.GetValue(xml.wind_gust_ktSpecified, xml.wind_gust_kt);
             dto.WindSpeed_Kt = xml.wind_speed_kt;
             dto.FlightCagegory = FlightCategoryType.GetByName(xml.flight_category);
+            dto.ObsType = METARType.GetByName(xml.metar_type);
+            if (xml.maxT_cSpecified || xml.minT_cSpecified)
+            {
+                dto.TemperatureRange = new TemperatureRangeDto();
+                dto.TemperatureRange.MaxTemperature_C = ParserHelpers.GetValue(xml.maxT_cSpecified, xml.maxT_c);
+                dto.TemperatureRange.MinTemperature_C = ParserHelpers.GetValue(xml.minT_cSpecified, xml.minT_c);
+            }
         }
 
         /// <summary>

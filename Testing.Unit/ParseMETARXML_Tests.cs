@@ -54,6 +54,7 @@ namespace Testing.Unit
             metars[0]._24HourData.Should().BeNull();
             metars[0]._3HourObsData.Should().BeNull();
             metars[0]._6HourData.Should().BeNull();
+            metars[0].ObsType.Should().Be(METARType.METAR);
         }
 
         /// <summary>
@@ -66,6 +67,89 @@ namespace Testing.Unit
             var obs = parser.Parse(METARXML.SINGLE_STATION_METAR_KIAD, new[] { "NOOB" });
             obs.Count.Should().Be(2);
             obs.Where(o => o.ICAO == "NOOB").First().METAR.Count.Should().Be(0);
+        }
+
+        /// <summary>
+        /// Validate ability to properly parse SPECI
+        /// </summary>
+        [Test]
+        public void Parse_SingleStation_SpeciObs()
+        {
+            var parser = new ParseMETARXML();
+            var obs = parser.Parse(METARXML.SINGLE_STATION_METAR_SPECI, new[] { "KATL" });
+            obs.Count.Should().Be(1);
+            obs[0].ICAO.Should().Be("KATL");
+            // Check regular METAR
+            var metars = obs[0].METAR;
+            obs[0].METAR.Count.Should().Be(3);
+
+            metars[0].Altimeter_Hg.Should().Be(29.760826f);
+            metars[0].Dewpoint_C.Should().Be(10.6f);
+            metars[0].FlightCagegory.Should().Be(FlightCategoryType.IFR);
+            metars[0].GeographicData.Should().NotBeNull();
+            metars[0].GeographicData.Latitude.Should().Be(33.63f);
+            metars[0].GeographicData.Longitude.Should().Be(-84.45f);
+            metars[0].GeographicData.Elevation_M.Should().Be(296.0f);
+            metars[0].ObsTime.Should().Be(DateTime.Parse("2019-10-19T23:52:00Z"));
+            metars[0].Precipitation_In.Should().Be(0.04f);
+            metars[0].QualityControlFlags.Should().NotBeEmpty();
+            metars[0].QualityControlFlags[0].Should().Be(QualityControlFlagType.AutoStation);
+            metars[0].RawMETAR.Should().Be("KATL 192352Z 04017KT 8SM -RA BKN007 OVC012 13/11 A2976 RMK AO2 SLP076 CIG 006V009 P0004 60074 T01280106 10133 20122 56007");
+            metars[0].SeaLevelPressure_Mb.Should().Be(1007.6f);
+            metars[0].SkyCondition.Should().NotBeEmpty();
+            metars[0].SkyCondition[0].SkyCondition.Should().Be(SkyConditionType.BKN);
+            metars[0].SkyCondition[0].CloudBaseFt.Should().Be(700);
+            metars[0].SkyCondition[1].SkyCondition.Should().Be(SkyConditionType.OVC);
+            metars[0].SkyCondition[1].CloudBaseFt.Should().Be(1200);
+            metars[0].Temperature_C.Should().Be(12.8f);
+            metars[0].VerticalVisibility_Ft.Should().BeNull();
+            metars[0].Visibility_SM.Should().Be(8.0f);
+            metars[0].Weather.Should().Be("-RA");
+            metars[0].WindDirection_D.Should().Be(40);
+            metars[0].WindGust_Kt.Should().BeNull();
+            metars[0].WindSpeed_Kt.Should().Be(17);
+            metars[0]._24HourData.Should().BeNull();
+            metars[0].TemperatureRange.Should().NotBeNull();
+            metars[0].TemperatureRange.MaxTemperature_C.Should().Be(13.3f);
+            metars[0].TemperatureRange.MinTemperature_C.Should().Be(12.2f);
+            metars[0]._3HourObsData.Should().NotBeNull();
+            metars[0]._3HourObsData.Precipitation_In.Should().BeNull();
+            metars[0]._3HourObsData.PressureTendency_Mb.Should().Be(-0.7f);
+            metars[0]._6HourData.Should().NotBeNull();
+            metars[0]._6HourData.Precipitation_In.Should().Be(0.74f);
+            metars[0].ObsType.Should().Be(METARType.METAR);
+
+            // Check SPECI METAR
+            metars[2].Altimeter_Hg.Should().Be(29.760826f);
+            metars[2].Dewpoint_C.Should().Be(11.1f);
+            metars[2].FlightCagegory.Should().Be(FlightCategoryType.IFR);
+            metars[2].GeographicData.Should().NotBeNull();
+            metars[2].GeographicData.Latitude.Should().Be(33.63f);
+            metars[2].GeographicData.Longitude.Should().Be(-84.45f);
+            metars[2].GeographicData.Elevation_M.Should().Be(296.0f);
+            metars[2].ObsTime.Should().Be(DateTime.Parse("2019-10-19T21:52:00Z"));
+            metars[2].Precipitation_In.Should().Be(0.12f);
+            metars[2].QualityControlFlags.Should().NotBeEmpty();
+            metars[2].QualityControlFlags[0].Should().Be(QualityControlFlagType.AutoStation);
+            metars[2].RawMETAR.Should().Be("KATL 192152Z 07018KT 2SM -RA BR BKN007 OVC012 13/11 A2976 RMK AO2 SFC VIS 4 SLP077 CIG 006V009 P0012 T01280111");
+            metars[2].SeaLevelPressure_Mb.Should().Be(1007.7f);
+            metars[2].SkyCondition.Should().NotBeEmpty();
+            metars[2].SkyCondition[0].SkyCondition.Should().Be(SkyConditionType.BKN);
+            metars[2].SkyCondition[0].CloudBaseFt.Should().Be(700);
+            metars[2].SkyCondition[1].SkyCondition.Should().Be(SkyConditionType.OVC);
+            metars[2].SkyCondition[1].CloudBaseFt.Should().Be(1200);
+            metars[2].Temperature_C.Should().Be(12.8f);
+            metars[2].VerticalVisibility_Ft.Should().BeNull();
+            metars[2].Visibility_SM.Should().Be(2.0f);
+            metars[2].Weather.Should().Be("-RA BR");
+            metars[2].WindDirection_D.Should().Be(70);
+            metars[2].WindGust_Kt.Should().BeNull();
+            metars[2].WindSpeed_Kt.Should().Be(18);
+            metars[2]._24HourData.Should().BeNull();
+            metars[2].TemperatureRange.Should().BeNull();
+            metars[2]._3HourObsData.Should().BeNull();
+            metars[2]._6HourData.Should().BeNull();
+            metars[2].ObsType.Should().Be(METARType.SPECI);
         }
     }
 }
