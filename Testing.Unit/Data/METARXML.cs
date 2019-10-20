@@ -12,7 +12,7 @@
             "  <time_taken_ms>4</time_taken_ms>" +
             "  <data num_results = \"2\" > " +
             "    <METAR> " +
-            "      <raw_text> KIAD 192252Z 15003KT 10SM FEW120 SCT180 BKN230 BKN250 14/06 A3001 RMK AO2 SLP164 T01440056</raw_text>" +
+            "      <raw_text>KIAD 192252Z 15003KT 10SM FEW120 SCT180 BKN230 BKN250 14/06 A3001 RMK AO2 SLP164 T01440056</raw_text>" +
             "      <station_id>KIAD</station_id>" +
             "      <observation_time>2019-10-19T22:52:00Z</observation_time>" +
             "      <latitude>38.93</latitude>" +

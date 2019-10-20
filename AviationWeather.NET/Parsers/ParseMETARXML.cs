@@ -59,7 +59,7 @@ namespace AviationWx.NET.Parsers
                     obs.METAR.Add(metarDTO);
                 }
             }
-            foreach(var icao in hashSet)
+            foreach (var icao in hashSet)
             {
                 dtos.Add(new ObservationDto()
                 {
@@ -105,17 +105,18 @@ namespace AviationWx.NET.Parsers
             dto.Altimeter_Hg = xml.altim_in_hg;
             dto.Dewpoint_C = xml.dewpoint_c;
             dto.ObsTime = DateTime.Parse(xml.observation_time);
-            dto.Precipitation_In = xml.precip_in;
+            dto.Precipitation_In = ParserHelpers.GetValue(xml.precip_inSpecified, xml.precip_in);
             dto.RawMETAR = xml.raw_text;
             dto.SeaLevelPressure_Mb = xml.sea_level_pressure_mb;
             dto.SkyCondition = xml.sky_condition.Select(sc => new SkyConditionDto() { SkyCondition = SkyConditionType.GetByName(sc.sky_cover), CloudBaseFt = sc.cloud_base_ft_agl }).ToList();
             dto.Temperature_C = xml.temp_c;
-            dto.VerticalVisibility_Ft = xml.vert_vis_ft;
+            dto.VerticalVisibility_Ft = ParserHelpers.GetValue(xml.vert_vis_ftSpecified, xml.vert_vis_ft);
             dto.Visibility_SM = xml.visibility_statute_mi;
             dto.Weather = xml.wx_string;
             dto.WindDirection_D = xml.wind_dir_degrees;
-            dto.WindGust_Kt = xml.wind_gust_kt;
+            dto.WindGust_Kt = ParserHelpers.GetValue(xml.wind_gust_ktSpecified, xml.wind_gust_kt);
             dto.WindSpeed_Kt = xml.wind_speed_kt;
+            dto.FlightCagegory = FlightCategoryType.GetByName(xml.flight_category);
         }
 
         /// <summary>
@@ -128,14 +129,8 @@ namespace AviationWx.NET.Parsers
             if (xml.pcp3hr_inSpecified || xml.three_hr_pressure_tendency_mbSpecified)
             {
                 dto._3HourObsData = new _3HourObsData();
-                if (xml.pcp3hr_inSpecified)
-                {
-                    dto._3HourObsData.Precipitation_In = xml.pcp3hr_in;
-                }
-                if (xml.pcp3hr_inSpecified)
-                {
-                    dto._3HourObsData.PressureTendency_Mb = xml.three_hr_pressure_tendency_mb;
-                }
+                dto._3HourObsData.Precipitation_In = ParserHelpers.GetValue(xml.pcp3hr_inSpecified, xml.pcp3hr_in);
+                dto._3HourObsData.PressureTendency_Mb = ParserHelpers.GetValue(xml.three_hr_pressure_tendency_mbSpecified, xml.three_hr_pressure_tendency_mb);
             }
         }
 
@@ -162,26 +157,14 @@ namespace AviationWx.NET.Parsers
         /// <param name="xml"></param>
         private void Parse24HourWeatherData(METARDto dto, METAR xml)
         {
-            if (xml.pcp24hr_inSpecified 
-                || xml.maxT24hr_cSpecified 
+            if (xml.pcp24hr_inSpecified
+                || xml.maxT24hr_cSpecified
                 || xml.minT24hr_cSpecified)
             {
                 dto._24HourData = new _24HourObsDataDto();
-
-                if (xml.pcp24hr_inSpecified)
-                {
-                    dto._24HourData.Precipitation_In = xml.pcp24hr_in;
-                }
-
-                if (xml.maxT24hr_cSpecified)
-                {
-                    dto._24HourData.MaxTemperature_C = xml.maxT24hr_c;
-                }
-
-                if (xml.minT24hr_cSpecified)
-                {
-                    dto._24HourData.MinTemperature_C = xml.minT24hr_c;
-                }
+                dto._24HourData.Precipitation_In = ParserHelpers.GetValue(xml.pcp24hr_inSpecified, xml.pcp24hr_in);
+                dto._24HourData.MaxTemperature_C = ParserHelpers.GetValue(xml.maxT24hr_cSpecified, xml.maxT24hr_c);
+                dto._24HourData.MinTemperature_C = ParserHelpers.GetValue(xml.minT24hr_cSpecified, xml.minT24hr_c);
             }
         }
 
@@ -193,7 +176,7 @@ namespace AviationWx.NET.Parsers
                 dto.QualityControlFlags.Add(QualityControlFlagType.Auto);
             }
 
-            if (xml.quality_control_flags.auto_station != null 
+            if (xml.quality_control_flags.auto_station != null
                 && bool.Parse(xml.quality_control_flags.auto_station))
             {
                 dto.QualityControlFlags.Add(QualityControlFlagType.AutoStation);
@@ -217,7 +200,7 @@ namespace AviationWx.NET.Parsers
                 dto.QualityControlFlags.Add(QualityControlFlagType.LightningSensorOff);
             }
 
-            if (xml.quality_control_flags.maintenance_indicator_on != null 
+            if (xml.quality_control_flags.maintenance_indicator_on != null
                 && bool.Parse(xml.quality_control_flags.maintenance_indicator_on))
             {
                 dto.QualityControlFlags.Add(QualityControlFlagType.MaintenanceIndicator);

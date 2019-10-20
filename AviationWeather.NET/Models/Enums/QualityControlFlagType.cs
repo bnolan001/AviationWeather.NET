@@ -24,19 +24,19 @@ namespace AviationWx.NET.Models.Enums
 
         public string Description { get; private set; }
 
-        public QualityControlFlagType(string name, int value, string description)
+        private QualityControlFlagType(string name, int value, string description)
         {
             Name = name;
             Value = value;
             Description = description;
         }
 
-        public List<QualityControlFlagType> List()
+        public static List<QualityControlFlagType> List()
         {
             return new List<QualityControlFlagType> { Corrected, Auto, AutoStation, MaintenanceIndicator, NoSignal, LightningSensorOff, FreezingRainSensorOff, PresentWeatherSensorOff };
         }
 
-        public QualityControlFlagType GetByName(string name)
+        public static QualityControlFlagType GetByName(string name)
         {
             if (String.IsNullOrWhiteSpace(name))
             {
@@ -46,7 +46,7 @@ namespace AviationWx.NET.Models.Enums
             return List().Where(s => s.Name.Equals(name, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
         }
 
-        public QualityControlFlagType GetByValue(int value)
+        public static QualityControlFlagType GetByValue(int value)
         {
             if (value < 0)
             {

@@ -20,19 +20,19 @@ namespace AviationWx.NET.Models.Enums
 
         public string Description { get; private set; }
 
-        public FlightCategoryType(string name, int value, string description)
+        private FlightCategoryType(string name, int value, string description)
         {
             Name = name;
             Value = value;
             Description = description;
         }
 
-        public List<FlightCategoryType> List()
+        public static List<FlightCategoryType> List()
         {
             return new List<FlightCategoryType> { VFR, MVFR, IFR, LIFR };
         }
 
-        public FlightCategoryType GetByName(string name)
+        public static FlightCategoryType GetByName(string name)
         {
             if (String.IsNullOrWhiteSpace(name))
             {
@@ -42,7 +42,7 @@ namespace AviationWx.NET.Models.Enums
             return List().Where(s => s.Name.Equals(name, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
         }
 
-        public FlightCategoryType GetByValue(int value)
+        public static FlightCategoryType GetByValue(int value)
         {
             if (value < 0)
             {

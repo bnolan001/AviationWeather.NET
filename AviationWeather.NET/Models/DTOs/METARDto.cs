@@ -19,25 +19,25 @@ namespace AviationWx.NET.Models.DTOs
 
         public int WindSpeed_Kt { get; set; }
 
-        public int WindGust_Kt { get; set; }
+        public int? WindGust_Kt { get; set; }
 
         public float Visibility_SM { get; set; }
 
-        public double Altimeter_Hg { get; set; }
+        public float Altimeter_Hg { get; set; }
 
-        public double SeaLevelPressure_Mb { get; set; }
+        public float SeaLevelPressure_Mb { get; set; }
 
         public List<SkyConditionDto> SkyCondition { get; set; }
 
         public FlightCategoryType FlightCagegory { get; set; }
 
-        public float Precipitation_In { get; set; }
+        public Nullable<float> Precipitation_In { get; set; }
 
         public string Weather { get; set; }
 
         public GeographicData GeographicData { get; set; }
 
-        public int VerticalVisibility_Ft { get; set; }
+        public int? VerticalVisibility_Ft { get; set; }
 
         public _3HourObsData _3HourObsData { get; set; }
 

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace AviationWx.NET.Models.Enums
 {
@@ -16,19 +15,19 @@ namespace AviationWx.NET.Models.Enums
 
         public string Description { get; private set; }
 
-        public METARType(string name, int value, string description)
+        private METARType(string name, int value, string description)
         {
             Name = name;
             Value = value;
             Description = description;
         }
 
-        public List<METARType> List()
+        public static List<METARType> List()
         {
             return new List<METARType> { METAR, SPECI };
         }
 
-        public METARType GetByName(string name)
+        public static METARType GetByName(string name)
         {
             if (String.IsNullOrWhiteSpace(name))
             {
@@ -38,7 +37,7 @@ namespace AviationWx.NET.Models.Enums
             return List().Where(s => s.Name.Equals(name, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
         }
 
-        public METARType GetByValue(int value)
+        public static METARType GetByValue(int value)
         {
             if (value < 0)
             {
