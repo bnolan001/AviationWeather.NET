@@ -1,6 +1,6 @@
 ﻿namespace AviationWx.NET.Models.DTOs
 {
-    public class GeographicData
+    public class GeographicDataDto
     {
         public float Latitude { get; set; }
 

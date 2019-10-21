@@ -8,6 +8,8 @@ namespace AviationWx.NET.Models.DTOs
 
         public List<TAFDto> TAF { get; set; }
 
+        public GeographicDataDto GeographicData { get; set; }
+
         public ForecastDto()
         {
             TAF = new List<TAFDto>();

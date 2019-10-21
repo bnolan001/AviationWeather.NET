@@ -46,11 +46,11 @@ namespace AviationWx.NET.Parsers
                     {
                         hashSet.Remove(metarXML.station_id.ToUpper());
                         obs = new ObservationDto();
+                        ParseIdentifier(obs, metarXML);
+                        ParseGeographicData(obs, metarXML);
                         dtos.Add(obs);
                     }
                     var metarDTO = new METARDto();
-                    ParseIdentifier(obs, metarXML);
-                    ParseGeographicData(metarDTO, metarXML);
                     ParseCurrentWeatherData(metarDTO, metarXML);
                     Parse3HourWeatherData(metarDTO, metarXML);
                     Parse6HourWeatherData(metarDTO, metarXML);
@@ -85,9 +85,9 @@ namespace AviationWx.NET.Parsers
         /// </summary>
         /// <param name="dto"></param>
         /// <param name="xml"></param>
-        private void ParseGeographicData(METARDto dto, METAR xml)
+        private void ParseGeographicData(ObservationDto dto, METAR xml)
         {
-            dto.GeographicData = new GeographicData()
+            dto.GeographicData = new GeographicDataDto()
             {
                 Latitude = xml.latitude,
                 Longitude = xml.longitude,
@@ -113,9 +113,12 @@ namespace AviationWx.NET.Parsers
             dto.VerticalVisibility_Ft = ParserHelpers.GetValue(xml.vert_vis_ftSpecified, xml.vert_vis_ft);
             dto.Visibility_SM = xml.visibility_statute_mi;
             dto.Weather = xml.wx_string;
-            dto.WindDirection_D = xml.wind_dir_degrees;
-            dto.WindGust_Kt = ParserHelpers.GetValue(xml.wind_gust_ktSpecified, xml.wind_gust_kt);
-            dto.WindSpeed_Kt = xml.wind_speed_kt;
+            dto.Wind = new WindDto()
+            {
+                WindDirection_D = xml.wind_dir_degrees,
+                WindGust_Kt = ParserHelpers.GetValue(xml.wind_gust_ktSpecified, xml.wind_gust_kt),
+                WindSpeed_Kt = xml.wind_speed_kt,
+            };
             dto.FlightCagegory = FlightCategoryType.GetByName(xml.flight_category);
             dto.ObsType = METARType.GetByName(xml.metar_type);
             if (xml.maxT_cSpecified || xml.minT_cSpecified)

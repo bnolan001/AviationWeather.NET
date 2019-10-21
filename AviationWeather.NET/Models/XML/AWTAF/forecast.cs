@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Text;
 using System.Xml.Serialization;
+using AviationWx.NET.Models.DTOs;
 
 namespace AviationWx.NET.Models.XML.AWTAF
 {
@@ -167,6 +168,11 @@ namespace AviationWx.NET.Models.XML.AWTAF
             {
                 this.wind_dir_degreesField = value;
             }
+        }
+
+        internal object Select(IcingDto icingDto)
+        {
+            throw new NotImplementedException();
         }
 
         /// <remarks/>

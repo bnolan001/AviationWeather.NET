@@ -48,9 +48,9 @@ namespace Testing.Unit
             metars[0].VerticalVisibility_Ft.Should().BeNull();
             metars[0].Visibility_SM.Should().Be(10.0f);
             metars[0].Weather.Should().BeNull();
-            metars[0].WindDirection_D.Should().Be(150);
-            metars[0].WindGust_Kt.Should().BeNull();
-            metars[0].WindSpeed_Kt.Should().Be(3);
+            metars[0].Wind.WindDirection_D.Should().Be(150);
+            metars[0].Wind.WindGust_Kt.Should().BeNull();
+            metars[0].Wind.WindSpeed_Kt.Should().Be(3);
             metars[0]._24HourData.Should().BeNull();
             metars[0]._3HourObsData.Should().BeNull();
             metars[0]._6HourData.Should().BeNull();
@@ -105,9 +105,9 @@ namespace Testing.Unit
             metars[0].VerticalVisibility_Ft.Should().BeNull();
             metars[0].Visibility_SM.Should().Be(8.0f);
             metars[0].Weather.Should().Be("-RA");
-            metars[0].WindDirection_D.Should().Be(40);
-            metars[0].WindGust_Kt.Should().BeNull();
-            metars[0].WindSpeed_Kt.Should().Be(17);
+            metars[0].Wind.WindDirection_D.Should().Be(40);
+            metars[0].Wind.WindGust_Kt.Should().BeNull();
+            metars[0].Wind.WindSpeed_Kt.Should().Be(17);
             metars[0]._24HourData.Should().BeNull();
             metars[0].TemperatureRange.Should().NotBeNull();
             metars[0].TemperatureRange.MaxTemperature_C.Should().Be(13.3f);
@@ -142,9 +142,9 @@ namespace Testing.Unit
             metars[2].VerticalVisibility_Ft.Should().BeNull();
             metars[2].Visibility_SM.Should().Be(2.0f);
             metars[2].Weather.Should().Be("-RA BR");
-            metars[2].WindDirection_D.Should().Be(70);
-            metars[2].WindGust_Kt.Should().BeNull();
-            metars[2].WindSpeed_Kt.Should().Be(18);
+            metars[2].Wind.WindDirection_D.Should().Be(70);
+            metars[2].Wind.WindGust_Kt.Should().BeNull();
+            metars[2].Wind.WindSpeed_Kt.Should().Be(18);
             metars[2]._24HourData.Should().BeNull();
             metars[2].TemperatureRange.Should().BeNull();
             metars[2]._3HourObsData.Should().BeNull();

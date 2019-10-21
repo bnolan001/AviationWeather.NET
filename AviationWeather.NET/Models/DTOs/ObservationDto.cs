@@ -1,7 +1,4 @@
-﻿using AviationWx.NET.Models.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace AviationWx.NET.Models.DTOs
 {
@@ -10,6 +7,8 @@ namespace AviationWx.NET.Models.DTOs
         public string ICAO { get; set; }
 
         public List<METARDto> METAR { get; set; }
+
+        public GeographicDataDto GeographicData { get; set; }
 
         public ObservationDto()
         {
