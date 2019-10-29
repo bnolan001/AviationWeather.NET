@@ -4,12 +4,12 @@ using System.Linq;
 
 namespace AviationWx.NET.Models.Enums
 {
-    public class ForecastType
+    public class ChangeIndicatorType
     {
-        public static readonly ForecastType TEMPO = new ForecastType("TEMPO", 1, "Temporary");
-        public static readonly ForecastType BECMG = new ForecastType("BECMG", 2, "Becoming");
-        public static readonly ForecastType FM = new ForecastType("FM", 2, "From");
-        public static readonly ForecastType PROB = new ForecastType("PROB", 2, "Probability");
+        public static readonly ChangeIndicatorType TEMPO = new ChangeIndicatorType("TEMPO", 1, "Temporary");
+        public static readonly ChangeIndicatorType BECMG = new ChangeIndicatorType("BECMG", 2, "Becoming");
+        public static readonly ChangeIndicatorType FM = new ChangeIndicatorType("FM", 2, "From");
+        public static readonly ChangeIndicatorType PROB = new ChangeIndicatorType("PROB", 2, "Probability");
 
         public string Name { get; private set; }
 
@@ -17,19 +17,19 @@ namespace AviationWx.NET.Models.Enums
 
         public string Description { get; private set; }
 
-        private ForecastType(string name, int value, string description)
+        private ChangeIndicatorType(string name, int value, string description)
         {
             Name = name;
             Value = value;
             Description = description;
         }
 
-        public static List<ForecastType> List()
+        public static List<ChangeIndicatorType> List()
         {
-            return new List<ForecastType> { TEMPO, BECMG, FM, PROB };
+            return new List<ChangeIndicatorType> { TEMPO, BECMG, FM, PROB };
         }
 
-        public static ForecastType GetByName(string name)
+        public static ChangeIndicatorType GetByName(string name)
         {
             if (String.IsNullOrWhiteSpace(name))
             {
@@ -39,7 +39,7 @@ namespace AviationWx.NET.Models.Enums
             return List().Where(s => s.Name.Equals(name, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
         }
 
-        public static ForecastType GetByValue(int value)
+        public static ChangeIndicatorType GetByValue(int value)
         {
             if (value < 0)
             {

@@ -89,14 +89,30 @@ namespace Testing.Integration
         {
             var request = _aviationWeather.GetLatestForecastsAsync(new List<string>() { "KPHL" });
             request.Wait();
-            var taf = request.Result;
-            taf.Should().NotBeNull();
-            taf.Count.Should().Be(1);
-            taf[0].TAF.Count.Should().BeGreaterOrEqualTo(1);
-            taf[0].TAF[0].RawTAF.Should().NotBeNullOrWhiteSpace();
-            taf[0].ICAO.Should().NotBeNullOrWhiteSpace();
+            var forecasts = request.Result;
+            forecasts.Should().NotBeNull();
+            forecasts.Count.Should().Be(1);
+            forecasts[0].TAF.Count.Should().BeGreaterOrEqualTo(1);
+            forecasts[0].TAF[0].RawTAF.Should().NotBeNullOrWhiteSpace();
+            forecasts[0].ICAO.Should().NotBeNullOrWhiteSpace();
         }
 
+
+        [Test]
+        public void GetLatestForecastsAsync_Multiple_Valid()
+        {
+            var request = _aviationWeather.GetLatestForecastsAsync(new List<string>() { "WALL", "ZBAA", "EGLL", "HECA" });
+            request.Wait();
+            var forecasts = request.Result;
+            forecasts.Should().NotBeNull();
+            forecasts.Count.Should().Be(4);
+            foreach (var fcst in forecasts)
+            {
+                fcst.TAF.Count.Should().BeGreaterOrEqualTo(1);
+                fcst.TAF[0].RawTAF.Should().NotBeNullOrWhiteSpace();
+                fcst.ICAO.Should().NotBeNullOrWhiteSpace();
+            }
+        }
         #endregion GetlatestForecasts
 
         #endregion TAF

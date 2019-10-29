@@ -17,11 +17,11 @@ namespace AviationWx.NET.Models.DTOs
 
         public string Remarks { get; set; }
 
-        public List<TAFLineDto> Forecast { get; set; }
+        public List<TAFLineDto> TAFLine { get; set; }
 
         public TAFDto()
         {
-            Forecast = new List<TAFLineDto>();
+            TAFLine = new List<TAFLineDto>();
         }
     }
 }

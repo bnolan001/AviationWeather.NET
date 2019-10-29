@@ -115,9 +115,9 @@ namespace AviationWx.NET.Parsers
             dto.Weather = xml.wx_string;
             dto.Wind = new WindDto()
             {
-                WindDirection_D = xml.wind_dir_degrees,
-                WindGust_Kt = ParserHelpers.GetValue(xml.wind_gust_ktSpecified, xml.wind_gust_kt),
-                WindSpeed_Kt = xml.wind_speed_kt,
+                Direction_D = xml.wind_dir_degrees,
+                Gust_Kt = ParserHelpers.GetValue(xml.wind_gust_ktSpecified, xml.wind_gust_kt),
+                Speed_Kt = xml.wind_speed_kt,
             };
             dto.FlightCagegory = FlightCategoryType.GetByName(xml.flight_category);
             dto.ObsType = METARType.GetByName(xml.metar_type);

@@ -20,15 +20,32 @@ namespace AviationWx.NET.Parsers
                 responseObj = (response)serializer.Deserialize(streamReader);
             }
 
-            return ConvertToDTO(responseObj, icaos);
+            var dtos = ConvertToDTO(responseObj, icaos);
+            var foundICAOs = dtos.Select(dto => dto.ICAO).ToList();
+            var missingICAOs = icaos.Where(i => !foundICAOs.Contains(i)).ToList();
+            var missingDTOs = GetMissingStations(missingICAOs);
+            dtos.AddRange(missingDTOs);
+            return dtos;
+        }
+
+        private List<ForecastDto> GetMissingStations(IList<string> icaos)
+        {
+            var dtos = new List<ForecastDto>();
+
+            foreach (var icao in icaos)
+            {
+                dtos.Add(new ForecastDto()
+                {
+                    ICAO = icao
+                });
+            }
+
+            return dtos;
         }
 
         private List<ForecastDto> ConvertToDTO(response xmlObjs,
             IList<string> icaos)
         {
-            var hashSet = new HashSet<string>();
-            icaos.All(a => hashSet.Add(a.ToUpper()));
-
             var dtos = new List<ForecastDto>();
             ForecastDto forecast = null;
             if (xmlObjs.data?.TAF != null)
@@ -38,7 +55,6 @@ namespace AviationWx.NET.Parsers
                     forecast = dtos.Where(o => o.ICAO == tafXML.station_id).FirstOrDefault();
                     if (forecast == null)
                     {
-                        hashSet.Remove(tafXML.station_id.ToUpper());
                         forecast = new ForecastDto();
                         ParseIdentifier(forecast, tafXML);
                         ParseGeographicData(forecast, tafXML);
@@ -50,13 +66,6 @@ namespace AviationWx.NET.Parsers
                     ParseForecastData(tafDTO, tafXML.forecast);
                     forecast.TAF.Add(tafDTO);
                 }
-            }
-            foreach (var icao in hashSet)
-            {
-                dtos.Add(new ForecastDto()
-                {
-                    ICAO = icao
-                });
             }
 
             return dtos;
@@ -100,40 +109,112 @@ namespace AviationWx.NET.Parsers
 
         private void ParseForecastData(TAFDto dto, forecast[] xml)
         {
+            var lineNumber = 0;
             foreach (var line in xml)
             {
                 var lineDto = new TAFLineDto();
                 lineDto.Altimeter_Hg = ParserHelpers.GetValue(line.altim_in_hgSpecified, line.altim_in_hg);
                 lineDto.ForecastTimeEnd = DateTime.Parse(line.fcst_time_to);
                 lineDto.ForecastTimeStart = DateTime.Parse(line.fcst_time_from);
-                lineDto.ForecastType = ForecastType.GetByName(line.change_indicator);
-                lineDto.IcingHazards = line.icing_condition.Select(ic => new IcingDto() { Intensity = ic.icing_intensity, MaxAltitude_Ft = ic.icing_max_alt_ft_agl, MinAltitude_Ft = ic.icing_min_alt_ft_agl }).ToList();
-                lineDto.TurbulenceHazards = line.turbulence_condition.Select(ic => new TurbulenceDto() { Intensity = ic.turbulence_intensity, MaxAltitude_Ft = ic.turbulence_max_alt_ft_agl, MinAltitude_Ft = ic.turbulence_min_alt_ft_agl }).ToList();
-                lineDto.VerticalVisibility_Ft = ParserHelpers.GetValue(line.vert_vis_ftSpecified, line.vert_vis_ft);
-                lineDto.Visibility_SM = ParserHelpers.GetValue(line.visibility_statute_miSpecified, line.visibility_statute_mi);
+                if (line.sky_condition != null)
+                {
+                    lineDto.SkyCondition = line.sky_condition
+                        .Select(sc => GetSkyCondition(sc)).ToList();
+                }
+
+                // First line may not have an change type
+                if (lineNumber > 0
+                    && !String.IsNullOrWhiteSpace(line.change_indicator))
+                {
+                    lineDto.ForecastType = ChangeIndicatorType.GetByName(line.change_indicator);
+                }
+                if (line.icing_condition != null)
+                {
+                    lineDto.IcingHazards = line.icing_condition
+                        .Select(ic => GetHazard(ic)).ToList();
+                }
+
+                if (line.turbulence_condition != null)
+                {
+                    lineDto.TurbulenceHazards = line.turbulence_condition
+                        .Select(tb => GetHazard(tb)).ToList();
+                }
+
+                lineDto.VerticalVisibility_Ft = ParserHelpers.GetValue(
+                    line.vert_vis_ftSpecified, line.vert_vis_ft);
+                lineDto.Visibility_SM = ParserHelpers.GetValue(
+                    line.visibility_statute_miSpecified, line.visibility_statute_mi);
                 lineDto.Weather = line.wx_string;
-                if (line.wind_gust_ktSpecified || line.wind_dir_degreesSpecified || line.wind_speed_ktSpecified)
-                {
-                    lineDto.Wind = new WindDto()
-                    {
-                        WindGust_Kt = ParserHelpers.GetValue(line.wind_gust_ktSpecified, line.wind_gust_kt),
-                        WindSpeed_Kt = ParserHelpers.GetValue(line.wind_speed_ktSpecified, line.wind_speed_kt),
-                        WindDirection_D = ParserHelpers.GetValue(line.wind_dir_degreesSpecified, line.wind_dir_degrees)
-                    };
-                }
 
-                if (line.wind_shear_hgt_ft_aglSpecified || line.wind_shear_dir_degreesSpecified || line.wind_shear_speed_ktSpecified)
-                {
-                    lineDto.WindShear = new WindShearDto()
-                    {
-                        WindShearDirection_D = ParserHelpers.GetValue(line.wind_shear_dir_degreesSpecified, line.wind_shear_dir_degrees),
-                        WindShearHeight_Ft = ParserHelpers.GetValue(line.wind_shear_hgt_ft_aglSpecified, line.wind_shear_hgt_ft_agl),
-                        WindShearSpeed_Kt = ParserHelpers.GetValue(line.wind_shear_speed_ktSpecified, line.wind_shear_speed_kt)
-                    };
-                }
-
-                dto.Forecast.Add(lineDto);
+                lineDto.Wind = GetWind(line);
+                
+                lineDto.WindShear = GetWindSheer(line);
+                
+                dto.TAFLine.Add(lineDto);
+                lineNumber++;
             }
+        }
+
+        public SkyConditionDto GetSkyCondition(sky_condition xml)
+        {
+            return new SkyConditionDto()
+            {
+                CloudBaseFt = xml.cloud_base_ft_agl,
+                SkyCondition = SkyConditionType.GetByName(xml.sky_cover)
+            };
+        }
+
+        public WindDto GetWind(forecast xml)
+        {
+            if ( !xml.wind_dir_degreesSpecified 
+                && !xml.wind_speed_ktSpecified)
+            {
+                return null;
+            }
+
+            return new WindDto()
+            {
+                Gust_Kt = ParserHelpers.GetValue(xml.wind_gust_ktSpecified, xml.wind_gust_kt),
+                Speed_Kt = ParserHelpers.GetValue(xml.wind_speed_ktSpecified, xml.wind_speed_kt),
+                Direction_D = ParserHelpers.GetValue(xml.wind_dir_degreesSpecified, xml.wind_dir_degrees)
+            };
+        }
+
+        public WindShearDto GetWindSheer(forecast xml)
+        {
+            if (!xml.wind_shear_hgt_ft_aglSpecified 
+                && !xml.wind_shear_dir_degreesSpecified 
+                && !xml.wind_shear_speed_ktSpecified)
+            {
+                return null;
+            }
+
+            return new WindShearDto()
+            {
+                Direction_D = ParserHelpers.GetValue(xml.wind_shear_dir_degreesSpecified, xml.wind_shear_dir_degrees),
+                Height_Ft = ParserHelpers.GetValue(xml.wind_shear_hgt_ft_aglSpecified, xml.wind_shear_hgt_ft_agl),
+                Speed_Kt = ParserHelpers.GetValue(xml.wind_shear_speed_ktSpecified, xml.wind_shear_speed_kt)
+            };
+        }
+
+        public IcingDto GetHazard(icing_condition xml)
+        {
+            return new IcingDto()
+            {
+                Intensity = xml.icing_intensity,
+                MaxAltitude_Ft = xml.icing_max_alt_ft_agl,
+                MinAltitude_Ft = xml.icing_min_alt_ft_agl
+            };
+        }
+
+        public TurbulenceDto GetHazard(turbulence_condition xml)
+        {
+            return new TurbulenceDto()
+            {
+                Intensity = xml.turbulence_intensity,
+                MaxAltitude_Ft = xml.turbulence_max_alt_ft_agl,
+                MinAltitude_Ft = xml.turbulence_min_alt_ft_agl
+            };
         }
     }
 }
