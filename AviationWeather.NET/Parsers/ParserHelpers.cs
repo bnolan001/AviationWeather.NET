@@ -1,8 +1,10 @@
-﻿namespace AviationWx.NET.Parsers
+﻿using System;
+
+namespace AviationWx.NET.Parsers
 {
     public class ParserHelpers
     {
-        public static float? GetValue(bool isPresent, float value)
+        public static Nullable<float> GetValue(bool isPresent, float value)
         {
             if (isPresent)
             {

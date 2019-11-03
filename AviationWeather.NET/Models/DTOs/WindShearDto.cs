@@ -1,4 +1,6 @@
-﻿namespace AviationWx.NET.Models.DTOs
+﻿using System;
+
+namespace AviationWx.NET.Models.DTOs
 {
     public class WindShearDto
     {

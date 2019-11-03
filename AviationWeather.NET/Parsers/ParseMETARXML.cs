@@ -59,6 +59,7 @@ namespace AviationWx.NET.Parsers
                     obs.METAR.Add(metarDTO);
                 }
             }
+
             foreach (var icao in hashSet)
             {
                 dtos.Add(new ObservationDto()
@@ -106,9 +107,10 @@ namespace AviationWx.NET.Parsers
             dto.Dewpoint_C = xml.dewpoint_c;
             dto.ObsTime = DateTime.Parse(xml.observation_time);
             dto.Precipitation_In = ParserHelpers.GetValue(xml.precip_inSpecified, xml.precip_in);
+            dto.Snow_In = ParserHelpers.GetValue(xml.snow_inSpecified, xml.snow_in);
             dto.RawMETAR = xml.raw_text;
             dto.SeaLevelPressure_Mb = xml.sea_level_pressure_mb;
-            dto.SkyCondition = xml.sky_condition.Select(sc => new SkyConditionDto() { SkyCondition = SkyConditionType.GetByName(sc.sky_cover), CloudBaseFt = sc.cloud_base_ft_agl }).ToList();
+            dto.SkyCondition = xml.sky_condition.Select(sc => new SkyConditionDto() { SkyCondition = SkyConditionType.GetByName(sc.sky_cover), CloudBase_Ft = sc.cloud_base_ft_agl }).ToList();
             dto.Temperature_C = xml.temp_c;
             dto.VerticalVisibility_Ft = ParserHelpers.GetValue(xml.vert_vis_ftSpecified, xml.vert_vis_ft);
             dto.Visibility_SM = xml.visibility_statute_mi;

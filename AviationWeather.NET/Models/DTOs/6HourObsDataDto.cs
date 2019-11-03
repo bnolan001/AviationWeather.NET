@@ -1,7 +1,9 @@
-﻿namespace AviationWx.NET.Models.DTOs
+﻿using System;
+
+namespace AviationWx.NET.Models.DTOs
 {
     public class _6HourObsDataDto
     {
-        public float Precipitation_In { get; set; }
+        public float? Precipitation_In { get; set; }
     }
 }

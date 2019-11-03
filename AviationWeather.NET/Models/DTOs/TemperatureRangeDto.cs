@@ -1,9 +1,11 @@
-﻿namespace AviationWx.NET.Models.DTOs
+﻿using System;
+
+namespace AviationWx.NET.Models.DTOs
 {
     public class TemperatureRangeDto
     {
-        public float? MaxTemperature_C { get; set; }
+        public Nullable<float> MaxTemperature_C { get; set; }
 
-        public float? MinTemperature_C { get; set; }
+        public Nullable<float> MinTemperature_C { get; set; }
     }
 }

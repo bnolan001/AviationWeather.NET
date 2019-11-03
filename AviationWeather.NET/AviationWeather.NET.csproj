@@ -1,8 +1,23 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>AviationWx.NET</RootNamespace>
+    <Version>0.2.0-alpha</Version>
+    <Authors>Brian Nolan</Authors>
+    <Company>BNolan.org</Company>
+    <Copyright>BNolan.org 2019</Copyright>
+    <PackageProjectUrl>https://github.com/bnolan001/AviationWeather.NET</PackageProjectUrl>
+    <RepositoryType>Github</RepositoryType>
+    <RepositoryUrl>https://github.com/bnolan001/AviationWeather.NET</RepositoryUrl>
+    <Description>AviationWeather.NET provides a simple interface to access METAR and TAF weather data from the AviationWeather.gov Dataserver, https://aviationweather.gov/dataserver. The library parses the CSV and XML formats outputted by the dataserver and returns a structured object to the caller.</Description>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
 
 </Project>

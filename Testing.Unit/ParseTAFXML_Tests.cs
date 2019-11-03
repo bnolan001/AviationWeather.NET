@@ -43,9 +43,9 @@ namespace Testing.Unit
             tafLine.NotDecoded.Should().BeNull();
             tafLine.Probability.Should().BeNull();
             tafLine.SkyCondition.Count().Should().Be(2);
-            tafLine.SkyCondition[0].CloudBaseFt.Should().Be(4000);
+            tafLine.SkyCondition[0].CloudBase_Ft.Should().Be(4000);
             tafLine.SkyCondition[0].SkyCondition.Should().Be(SkyConditionType.SCT);
-            tafLine.SkyCondition[1].CloudBaseFt.Should().Be(10000);
+            tafLine.SkyCondition[1].CloudBase_Ft.Should().Be(10000);
             tafLine.SkyCondition[1].SkyCondition.Should().Be(SkyConditionType.BKN);
             tafLine.Wind.Should().NotBeNull();
             tafLine.Wind.Direction_D.Should().Be(110);
@@ -64,7 +64,7 @@ namespace Testing.Unit
             tafLine.NotDecoded.Should().BeNull();
             tafLine.Probability.Should().BeNull();
             tafLine.SkyCondition.Count().Should().Be(1);
-            tafLine.SkyCondition[0].CloudBaseFt.Should().Be(1000);
+            tafLine.SkyCondition[0].CloudBase_Ft.Should().Be(1000);
             tafLine.SkyCondition[0].SkyCondition.Should().Be(SkyConditionType.OVC);
             tafLine.Wind.Should().NotBeNull();
             tafLine.Wind.Direction_D.Should().Be(100);

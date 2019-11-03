@@ -1,7 +1,6 @@
 ﻿using AviationWx.NET.Models.Enums;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace AviationWx.NET.Models.DTOs
 {
@@ -21,9 +20,9 @@ namespace AviationWx.NET.Models.DTOs
 
         public WindShearDto WindShear { get; set; }
 
-        public float? Visibility_SM { get; set; }
+        public Nullable<float> Visibility_SM { get; set; }
 
-        public float? Altimeter_Hg { get; set; }
+        public Nullable<float> Altimeter_Hg { get; set; }
 
         public int? VerticalVisibility_Ft { get; set; }
 
@@ -37,7 +36,7 @@ namespace AviationWx.NET.Models.DTOs
 
         public List<SkyConditionDto> SkyCondition { get; set; }
 
-        public float? SurfaceTemperature_C { get; set; }
+        public Nullable<float> SurfaceTemperature_C { get; set; }
 
         public TemperatureRangeDto TemperatureRange { get; set; }
 

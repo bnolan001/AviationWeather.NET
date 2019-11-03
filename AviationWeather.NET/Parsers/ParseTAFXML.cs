@@ -159,7 +159,7 @@ namespace AviationWx.NET.Parsers
         {
             return new SkyConditionDto()
             {
-                CloudBaseFt = xml.cloud_base_ft_agl,
+                CloudBase_Ft = xml.cloud_base_ft_agl,
                 SkyCondition = SkyConditionType.GetByName(xml.sky_cover)
             };
         }

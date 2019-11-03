@@ -6,6 +6,6 @@ namespace AviationWx.NET.Models.DTOs
     {
         public SkyConditionType SkyCondition { get; set; }
 
-        public int CloudBaseFt { get; set; }
+        public int CloudBase_Ft { get; set; }
     }
 }

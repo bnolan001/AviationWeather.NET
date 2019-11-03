@@ -21,13 +21,15 @@ namespace AviationWx.NET.Models.DTOs
 
         public float Altimeter_Hg { get; set; }
 
-        public float SeaLevelPressure_Mb { get; set; }
+        public float? SeaLevelPressure_Mb { get; set; }
 
         public List<SkyConditionDto> SkyCondition { get; set; }
 
         public FlightCategoryType FlightCagegory { get; set; }
 
-        public Nullable<float> Precipitation_In { get; set; }
+        public float? Precipitation_In { get; set; }
+
+        public float? Snow_In { get; set; }
 
         public string Weather { get; set; }
         

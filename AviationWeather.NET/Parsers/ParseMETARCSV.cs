@@ -14,8 +14,12 @@ namespace AviationWx.NET.Parsers
             var csvObs = new List<ObservationDto>();
             var foundHeader = false;
             var fieldOrder = new List<METARCSVField>();
+            var hashSet = new HashSet<string>();
+            icaos.All(a => hashSet.Add(a.ToUpper()));
 
-            foreach (var line in data.Split('\r'))
+            var splitData = data.Split(new char[] { '\n' });
+
+            foreach (var line in splitData)
             {
                 if (String.IsNullOrWhiteSpace(line))
                 {
@@ -38,12 +42,21 @@ namespace AviationWx.NET.Parsers
                     if (existingStation == null)
                     {
                         csvObs.Add(stationObs);
+                        hashSet.Remove(stationObs.ICAO);
                     }
                     else
                     {
                         existingStation.METAR.Add(stationObs.METAR.FirstOrDefault());
                     }
                 }
+            }
+
+            foreach (var icao in hashSet)
+            {
+                csvObs.Add(new ObservationDto()
+                {
+                    ICAO = icao
+                });
             }
 
             return csvObs;
@@ -64,6 +77,13 @@ namespace AviationWx.NET.Parsers
                 METAR = new List<METARDto>()
                 {
                     new METARDto()
+                    {
+                        _3HourObsData = new _3HourObsData(),
+                        _6HourData = new _6HourObsDataDto(),
+                        _24HourData = new _24HourObsDataDto(),
+                        TemperatureRange = new TemperatureRangeDto(),
+                        Wind = new WindDto()
+                    }
                 }
             };
             var obs = dto.METAR[0];
@@ -86,9 +106,6 @@ namespace AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == METARCSVField.auto)
                 {
-                    /*
-                     * TODO: Check if a specific value is in the field to designate the flag is active
-                     */
                     if (IsFlagEnabled(fieldVal))
                     {
                         obs.QualityControlFlags.Add(QualityControlFlagType.Auto);
@@ -97,9 +114,6 @@ namespace AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == METARCSVField.auto_station)
                 {
-                    /*
-                     * TODO: Check if a specific value is in the field to designate the flag is active
-                     */
                     if (IsFlagEnabled(fieldVal))
                     {
                         obs.QualityControlFlags.Add(QualityControlFlagType.AutoStation);
@@ -108,7 +122,15 @@ namespace AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == METARCSVField.cloud_base_ft_agl)
                 {
-                    obs.SkyCondition[obs.SkyCondition.Count() - 1].CloudBaseFt = int.Parse(fieldVal);
+                    obs.SkyCondition[obs.SkyCondition.Count() - 1].CloudBase_Ft = int.Parse(fieldVal);
+                    continue;
+                }
+                if (fieldOrder[idx] == METARCSVField.sky_cover)
+                {
+                    obs.SkyCondition.Add(new SkyConditionDto()
+                    {
+                        SkyCondition = SkyConditionType.GetByName(fieldVal)
+                    });
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.dewpoint_c)
@@ -128,9 +150,6 @@ namespace AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == METARCSVField.freezing_rain_sensor_off)
                 {
-                    /*
-                     * TODO: Check if a specific value is in the field to designate the flag is active
-                     */
                     if (IsFlagEnabled(fieldVal))
                     {
                         obs.QualityControlFlags.Add(QualityControlFlagType.FreezingRainSensorOff);
@@ -149,9 +168,6 @@ namespace AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == METARCSVField.lightning_sensor_off)
                 {
-                    /*
-                     * TODO: Check if a specific value is in the field to designate the flag is active
-                     */
                     if (IsFlagEnabled(fieldVal))
                     {
                         obs.QualityControlFlags.Add(QualityControlFlagType.LightningSensorOff);
@@ -160,9 +176,6 @@ namespace AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == METARCSVField.maintenance_indicator_on)
                 {
-                    /*
-                     * TODO: Check if a specific value is in the field to designate the flag is active
-                     */
                     if (IsFlagEnabled(fieldVal))
                     {
                         obs.QualityControlFlags.Add(QualityControlFlagType.MaintenanceIndicator);
@@ -196,9 +209,6 @@ namespace AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == METARCSVField.no_signal)
                 {
-                    /*
-                     * TODO: Check if a specific value is in the field to designate the flag is active
-                     */
                     if (IsFlagEnabled(fieldVal))
                     {
                         obs.QualityControlFlags.Add(QualityControlFlagType.NoSignal);
@@ -232,9 +242,6 @@ namespace AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == METARCSVField.present_weather_sensor_off)
                 {
-                    /*
-                     * TODO: Check if a specific value is in the field to designate the flag is active
-                     */
                     if (IsFlagEnabled(fieldVal))
                     {
                         obs.QualityControlFlags.Add(QualityControlFlagType.PresentWeatherSensorOff);
@@ -251,17 +258,9 @@ namespace AviationWx.NET.Parsers
                     obs.SeaLevelPressure_Mb = float.Parse(fieldVal);
                     continue;
                 }
-                if (fieldOrder[idx] == METARCSVField.sky_cover)
-                {
-                    var skyCond = new SkyConditionDto();
-                    skyCond.SkyCondition = SkyConditionType.GetByName(fieldVal);
-                    obs.SkyCondition.Add(skyCond);
-                    continue;
-                }
                 if (fieldOrder[idx] == METARCSVField.snow_in)
                 {
-                    // Need to add snow parsing
-                    //obs._ = (fieldVal);
+                    obs.Snow_In = float.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.station_id)
@@ -291,10 +290,7 @@ namespace AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == METARCSVField.wind_dir_degrees)
                 {
-                    obs.Wind = new WindDto()
-                    {
-                        Direction_D = int.Parse(fieldVal)
-                    };
+                    obs.Wind.Direction_D = int.Parse(fieldVal);                    
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.wind_gust_kt)
@@ -314,6 +310,8 @@ namespace AviationWx.NET.Parsers
                 }
             }
 
+            ResetFieldsToNull(ref obs);
+
             return dto;
         }
 
@@ -321,6 +319,70 @@ namespace AviationWx.NET.Parsers
         {
             return !String.IsNullOrWhiteSpace(value)
                 && bool.Parse(value);
+        }
+
+        /// <summary>
+        /// Because not all properties will have values in each observation
+        /// reset those fields that are objects which have no values
+        /// </summary>
+        /// <param name="dto"></param>
+        public void ResetFieldsToNull(ref METARDto dto)
+        {
+            ResetWindDataIfNullValues(ref dto);
+
+            ResetTemperatureRangeIfNullValues(ref dto);
+
+            Reset3HourDataIfNullValues(ref dto);
+
+            Reset6HourDataIfNullValues(ref dto);
+
+            Reset24HourDataIfNullValues(ref dto);
+        }
+
+        private void ResetWindDataIfNullValues(ref METARDto dto)
+        {
+            if (dto.Wind.Direction_D == null
+                && dto.Wind.Speed_Kt == null
+                && dto.Wind.Gust_Kt == null)
+            {
+                dto.Wind = null;
+            }
+        }
+
+        private void ResetTemperatureRangeIfNullValues(ref METARDto dto)
+        {
+            if (dto.TemperatureRange.MaxTemperature_C == null
+                && dto.TemperatureRange.MinTemperature_C == null)
+            {
+                dto.TemperatureRange = null;
+            }
+        }
+
+        private void Reset3HourDataIfNullValues(ref METARDto dto)
+        {
+            if (dto._3HourObsData.Precipitation_In == null
+                && dto._3HourObsData.PressureTendency_Mb == null)
+            {
+                dto._3HourObsData = null;
+            }
+        }
+
+        private void Reset6HourDataIfNullValues(ref METARDto dto)
+        {
+            if (dto._6HourData.Precipitation_In == null)
+            {
+                dto._6HourData = null;
+            }
+        }
+
+        private void Reset24HourDataIfNullValues(ref METARDto dto)
+        {
+            if (dto._24HourData.MaxTemperature_C == null
+                && dto._24HourData.MinTemperature_C == null
+                && dto._24HourData.Precipitation_In == null)
+            {
+                dto._24HourData = null;
+            }
         }
     }
 }

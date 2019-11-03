@@ -65,6 +65,10 @@ namespace AviationWx.NET.Accessors
             {
                 parser = new ParseMETARXML();
             }
+            else
+            {
+                parser = new ParseMETARCSV();
+            }
 
             return parser.Parse(data, icaos);
         }

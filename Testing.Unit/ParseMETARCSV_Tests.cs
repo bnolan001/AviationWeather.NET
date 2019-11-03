@@ -36,6 +36,30 @@ namespace Testing.Unit
             metar.Precipitation_In.Should().BeNull();
             metar.QualityControlFlags.Count.Should().Be(1);
             metar.QualityControlFlags.Where(q => q == QualityControlFlagType.AutoStation).FirstOrDefault().Should().NotBeNull();
+            metar.Temperature_C.Should().Be(-11.1f);
+            metar.Dewpoint_C.Should().Be(-16.7f);
+            metar.Wind.Should().NotBeNull();
+            metar.Wind.Direction_D.Should().Be(200);
+            metar.Wind.Speed_Kt.Should().Be(12);
+            metar.Wind.Gust_Kt.Should().BeNull();
+            metar.Visibility_SM.Should().Be(10f);
+            metar.Altimeter_Hg.Should().Be(30.221457f);
+            metar.SeaLevelPressure_Mb.Should().Be(1031.2f);
+            metar.SkyCondition.Count().Should().Be(1);
+            metar.SkyCondition[0].SkyCondition.Should().Be(SkyConditionType.CLR);
+            metar.Weather.Should().BeNull();
+            metar._3HourObsData.Should().BeNull();
+            metar._6HourData.Should().BeNull();
+            metar._24HourData.Should().BeNull();
+            metar.Precipitation_In.Should().BeNull();
+
+            metar = obs[0].METAR[1];
+
+            metar.SkyCondition.Count.Should().Be(2);
+            metar.SkyCondition[0].SkyCondition.Should().Be(SkyConditionType.FEW);
+            metar.SkyCondition[0].CloudBase_Ft.Should().Be(10000);
+            metar.SkyCondition[1].SkyCondition.Should().Be(SkyConditionType.FEW);
+            metar.SkyCondition[1].CloudBase_Ft.Should().Be(20000);
         }
     }
 }

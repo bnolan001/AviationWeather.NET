@@ -29,7 +29,7 @@ namespace AviationWx.NET.Models.Enums
 
         public static List<SkyConditionType> List()
         {
-            return new List<SkyConditionType> { SKC, FEW, SCT, BKN, OVC };
+            return new List<SkyConditionType> { SKC, FEW, SCT, BKN, OVC, CLR, CAVOK };
         }
 
         public static SkyConditionType GetByName(string name)
