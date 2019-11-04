@@ -230,7 +230,7 @@ namespace AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == METARCSVField.observation_time)
                 {
-                    obs.ObsTime = DateTime.Parse(fieldVal);
+                    obs.ObsTime = ParserHelpers.GetDateTime(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.pcp24hr_in)

@@ -10,6 +10,12 @@ namespace AviationWx.NET.Parsers
     {
         private static CultureInfo _cultureInfo = CultureInfo.GetCultureInfo(ParserConstants.StringCulture);
 
+        /// <summary>
+        /// If the isPresent flag is true then it gets the float value, otherwise null
+        /// </summary>
+        /// <param name="isPresent"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static Nullable<float> GetValue(bool isPresent, float value)
         {
             if (isPresent)
@@ -20,6 +26,12 @@ namespace AviationWx.NET.Parsers
             return null;
         }
 
+        /// <summary>
+        /// If the isPresent flag is true then it gets the int value, otherwise null
+        /// </summary>
+        /// <param name="isPresent"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static int? GetValue(bool isPresent, int value)
         {
             if (isPresent)
@@ -28,6 +40,18 @@ namespace AviationWx.NET.Parsers
             }
 
             return null;
+        }
+
+        public static DateTime GetDateTime(string dateTimeString)
+        {
+            var dateTime = ParserConstants.DefaultDateTime;
+
+            if (!String.IsNullOrEmpty(dateTimeString)
+                || !DateTime.TryParseExact(dateTimeString, ParserConstants.DateTimeFormat, null, DateTimeStyles.AssumeUniversal, out dateTime)){
+                dateTime = ParserConstants.DefaultDateTime;
+            }
+
+            return dateTime;
         }
 
         public static List<ObservationDto> GetMissingStations(List<ObservationDto> foundObservations, IList<string> requestedICAOs)

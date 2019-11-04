@@ -126,7 +126,7 @@ namespace AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == TAFCSVField.bulletin_time)
                 {
-                    taf.BulletinTime = DateTime.Parse(fieldVal);
+                    taf.BulletinTime = ParserHelpers.GetDateTime(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == TAFCSVField.change_indicator)
@@ -151,17 +151,17 @@ namespace AviationWx.NET.Parsers
                 {
                     // This should be made safe, we are assuming all new DateTime objects
                     // have the same date
-                    if (tafLine.ForecastTimeStart > new DateTime())
+                    if (tafLine.ForecastTimeStart > ParserConstants.DefaultDateTime)
                     {
                         taf.TAFLine.Add(tafLine);
                         tafLine = new TAFLineDto();
                     }
-                    tafLine.ForecastTimeStart = DateTime.Parse(fieldVal);
+                    tafLine.ForecastTimeStart = ParserHelpers.GetDateTime(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == TAFCSVField.fcst_time_to)
                 {
-                    tafLine.ForecastTimeEnd = DateTime.Parse(fieldVal);
+                    tafLine.ForecastTimeEnd = ParserHelpers.GetDateTime(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == TAFCSVField.icing_intensity)
@@ -184,7 +184,7 @@ namespace AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == TAFCSVField.issue_time)
                 {
-                    taf.IssuedTime = DateTime.Parse(fieldVal);
+                    taf.IssuedTime = ParserHelpers.GetDateTime(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == TAFCSVField.max_or_min_temp_c)
@@ -238,7 +238,7 @@ namespace AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == TAFCSVField.time_becoming)
                 {
-                    tafLine.TimeBecoming = DateTime.Parse(fieldVal);
+                    tafLine.TimeBecoming = ParserHelpers.GetDateTime(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == TAFCSVField.turbulence_intensity)
@@ -266,12 +266,12 @@ namespace AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == TAFCSVField.valid_time_from)
                 {
-                    taf.ValidTimeStart = DateTime.Parse(fieldVal);
+                    taf.ValidTimeStart = ParserHelpers.GetDateTime(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == TAFCSVField.valid_time_to)
                 {
-                    taf.ValidTimeEnd = DateTime.Parse(fieldVal);
+                    taf.ValidTimeEnd = ParserHelpers.GetDateTime(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == TAFCSVField.vert_vis_ft)
@@ -345,7 +345,7 @@ namespace AviationWx.NET.Parsers
             }
 
             // Add the most recently parsed line if it has valid data
-            if (tafLine.ForecastTimeStart > new DateTime())
+            if (tafLine.ForecastTimeStart > ParserConstants.DefaultDateTime)
             {
                 dto.TAF[0].TAFLine.Add(tafLine);
             }
