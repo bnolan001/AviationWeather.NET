@@ -88,9 +88,13 @@ namespace AviationWx.NET.Parsers
             {
                 GeographicData = new GeographicDataDto(),
                 TAF = new List<TAFDto>()
+                {
+                    new TAFDto()
+                }
             };
+
             var taf = dto.TAF[0];
-            TAFLineDto tafLine = null;
+            TAFLineDto tafLine = new TAFLineDto();
             var fields = line.Split(ParserConstants.CSVSplitCharacter);
             for (var idx = 0; idx < fieldOrder.Count && idx < fields.Count(); idx++)
             {
@@ -110,6 +114,11 @@ namespace AviationWx.NET.Parsers
 
                 var fieldVal = fields[idx].Trim();
 
+                if (fieldOrder[idx] == TAFCSVField.raw_text)
+                {
+                    taf.RawTAF = fieldVal;
+                    continue;
+                }
                 if (fieldOrder[idx] == TAFCSVField.altim_in_hg)
                 {
                     tafLine.Altimeter_Hg = float.Parse(fieldVal);
@@ -257,12 +266,12 @@ namespace AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == TAFCSVField.valid_time_from)
                 {
-                    tafLine.ForecastTimeStart = DateTime.Parse(fieldVal);
+                    taf.ValidTimeStart = DateTime.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == TAFCSVField.valid_time_to)
                 {
-                    tafLine.ForecastTimeEnd = DateTime.Parse(fieldVal);
+                    taf.ValidTimeEnd = DateTime.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == TAFCSVField.vert_vis_ft)
@@ -275,7 +284,7 @@ namespace AviationWx.NET.Parsers
                     tafLine.Visibility_SM = float.Parse(fieldVal);
                     continue;
                 }
-                
+
                 if (fieldOrder[idx] == TAFCSVField.elevation_m)
                 {
                     dto.GeographicData.Elevation_M = float.Parse(fieldVal);
@@ -291,10 +300,13 @@ namespace AviationWx.NET.Parsers
                 {
                     dto.GeographicData.Longitude = float.Parse(fieldVal);
                     continue;
-                }                
+                }
                 if (fieldOrder[idx] == TAFCSVField.wind_dir_degrees)
                 {
-                    tafLine.Wind.Direction_D = int.Parse(fieldVal);
+                    tafLine.Wind = new WindDto()
+                    {
+                        Direction_D = int.Parse(fieldVal)
+                    };
                     continue;
                 }
                 if (fieldOrder[idx] == TAFCSVField.wind_gust_kt)
