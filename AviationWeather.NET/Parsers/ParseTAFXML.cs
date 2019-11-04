@@ -17,32 +17,15 @@ namespace AviationWx.NET.Parsers
             response responseObj = null;
             using (var streamReader = new StringReader(data))
             {
-                responseObj = (response)serializer.Deserialize(streamReader);
+                responseObj = serializer.Deserialize(streamReader) as response;
             }
 
             var dtos = ConvertToDTO(responseObj, icaos);
-            var foundICAOs = dtos.Select(dto => dto.ICAO).ToList();
-            var missingICAOs = icaos.Where(i => !foundICAOs.Contains(i)).ToList();
-            var missingDTOs = GetMissingStations(missingICAOs);
+            var missingDTOs = ParserHelpers.GetMissingStations(dtos, icaos);
             dtos.AddRange(missingDTOs);
             return dtos;
         }
-
-        private List<ForecastDto> GetMissingStations(IList<string> icaos)
-        {
-            var dtos = new List<ForecastDto>();
-
-            foreach (var icao in icaos)
-            {
-                dtos.Add(new ForecastDto()
-                {
-                    ICAO = icao
-                });
-            }
-
-            return dtos;
-        }
-
+        
         private List<ForecastDto> ConvertToDTO(response xmlObjs,
             IList<string> icaos)
         {

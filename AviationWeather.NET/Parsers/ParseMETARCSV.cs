@@ -2,23 +2,32 @@
 using AviationWx.NET.Models.Enums;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace AviationWx.NET.Parsers
 {
     public class ParseMETARCSV : IParser<ObservationDto>
     {
-        private const char SPLIT_CHAR = ',';
+
         public List<ObservationDto> Parse(string data, IList<string> icaos)
         {
-            var csvObs = new List<ObservationDto>();
+            if (String.IsNullOrWhiteSpace(data))
+            {
+                throw new ArgumentException($"'{nameof(data)}' cannot be null or empty.");
+            }
+
+            var obsDto = new List<ObservationDto>();
             var foundHeader = false;
             var fieldOrder = new List<METARCSVField>();
-            var hashSet = new HashSet<string>();
-            icaos.All(a => hashSet.Add(a.ToUpper()));
 
             var splitData = data.Split(new char[] { '\n' });
 
+            // Expect the format of the file to be the following
+            // Top few lines are status/error details on the request
+            // Header line with all of the columns defined
+            // Each line after is an individual observation for any of the ICAOs in the list in chronological order
+            // with the most recent observation first
             foreach (var line in splitData)
             {
                 if (String.IsNullOrWhiteSpace(line))
@@ -37,12 +46,11 @@ namespace AviationWx.NET.Parsers
                 else if (foundHeader)
                 {
                     var stationObs = GetObservation(line, fieldOrder);
-                    var existingStation = csvObs.Where(o => String.Equals(o.ICAO, stationObs.ICAO,
+                    var existingStation = obsDto.Where(o => String.Equals(o.ICAO, stationObs.ICAO,
                         StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
                     if (existingStation == null)
                     {
-                        csvObs.Add(stationObs);
-                        hashSet.Remove(stationObs.ICAO);
+                        obsDto.Add(stationObs);
                     }
                     else
                     {
@@ -51,25 +59,30 @@ namespace AviationWx.NET.Parsers
                 }
             }
 
-            foreach (var icao in hashSet)
-            {
-                csvObs.Add(new ObservationDto()
-                {
-                    ICAO = icao
-                });
-            }
+            obsDto.AddRange(ParserHelpers.GetMissingStations(obsDto, icaos));
 
-            return csvObs;
+            return obsDto;
         }
 
+        /// <summary>
+        /// Builds a list with the order of the fields found based on the 
+        /// match between the METARCSVField values and the comma-separated
+        /// </summary>
+        /// <param name="line"></param>
+        /// <returns></returns>
         public List<METARCSVField> GetFieldOrder(string line)
         {
 
-            var fields = line.Split(SPLIT_CHAR);
+            if (String.IsNullOrWhiteSpace(line))
+            {
+                throw new ArgumentException($"'{nameof(line)}' cannot be null or empty.");
+            }
+
+            var fields = line.Split(ParserConstants.CSVSplitCharacter);
             return fields.Select(f => METARCSVField.ByName(f.Trim())).ToList();
         }
 
-        private ObservationDto GetObservation(string line, List<METARCSVField> fieldOrder)
+        public ObservationDto GetObservation(string line, List<METARCSVField> fieldOrder)
         {
             var dto = new ObservationDto()
             {
@@ -87,7 +100,7 @@ namespace AviationWx.NET.Parsers
                 }
             };
             var obs = dto.METAR[0];
-            var fields = line.Split(SPLIT_CHAR);
+            var fields = line.Split(ParserConstants.CSVSplitCharacter);
             for (var idx = 0; idx < fieldOrder.Count && idx < fields.Count(); idx++)
             {
                 // Skip all unknown and empty fields
@@ -310,7 +323,7 @@ namespace AviationWx.NET.Parsers
                 }
             }
 
-            ResetFieldsToNull(ref obs);
+            ResetFieldsToNull(obs);
 
             return dto;
         }
@@ -320,26 +333,31 @@ namespace AviationWx.NET.Parsers
             return !String.IsNullOrWhiteSpace(value)
                 && bool.Parse(value);
         }
-
+        
         /// <summary>
         /// Because not all properties will have values in each observation
         /// reset those fields that are objects which have no values
         /// </summary>
         /// <param name="dto"></param>
-        public void ResetFieldsToNull(ref METARDto dto)
+        private void ResetFieldsToNull(METARDto dto)
         {
-            ResetWindDataIfNullValues(ref dto);
+            if (dto == null)
+            {
+                throw new ArgumentNullException($"'{nameof(dto)}' cannot be null.");
+            }
 
-            ResetTemperatureRangeIfNullValues(ref dto);
+            ResetWindDataIfNullValues(dto);
 
-            Reset3HourDataIfNullValues(ref dto);
+            ResetTemperatureRangeIfNullValues(dto);
 
-            Reset6HourDataIfNullValues(ref dto);
+            Reset3HourDataIfNullValues(dto);
 
-            Reset24HourDataIfNullValues(ref dto);
+            Reset6HourDataIfNullValues(dto);
+
+            Reset24HourDataIfNullValues(dto);
         }
 
-        private void ResetWindDataIfNullValues(ref METARDto dto)
+        private void ResetWindDataIfNullValues(METARDto dto)
         {
             if (dto.Wind.Direction_D == null
                 && dto.Wind.Speed_Kt == null
@@ -349,7 +367,7 @@ namespace AviationWx.NET.Parsers
             }
         }
 
-        private void ResetTemperatureRangeIfNullValues(ref METARDto dto)
+        private void ResetTemperatureRangeIfNullValues(METARDto dto)
         {
             if (dto.TemperatureRange.MaxTemperature_C == null
                 && dto.TemperatureRange.MinTemperature_C == null)
@@ -358,7 +376,7 @@ namespace AviationWx.NET.Parsers
             }
         }
 
-        private void Reset3HourDataIfNullValues(ref METARDto dto)
+        private void Reset3HourDataIfNullValues(METARDto dto)
         {
             if (dto._3HourObsData.Precipitation_In == null
                 && dto._3HourObsData.PressureTendency_Mb == null)
@@ -367,7 +385,7 @@ namespace AviationWx.NET.Parsers
             }
         }
 
-        private void Reset6HourDataIfNullValues(ref METARDto dto)
+        private void Reset6HourDataIfNullValues(METARDto dto)
         {
             if (dto._6HourData.Precipitation_In == null)
             {
@@ -375,7 +393,7 @@ namespace AviationWx.NET.Parsers
             }
         }
 
-        private void Reset24HourDataIfNullValues(ref METARDto dto)
+        private void Reset24HourDataIfNullValues(METARDto dto)
         {
             if (dto._24HourData.MaxTemperature_C == null
                 && dto._24HourData.MinTemperature_C == null

@@ -3,6 +3,7 @@ using AviationWx.NET.Models.Enums;
 using AviationWx.NET.Models.XML.AWMETAR;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
@@ -11,6 +12,8 @@ namespace AviationWx.NET.Parsers
 {
     public class ParseMETARXML : IParser<ObservationDto>
     {
+        private CultureInfo _cultureInfo = CultureInfo.GetCultureInfo(ParserConstants.StringCulture);
+
         #region Public
 
         public List<ObservationDto> Parse(string data, IList<string> icaos)
@@ -19,7 +22,7 @@ namespace AviationWx.NET.Parsers
             response responseObj = null;
             using (var streamReader = new StringReader(data))
             {
-                responseObj = (response)serializer.Deserialize(streamReader);
+                responseObj = serializer.Deserialize(streamReader) as response;
             }
 
             return ConvertToDTO(responseObj, icaos);
@@ -32,9 +35,6 @@ namespace AviationWx.NET.Parsers
         private List<ObservationDto> ConvertToDTO(response xmlObjs,
             IList<string> icaos)
         {
-            var hashSet = new HashSet<string>();
-            icaos.All(a => hashSet.Add(a.ToUpper()));
-
             var dtos = new List<ObservationDto>();
             ObservationDto obs = null;
             if (xmlObjs.data?.METAR != null)
@@ -44,7 +44,6 @@ namespace AviationWx.NET.Parsers
                     obs = dtos.Where(o => o.ICAO == metarXML.station_id).FirstOrDefault();
                     if (obs == null)
                     {
-                        hashSet.Remove(metarXML.station_id.ToUpper());
                         obs = new ObservationDto();
                         ParseIdentifier(obs, metarXML);
                         ParseGeographicData(obs, metarXML);
@@ -60,16 +59,11 @@ namespace AviationWx.NET.Parsers
                 }
             }
 
-            foreach (var icao in hashSet)
-            {
-                dtos.Add(new ObservationDto()
-                {
-                    ICAO = icao
-                });
-            }
-
+            dtos.AddRange(ParserHelpers.GetMissingStations(dtos, icaos));
             return dtos;
         }
+
+               
 
         /// <summary>
         /// Transfers the ICAO
