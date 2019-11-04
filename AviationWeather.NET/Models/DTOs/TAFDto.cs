@@ -7,13 +7,13 @@ namespace AviationWx.NET.Models.DTOs
     {
         public string RawTAF { get; set; }
 
-        public DateTime IssuedTime { get; set; }
+        public DateTimeOffset IssuedTime { get; set; }
 
-        public DateTime BulletinTime { get; set; }
+        public DateTimeOffset BulletinTime { get; set; }
 
-        public DateTime ValidTimeStart { get; set; }
+        public DateTimeOffset ValidTimeStart { get; set; }
 
-        public DateTime ValidTimeEnd { get; set; }
+        public DateTimeOffset ValidTimeEnd { get; set; }
 
         public string Remarks { get; set; }
 

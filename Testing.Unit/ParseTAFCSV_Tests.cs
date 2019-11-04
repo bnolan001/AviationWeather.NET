@@ -1,4 +1,5 @@
-﻿using AviationWx.NET.Parsers;
+﻿using AviationWx.NET.Models.Enums;
+using AviationWx.NET.Parsers;
 using FluentAssertions;
 using NUnit.Framework;
 using System.Collections.Generic;
@@ -22,6 +23,25 @@ namespace Testing.Unit
             forecasts[0].GeographicData.Elevation_M.Should().Be(4);
             var taf = forecasts[0].TAF[0];
             taf.RawTAF.Should().Be("PHNL 032126Z 0321/0424 20010KT P6SM VCSH SCT025 BKN060 FM040500 35003KT P6SM VCSH SCT025 BKN060 FM042000 18008KT P6SM SCT025 SCT060");
+            taf.IssuedTime.Should().Be(ParserHelpers.ParseDateTime("2019-11-03T21:26:00Z"));
+            taf.BulletinTime.Should().Be(ParserHelpers.ParseDateTime("2019-11-03T21:26:00Z"));
+            taf.ValidTimeStart.Should().Be(ParserHelpers.ParseDateTime("2019-11-03T21:00:00Z"));
+            taf.ValidTimeEnd.Should().Be(ParserHelpers.ParseDateTime("2019-11-05T00:00:00Z"));
+            taf.Remarks.Should().Be("AMD");
+            var tafLine = taf.TAFLine[0];
+            tafLine.ForecastTimeStart.Should().Be(ParserHelpers.ParseDateTime("2019-11-03T21:00:00Z"));
+            tafLine.ForecastTimeEnd.Should().Be(ParserHelpers.ParseDateTime("2019-11-04T05:00:00Z"));
+            tafLine.Wind.Direction_D.Should().Be(200);
+            tafLine.Wind.Speed_Kt.Should().Be(10);
+            tafLine.Wind.Gust_Kt.Should().BeNull();
+            tafLine.Visibility_SM.Should().Be(6.21f);
+            tafLine.Weather.Should().Be("VCSH");
+            tafLine.SkyCondition.Count().Should().Be(2);
+            tafLine.SkyCondition[0].CloudBase_Ft.Should().Be(2500);
+            tafLine.SkyCondition[0].SkyCondition.Should().Be(SkyConditionType.SCT);
+            tafLine.SkyCondition[1].CloudBase_Ft.Should().Be(6000);
+            tafLine.SkyCondition[1].SkyCondition.Should().Be(SkyConditionType.BKN);
+
 
             forecasts[1].ICAO.Should().Be("KSEA");
             forecasts[1].TAF.Count().Should().Be(10);
@@ -30,6 +50,10 @@ namespace Testing.Unit
             forecasts[1].GeographicData.Latitude.Should().Be(47.45f);
             forecasts[1].GeographicData.Longitude.Should().Be(-122.32f);
             forecasts[1].GeographicData.Elevation_M.Should().Be(136);
+
+            tafLine = taf.TAFLine[1];
+            tafLine.ForecastTimeStart.Should().Be(ParserHelpers.ParseDateTime("2019-11-04T02:00:00Z"));
+            tafLine.ForecastType.Should().Be(ChangeIndicatorType.FM);
 
             forecasts[2].ICAO.Should().Be("KDEN");
             forecasts[2].TAF.Count().Should().Be(12);

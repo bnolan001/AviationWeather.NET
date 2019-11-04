@@ -82,11 +82,11 @@ namespace AviationWx.NET.Parsers
         private void ParseTAFData(TAFDto dto, TAF xml)
         {
             dto.RawTAF = xml.raw_text;
-            dto.IssuedTime = ParserHelpers.GetDateTime(xml.issue_time);
+            dto.IssuedTime = ParserHelpers.ParseDateTime(xml.issue_time);
             dto.Remarks = xml.remarks;
-            dto.ValidTimeEnd = ParserHelpers.GetDateTime(xml.valid_time_to);
-            dto.ValidTimeStart = ParserHelpers.GetDateTime(xml.valid_time_from);
-            dto.BulletinTime = ParserHelpers.GetDateTime(xml.bulletin_time);
+            dto.ValidTimeEnd = ParserHelpers.ParseDateTime(xml.valid_time_to);
+            dto.ValidTimeStart = ParserHelpers.ParseDateTime(xml.valid_time_from);
+            dto.BulletinTime = ParserHelpers.ParseDateTime(xml.bulletin_time);
 
         }
 
@@ -97,8 +97,8 @@ namespace AviationWx.NET.Parsers
             {
                 var lineDto = new TAFLineDto();
                 lineDto.Altimeter_Hg = ParserHelpers.GetValue(line.altim_in_hgSpecified, line.altim_in_hg);
-                lineDto.ForecastTimeEnd = ParserHelpers.GetDateTime(line.fcst_time_to);
-                lineDto.ForecastTimeStart = ParserHelpers.GetDateTime(line.fcst_time_from);
+                lineDto.ForecastTimeEnd = ParserHelpers.ParseDateTime(line.fcst_time_to);
+                lineDto.ForecastTimeStart = ParserHelpers.ParseDateTime(line.fcst_time_from);
                 if (line.sky_condition != null)
                 {
                     lineDto.SkyCondition = line.sky_condition

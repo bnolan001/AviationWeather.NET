@@ -28,7 +28,7 @@ namespace Testing.Unit
             metars[0].Altimeter_Hg.Should().Be(30.008858f);
             metars[0].Dewpoint_C.Should().Be(5.6f);
             metars[0].FlightCagegory.Should().Be(FlightCategoryType.VFR);
-            metars[0].ObsTime.Should().Be(ParserHelpers.GetDateTime("2019-10-19T22:52:00Z"));
+            metars[0].ObsTime.Should().Be(ParserHelpers.ParseDateTime("2019-10-19T22:52:00Z"));
             metars[0].Precipitation_In.Should().BeNull();
             metars[0].QualityControlFlags.Should().NotBeEmpty();
             metars[0].QualityControlFlags[0].Should().Be(QualityControlFlagType.AutoStation);
@@ -89,7 +89,7 @@ namespace Testing.Unit
             metars[0].Altimeter_Hg.Should().Be(29.760826f);
             metars[0].Dewpoint_C.Should().Be(10.6f);
             metars[0].FlightCagegory.Should().Be(FlightCategoryType.IFR);
-            metars[0].ObsTime.Should().Be(ParserHelpers.GetDateTime("2019-10-19T23:52:00Z"));
+            metars[0].ObsTime.Should().Be(ParserHelpers.ParseDateTime("2019-10-19T23:52:00Z"));
             metars[0].Precipitation_In.Should().Be(0.04f);
             metars[0].QualityControlFlags.Should().NotBeEmpty();
             metars[0].QualityControlFlags[0].Should().Be(QualityControlFlagType.AutoStation);
@@ -121,7 +121,7 @@ namespace Testing.Unit
             // Check SPECI METAR
             metars[2].Altimeter_Hg.Should().Be(29.760826f);
             metars[2].Dewpoint_C.Should().Be(11.1f);
-            metars[2].ObsTime.Should().Be(ParserHelpers.GetDateTime("2019-10-19T21:52:00Z"));
+            metars[2].ObsTime.Should().Be(ParserHelpers.ParseDateTime("2019-10-19T21:52:00Z"));
             metars[2].Precipitation_In.Should().Be(0.12f);
             metars[2].QualityControlFlags.Should().NotBeEmpty();
             metars[2].QualityControlFlags[0].Should().Be(QualityControlFlagType.AutoStation);

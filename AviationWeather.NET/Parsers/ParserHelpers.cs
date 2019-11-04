@@ -42,16 +42,17 @@ namespace AviationWx.NET.Parsers
             return null;
         }
 
-        public static DateTime GetDateTime(string dateTimeString)
+        public static DateTimeOffset ParseDateTime(string dateTimeString)
         {
-            var dateTime = ParserConstants.DefaultDateTime;
-
-            if (!String.IsNullOrEmpty(dateTimeString)
-                || !DateTime.TryParseExact(dateTimeString, ParserConstants.DateTimeFormat, null, DateTimeStyles.AssumeUniversal, out dateTime)){
-                dateTime = ParserConstants.DefaultDateTime;
+            var dateTimeOffset = ParserConstants.DefaultDateTime;
+            CultureInfo enUS = new CultureInfo("en-US");
+            if (String.IsNullOrEmpty(dateTimeString)
+                || !DateTimeOffset.TryParseExact(dateTimeString, ParserConstants.DateTimeFormat, enUS,
+                DateTimeStyles.AssumeUniversal, out dateTimeOffset)){
+                dateTimeOffset = ParserConstants.DefaultDateTime;
             }
 
-            return dateTime;
+            return dateTimeOffset;
         }
 
         public static List<ObservationDto> GetMissingStations(List<ObservationDto> foundObservations, IList<string> requestedICAOs)

@@ -7,7 +7,7 @@ namespace AviationWx.NET.Models.DTOs
     public class METARDto
     {
 
-        public DateTime ObsTime { get; set; }
+        public DateTimeOffset ObsTime { get; set; }
 
         public string RawMETAR { get; set; }
 

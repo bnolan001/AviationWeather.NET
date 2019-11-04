@@ -99,7 +99,7 @@ namespace AviationWx.NET.Parsers
         {
             dto.Altimeter_Hg = xml.altim_in_hg;
             dto.Dewpoint_C = xml.dewpoint_c;
-            dto.ObsTime = ParserHelpers.GetDateTime(xml.observation_time);
+            dto.ObsTime = ParserHelpers.ParseDateTime(xml.observation_time);
             dto.Precipitation_In = ParserHelpers.GetValue(xml.precip_inSpecified, xml.precip_in);
             dto.Snow_In = ParserHelpers.GetValue(xml.snow_inSpecified, xml.snow_in);
             dto.RawMETAR = xml.raw_text;

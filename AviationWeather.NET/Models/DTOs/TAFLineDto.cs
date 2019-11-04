@@ -1,4 +1,5 @@
 ﻿using AviationWx.NET.Models.Enums;
+using AviationWx.NET.Parsers;
 using System;
 using System.Collections.Generic;
 
@@ -6,13 +7,13 @@ namespace AviationWx.NET.Models.DTOs
 {
     public class TAFLineDto
     {
-        public DateTime ForecastTimeStart { get; set; }
+        public DateTimeOffset ForecastTimeStart { get; set; }
 
-        public DateTime ForecastTimeEnd { get; set; }
+        public DateTimeOffset ForecastTimeEnd { get; set; }
 
         public ChangeIndicatorType ForecastType { get; set; }
 
-        public DateTime TimeBecoming { get; set; }
+        public DateTimeOffset TimeBecoming { get; set; }
 
         public int? Probability { get; set; }
 
@@ -45,6 +46,7 @@ namespace AviationWx.NET.Models.DTOs
             IcingHazards = new List<IcingDto>();
             TurbulenceHazards = new List<TurbulenceDto>();
             SkyCondition = new List<SkyConditionDto>();
+            ForecastTimeStart = ParserConstants.DefaultDateTime;
         }
     }
 }

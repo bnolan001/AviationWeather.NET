@@ -30,15 +30,15 @@ namespace Testing.Unit
             var taf = fcst.TAF[0];
 
             taf.RawTAF.Should().Be("KPHL 262320Z 2700/2806 11008KT P6SM SCT040 BKN100 FM270800 10010KT P6SM BKN020 OVC040 FM271000 10012G20KT 5SM -RA BR OVC010 WS020/16040KT FM271300 15014G24KT 3SM +RA BR OVC008 WS020/19045KT FM271700 20010G18KT 5SM -RA BR OVC015 FM271900 24011KT P6SM SCT050");
-            taf.IssuedTime.Should().Be(ParserHelpers.GetDateTime("2019-10-26T23:20:00Z"));
-            taf.BulletinTime.Should().Be(ParserHelpers.GetDateTime("2019-10-26T23:20:00Z"));
-            taf.ValidTimeStart.Should().Be(ParserHelpers.GetDateTime("2019-10-27T00:00:00Z"));
-            taf.ValidTimeEnd.Should().Be(ParserHelpers.GetDateTime("2019-10-28T06:00:00Z"));
+            taf.IssuedTime.Should().Be(ParserHelpers.ParseDateTime("2019-10-26T23:20:00Z"));
+            taf.BulletinTime.Should().Be(ParserHelpers.ParseDateTime("2019-10-26T23:20:00Z"));
+            taf.ValidTimeStart.Should().Be(ParserHelpers.ParseDateTime("2019-10-27T00:00:00Z"));
+            taf.ValidTimeEnd.Should().Be(ParserHelpers.ParseDateTime("2019-10-28T06:00:00Z"));
             taf.TAFLine.Count().Should().Be(6);
             var tafLine = taf.TAFLine[0];
             tafLine.Altimeter_Hg.Should().BeNull();
-            tafLine.ForecastTimeEnd.Should().Be(ParserHelpers.GetDateTime("2019-10-27T08:00:00Z"));
-            tafLine.ForecastTimeStart.Should().Be(ParserHelpers.GetDateTime("2019-10-27T00:00:00Z"));
+            tafLine.ForecastTimeEnd.Should().Be(ParserHelpers.ParseDateTime("2019-10-27T08:00:00Z"));
+            tafLine.ForecastTimeStart.Should().Be(ParserHelpers.ParseDateTime("2019-10-27T00:00:00Z"));
             tafLine.IcingHazards.Count.Should().Be(0);
             tafLine.NotDecoded.Should().BeNull();
             tafLine.Probability.Should().BeNull();
@@ -58,8 +58,8 @@ namespace Testing.Unit
             tafLine = taf.TAFLine[2];
             tafLine.ForecastType.Should().Be(ChangeIndicatorType.FM);
             tafLine.Altimeter_Hg.Should().BeNull();
-            tafLine.ForecastTimeEnd.Should().Be(ParserHelpers.GetDateTime("2019-10-27T13:00:00Z"));
-            tafLine.ForecastTimeStart.Should().Be(ParserHelpers.GetDateTime("2019-10-27T10:00:00Z"));
+            tafLine.ForecastTimeEnd.Should().Be(ParserHelpers.ParseDateTime("2019-10-27T13:00:00Z"));
+            tafLine.ForecastTimeStart.Should().Be(ParserHelpers.ParseDateTime("2019-10-27T10:00:00Z"));
             tafLine.IcingHazards.Count.Should().Be(0);
             tafLine.NotDecoded.Should().BeNull();
             tafLine.Probability.Should().BeNull();
