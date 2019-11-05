@@ -109,7 +109,7 @@ namespace AviationWx.NET.Parsers
                 if (lineNumber > 0
                     && !String.IsNullOrWhiteSpace(line.change_indicator))
                 {
-                    lineDto.ForecastType = ChangeIndicatorType.GetByName(line.change_indicator);
+                    lineDto.ChangeIndicator = ChangeIndicatorType.GetByName(line.change_indicator);
                 }
                 if (line.icing_condition != null)
                 {

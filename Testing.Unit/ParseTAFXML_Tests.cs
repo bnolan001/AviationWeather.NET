@@ -18,7 +18,7 @@ namespace Testing.Unit
         public void Parse_SingleStation_General()
         {
             var parser = new ParseTAFXML();
-            var forecasts = parser.Parse(TAFXML.SINGLE_STATION_NO_ICING_NO_TURBULENCE, new List<string>() { "KPHL" });
+            var forecasts = parser.Parse(TAFXML.SINGLE_STATION_CIVILIAN, new List<string>() { "KPHL" });
             forecasts.Count().Should().Be(1);
             var fcst = forecasts[0];
             fcst.GeographicData.Should().NotBeNull();
@@ -56,7 +56,7 @@ namespace Testing.Unit
             tafLine.Visibility_SM.Should().Be(6.21f);
 
             tafLine = taf.TAFLine[2];
-            tafLine.ForecastType.Should().Be(ChangeIndicatorType.FM);
+            tafLine.ChangeIndicator.Should().Be(ChangeIndicatorType.FM);
             tafLine.Altimeter_Hg.Should().BeNull();
             tafLine.ForecastTimeEnd.Should().Be(ParserHelpers.ParseDateTime("2019-10-27T13:00:00Z"));
             tafLine.ForecastTimeStart.Should().Be(ParserHelpers.ParseDateTime("2019-10-27T10:00:00Z"));
@@ -84,7 +84,7 @@ namespace Testing.Unit
         public void Parse_SingleStation_SecondTAF_AMD()
         {
             var parser = new ParseTAFXML();
-            var forecasts = parser.Parse(TAFXML.SINGLE_STATION_NO_ICING_NO_TURBULENCE, new List<string>() { "KPHL" });
+            var forecasts = parser.Parse(TAFXML.SINGLE_STATION_CIVILIAN, new List<string>() { "KPHL" });
             forecasts[0].TAF[1].Remarks.Should().Be("AMD");
         }
 
@@ -92,10 +92,33 @@ namespace Testing.Unit
         public void Parse_SingleStation_NoData()
         {
             var parser = new ParseTAFXML();
-            var forecasts = parser.Parse(TAFXML.SINGLE_STATION_NO_ICING_NO_TURBULENCE, new List<string>() { "XXXX" });
+            var forecasts = parser.Parse(TAFXML.SINGLE_STATION_CIVILIAN, new List<string>() { "XXXX" });
             forecasts.Count().Should().Be(2);
             forecasts[1].ICAO.Should().Be("XXXX");
             forecasts[1].TAF.Count().Should().Be(0);
+        }
+
+        [Test]
+        public void Parse_SingleStation_Miliatry()
+        {
+            var parser = new ParseTAFXML();
+            var forecasts = parser.Parse(TAFXML.SINGLE_STATION_MILITARY, new List<string>() { "KMUI"});
+            forecasts.Count().Should().Be(1);
+            forecasts[0].ICAO.Should().Be("KMUI");
+            forecasts[0].TAF.Count().Should().Be(4);
+            var taf = forecasts[0].TAF[0];
+            taf.RawTAF.Should().Be("TAF AMD KMUI 042359Z 0423/0601 18012KT 9999 FEW140 QNH3022INS BECMG 0503/0504 VRB06KT 9999 FEW180 510052 QNH3018INS BECMG 0510/0511 VRB06KT 9999 FEW085 QNH3016INS BECMG 0519/0520 27008KT 9999 SCT035 BKN080 620808 QNH3016INS TX14/0519Z TN03/0512Z LAST NO AMDS AFT 0500 NEXT 0511");
+            taf.TAFLine.Count().Should().Be(4);
+            taf.TAFLine[1].ChangeIndicator.Should().Be(ChangeIndicatorType.BECMG);
+            taf.TAFLine[1].TurbulenceHazards.Count().Should().Be(1);
+            taf.TAFLine[1].TurbulenceHazards[0].Intensity.Should().Be("1");
+            taf.TAFLine[1].TurbulenceHazards[0].MinAltitude_Ft.Should().Be(500);
+            taf.TAFLine[1].TurbulenceHazards[0].MaxAltitude_Ft.Should().Be(2500);
+
+            taf.TAFLine[3].IcingHazards.Count().Should().Be(1);
+            taf.TAFLine[3].IcingHazards[0].Intensity.Should().Be("2");
+            taf.TAFLine[3].IcingHazards[0].MinAltitude_Ft.Should().Be(8000);
+            taf.TAFLine[3].IcingHazards[0].MaxAltitude_Ft.Should().Be(16000);
         }
     }
 }

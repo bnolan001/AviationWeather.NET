@@ -11,7 +11,7 @@ namespace AviationWx.NET.Models.DTOs
 
         public DateTimeOffset ForecastTimeEnd { get; set; }
 
-        public ChangeIndicatorType ForecastType { get; set; }
+        public ChangeIndicatorType ChangeIndicator { get; set; }
 
         public DateTimeOffset TimeBecoming { get; set; }
 

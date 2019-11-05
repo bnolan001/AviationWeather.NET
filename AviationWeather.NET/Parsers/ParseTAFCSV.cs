@@ -131,7 +131,7 @@ namespace AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == TAFCSVField.change_indicator)
                 {
-                    tafLine.ForecastType = ChangeIndicatorType.GetByName(fieldVal);
+                    tafLine.ChangeIndicator = ChangeIndicatorType.GetByName(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == TAFCSVField.cloud_base_ft_agl)

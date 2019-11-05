@@ -41,7 +41,10 @@ namespace Testing.Unit
             tafLine.SkyCondition[0].SkyCondition.Should().Be(SkyConditionType.SCT);
             tafLine.SkyCondition[1].CloudBase_Ft.Should().Be(6000);
             tafLine.SkyCondition[1].SkyCondition.Should().Be(SkyConditionType.BKN);
-
+            tafLine = taf.TAFLine[1];
+            tafLine.ChangeIndicator.Should().Be(ChangeIndicatorType.FM);
+            tafLine.ForecastTimeStart.Should().Be(ParserHelpers.ParseDateTime("2019-11-04T05:00:00Z"));
+            tafLine.ForecastTimeEnd.Should().Be(ParserHelpers.ParseDateTime("2019-11-04T20:00:00Z"));
 
             forecasts[1].ICAO.Should().Be("KSEA");
             forecasts[1].TAF.Count().Should().Be(10);
@@ -53,7 +56,7 @@ namespace Testing.Unit
 
             tafLine = taf.TAFLine[1];
             tafLine.ForecastTimeStart.Should().Be(ParserHelpers.ParseDateTime("2019-11-04T02:00:00Z"));
-            tafLine.ForecastType.Should().Be(ChangeIndicatorType.FM);
+            tafLine.ChangeIndicator.Should().Be(ChangeIndicatorType.FM);
 
             forecasts[2].ICAO.Should().Be("KDEN");
             forecasts[2].TAF.Count().Should().Be(12);
