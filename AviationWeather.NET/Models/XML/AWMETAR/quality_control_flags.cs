@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Xml.Serialization;
 
-namespace AviationWx.NET.Models.XML.AWMETAR
+namespace BNolan.AviationWx.NET.Models.XML.AWMETAR
 {
     [GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [SerializableAttribute()]

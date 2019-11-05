@@ -1,10 +1,10 @@
-﻿using AviationWx.NET.Models.DTOs;
+﻿using BNolan.AviationWx.NET.Models.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
-namespace AviationWx.NET.Parsers
+namespace BNolan.AviationWx.NET.Parsers
 {
     public static class ParserHelpers
     {

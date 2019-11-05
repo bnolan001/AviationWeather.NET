@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AviationWx.NET.Parsers
+namespace BNolan.AviationWx.NET.Parsers
 {
     public interface IParser<T>
     {

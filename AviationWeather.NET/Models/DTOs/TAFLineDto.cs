@@ -1,9 +1,9 @@
-﻿using AviationWx.NET.Models.Enums;
-using AviationWx.NET.Parsers;
+﻿using BNolan.AviationWx.NET.Models.Enums;
+using BNolan.AviationWx.NET.Parsers;
 using System;
 using System.Collections.Generic;
 
-namespace AviationWx.NET.Models.DTOs
+namespace BNolan.AviationWx.NET.Models.DTOs
 {
     public class TAFLineDto
     {

@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace AviationWx.NET.Connectors
+namespace BNolan.AviationWx.NET.Connectors
 {
     public interface IConnector
     {

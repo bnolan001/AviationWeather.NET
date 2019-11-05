@@ -1,12 +1,10 @@
 ﻿using System;
 using System.CodeDom.Compiler;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Text;
 using System.Xml.Serialization;
 
-namespace AviationWx.NET.Models.XML.AWTAF
+namespace BNolan.AviationWx.NET.Models.XML.AWTAF
 {
     [GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [SerializableAttribute()]

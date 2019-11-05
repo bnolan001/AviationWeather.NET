@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AviationWx.NET.Models.DTOs
+namespace BNolan.AviationWx.NET.Models.DTOs
 {
     public class _24HourObsDataDto : TemperatureRangeDto
     {

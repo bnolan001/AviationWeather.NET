@@ -1,11 +1,10 @@
-﻿using AviationWx.NET.Models.DTOs;
-using AviationWx.NET.Models.Enums;
+﻿using BNolan.AviationWx.NET.Models.DTOs;
+using BNolan.AviationWx.NET.Models.Enums;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 
-namespace AviationWx.NET.Parsers
+namespace BNolan.AviationWx.NET.Parsers
 {
     public class ParseMETARCSV : IParser<ObservationDto>
     {

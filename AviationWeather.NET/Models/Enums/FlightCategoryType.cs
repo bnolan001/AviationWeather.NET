@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace AviationWx.NET.Models.Enums
+namespace BNolan.AviationWx.NET.Models.Enums
 {
     /// <summary>
     /// REF: https://aviationweather.gov/metar/help?page=plot#fltcat

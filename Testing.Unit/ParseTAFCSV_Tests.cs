@@ -1,5 +1,5 @@
-﻿using AviationWx.NET.Models.Enums;
-using AviationWx.NET.Parsers;
+﻿using BNolan.AviationWx.NET.Models.Enums;
+using BNolan.AviationWx.NET.Parsers;
 using FluentAssertions;
 using NUnit.Framework;
 using System.Collections.Generic;

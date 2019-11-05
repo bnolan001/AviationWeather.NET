@@ -1,14 +1,12 @@
-﻿using AviationWx.NET.Connectors;
-using AviationWx.NET.Models.Constants;
-using AviationWx.NET.Models.DTOs;
-using AviationWx.NET.Parsers;
+﻿using BNolan.AviationWx.NET.Connectors;
+using BNolan.AviationWx.NET.Models.Constants;
+using BNolan.AviationWx.NET.Models.DTOs;
+using BNolan.AviationWx.NET.Parsers;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace AviationWx.NET.Accessors
+namespace BNolan.AviationWx.NET.Accessors
 {
     public class TAFAccessor
     {

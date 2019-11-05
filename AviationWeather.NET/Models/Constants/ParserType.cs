@@ -1,4 +1,4 @@
-﻿namespace AviationWx.NET.Models.Constants
+﻿namespace BNolan.AviationWx.NET.Models.Constants
 {
     public class ParserType
     {

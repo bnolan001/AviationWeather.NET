@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AviationWx.NET.Parsers
+namespace BNolan.AviationWx.NET.Parsers
 {
     public static class ParserConstants
     {

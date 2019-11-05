@@ -1,12 +1,12 @@
-﻿using AviationWx.NET.Accessors;
-using AviationWx.NET.Connectors;
-using AviationWx.NET.Models.Constants;
-using AviationWx.NET.Models.DTOs;
+﻿using BNolan.AviationWx.NET.Accessors;
+using BNolan.AviationWx.NET.Connectors;
+using BNolan.AviationWx.NET.Models.Constants;
+using BNolan.AviationWx.NET.Models.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace AviationWx.NET
+namespace BNolan.AviationWx.NET
 {
     public class AviationWeather
     {

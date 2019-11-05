@@ -1,6 +1,6 @@
-﻿using AviationWx.NET.Models.Enums;
+﻿using BNolan.AviationWx.NET.Models.Enums;
 
-namespace AviationWx.NET.Models.DTOs
+namespace BNolan.AviationWx.NET.Models.DTOs
 {
     public class SkyConditionDto
     {

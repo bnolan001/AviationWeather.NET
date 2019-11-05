@@ -1,14 +1,13 @@
-﻿using AviationWx.NET.Models.DTOs;
-using AviationWx.NET.Models.Enums;
-using AviationWx.NET.Models.XML.AWMETAR;
-using System;
+﻿using BNolan.AviationWx.NET.Models.DTOs;
+using BNolan.AviationWx.NET.Models.Enums;
+using BNolan.AviationWx.NET.Models.XML.AWMETAR;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace AviationWx.NET.Parsers
+namespace BNolan.AviationWx.NET.Parsers
 {
     public class ParseMETARXML : IParser<ObservationDto>
     {

@@ -1,13 +1,13 @@
-﻿using AviationWx.NET.Models.DTOs;
-using AviationWx.NET.Models.Enums;
-using AviationWx.NET.Models.XML.AWTAF;
+﻿using BNolan.AviationWx.NET.Models.DTOs;
+using BNolan.AviationWx.NET.Models.Enums;
+using BNolan.AviationWx.NET.Models.XML.AWTAF;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace AviationWx.NET.Parsers
+namespace BNolan.AviationWx.NET.Parsers
 {
     public class ParseTAFXML : IParser<ForecastDto>
     {
