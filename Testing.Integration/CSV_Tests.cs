@@ -48,7 +48,7 @@ namespace Testing.Integration
         [Test]
         public void GetPreviousMETAR_Observation_Single_Valid()
         {
-            var request = _aviationWeather.GetPreviousObservations(new List<string>() { "KIAD" }, 4);
+            var request = _aviationWeather.GetPreviousObservationsAsync(new List<string>() { "KIAD" }, 4);
             request.Wait();
             var obs = request.Result;
             obs.Should().NotBeNull();
@@ -62,7 +62,7 @@ namespace Testing.Integration
         [Test]
         public void GetPreviousMETAR_Observation_Multiple_Valid()
         {
-            var request = _aviationWeather.GetPreviousObservations(new List<string>() { "KIAD", "KPHL" }, 4);
+            var request = _aviationWeather.GetPreviousObservationsAsync(new List<string>() { "KIAD", "KPHL" }, 4);
             request.Wait();
             var obs = request.Result;
             obs.Should().NotBeNull();

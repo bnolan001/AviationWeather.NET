@@ -15,6 +15,10 @@ namespace BNolan.AviationWx.NET
         private METARAccessor _metarAccessor;
         private TAFAccessor _tafAccessor;
 
+        /// <summary>
+        /// Constructor utilizing the default HTTP connector
+        /// </summary>
+        /// <param name="parser"></param>
         public AviationWeather(ParserType parser)
         {
             _parserType = parser;
@@ -23,16 +27,25 @@ namespace BNolan.AviationWx.NET
             _tafAccessor = new TAFAccessor(_parserType, _connector);
         }
 
+        /// <summary>
+        /// Constructor utilizing the client defined connector
+        /// </summary>
+        /// <param name="parser"></param>
+        /// <param name="connector"></param>
         public AviationWeather(ParserType parser, IConnector connector)
         {
             _parserType = parser;
             _connector = connector;
-            _metarAccessor = new METARAccessor(_parserType);
-            _tafAccessor = new TAFAccessor(_parserType);
+            _metarAccessor = new METARAccessor(_parserType, _connector);
+            _tafAccessor = new TAFAccessor(_parserType, _connector);
         }
 
         #region Observations
-
+        /// <summary>
+        /// Retrieves the most recent observation associated with the ICAO
+        /// </summary>
+        /// <param name="icao"></param>
+        /// <returns></returns>
         public async Task<ObservationDto> GetLatestObservationAsync(string icao)
         {
             if (String.IsNullOrWhiteSpace(icao))
@@ -42,7 +55,13 @@ namespace BNolan.AviationWx.NET
             return await _metarAccessor.GetLatestObservationAsync(icao);
         }
 
-        public async Task<List<ObservationDto>> GetPreviousObservations(IList<string> icaos,
+        /// <summary>
+        /// Retrieves all observations associated with the ICAOs for the previous number of hours
+        /// </summary>
+        /// <param name="icaos"></param>
+        /// <param name="numHours"></param>
+        /// <returns></returns>
+        public async Task<List<ObservationDto>> GetPreviousObservationsAsync(IList<string> icaos,
             int numHours)
         {
             if (icaos == null
@@ -62,6 +81,11 @@ namespace BNolan.AviationWx.NET
 
         #region Forecasts
 
+        /// <summary>
+        /// Retrieves the latest TAF associated with the ICAOs
+        /// </summary>
+        /// <param name="icaos"></param>
+        /// <returns></returns>
         public async Task<List<ForecastDto>> GetLatestForecastsAsync(IList<string> icaos)
         {
             if (icaos == null

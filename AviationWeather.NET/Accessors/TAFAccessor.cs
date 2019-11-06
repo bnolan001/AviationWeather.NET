@@ -4,6 +4,7 @@ using BNolan.AviationWx.NET.Models.DTOs;
 using BNolan.AviationWx.NET.Parsers;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
 
 namespace BNolan.AviationWx.NET.Accessors
@@ -12,6 +13,7 @@ namespace BNolan.AviationWx.NET.Accessors
     {
         private readonly IConnector _connector;
         private readonly ParserType _parserType;
+        private readonly IFormatProvider _formatProvider = new CultureInfo(ParserConstants.StringCulture);
 
         public TAFAccessor()
         {
@@ -41,7 +43,7 @@ namespace BNolan.AviationWx.NET.Accessors
             var url = URLConstants.BaseURL + URLConstants.BasePath +
                 URLConstants.LatestTAF.Replace("{format}", _parserType.Name)
                 .Replace("{icaos}", stations)
-                .Replace("{hours}", hoursBeforeNow.ToString());
+                .Replace("{hours}", hoursBeforeNow.ToString(_formatProvider));
             var response = await _connector.GetAsync(url);
             return ConvertToDTO(response, icaos);
         }

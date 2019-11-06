@@ -4,6 +4,7 @@ using BNolan.AviationWx.NET.Models.DTOs;
 using BNolan.AviationWx.NET.Parsers;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,6 +14,7 @@ namespace BNolan.AviationWx.NET.Accessors
     {
         private readonly IConnector _connector;
         private readonly ParserType _parserType;
+        private readonly IFormatProvider _formatProvider = new CultureInfo(ParserConstants.StringCulture);
 
         public METARAccessor()
         {
@@ -51,7 +53,7 @@ namespace BNolan.AviationWx.NET.Accessors
             var url = URLConstants.BaseURL + URLConstants.BasePath +
                URLConstants.PreviousHoursMETARs.Replace("{format}", _parserType.Name)
                .Replace("{icaos}", stations)
-               .Replace("{hours}", numHours.ToString());
+               .Replace("{hours}", numHours.ToString(_formatProvider));
             var response = await _connector.GetAsync(url);
 
             return ConvertToDTO(response, icaos);

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>BNolan.AviationWeather.NET</id>
+    <version>0.3.0-alpha</version>
+    <authors>Brian Nolan</authors>
+    <title>AviationWeather.NET</title>
+    <description>Library access to the AviationWeather Dataserver API.  Methods to retrieve METAR and TAF data available.</description>
+    <language>en-US</language>
+    <copyright>BNolan.org 2019</copyright>
+    <projectUrl>https://github.com/bnolan001/AviationWeather.NET</projectUrl>
+    <repository type="git" url="https://github.com/bnolan001/AviationWeather.NET.git"></repository>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <tags>metar, taf, aviationweather</tags>
+    <license type="file">License.txt</license>
+  </metadata>
+    <files>
+      <file src="License.txt" target="" />
+    </files>
+</package>

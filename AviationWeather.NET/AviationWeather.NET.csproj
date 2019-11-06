@@ -8,11 +8,14 @@
     <Company>BNolan.org</Company>
     <Copyright>BNolan.org 2019</Copyright>
     <PackageProjectUrl>https://github.com/bnolan001/AviationWeather.NET</PackageProjectUrl>
-    <RepositoryType>Github</RepositoryType>
-    <RepositoryUrl>https://github.com/bnolan001/AviationWeather.NET</RepositoryUrl>
+    <RepositoryType>Git</RepositoryType>
+    <RepositoryUrl>https://github.com/bnolan001/AviationWeather.NET.git</RepositoryUrl>
     <Description>AviationWeather.NET provides a simple interface to access METAR and TAF weather data from the AviationWeather.gov Dataserver, https://aviationweather.gov/dataserver. The library parses the CSV and XML formats outputted by the dataserver and returns a structured object to the caller.</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseFile>License.txt</PackageLicenseFile>
+    <PackageTags>taf, metar, aviationweather</PackageTags>
+    <PackageReleaseNotes>Alpha releases continue to go through major refactoring and feature additions.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -20,6 +23,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="License.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
