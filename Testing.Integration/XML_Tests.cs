@@ -2,6 +2,7 @@ using BNolan.AviationWx.NET;
 using BNolan.AviationWx.NET.Models.Constants;
 using FluentAssertions;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 
 namespace Testing.Integration
@@ -114,6 +115,34 @@ namespace Testing.Integration
             }
         }
         #endregion GetlatestForecasts
+
+        #region GetForecastsInBox
+
+        [Test]
+        public void GetForecastsInBox_Valid()
+        {
+            var request = _aviationWeather.GetForecastsInBox(25, -130, 65, -40, 3);
+            request.Wait();
+            var forecasts = request.Result;
+            forecasts.Should().NotBeNull();
+            forecasts.Count.Should().NotBe(0);
+        }
+
+        #endregion GetForecastsInBox
+
+        #region GetForecastsInRadial
+
+        [Test]
+        public void GetForecastsInRadial_Valid()
+        {
+            var request = _aviationWeather.GetForecastsInRadial(25, 65, 50, 3);
+            request.Wait();
+            var forecasts = request.Result;
+            forecasts.Should().NotBeNull();
+            forecasts.Count.Should().NotBe(0);
+        }
+
+        #endregion GetForecastsInRadial
 
         #endregion TAF
     }

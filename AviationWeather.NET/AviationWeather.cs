@@ -96,6 +96,73 @@ namespace BNolan.AviationWx.NET
             return await _tafAccessor.GetLatestForecastsAsync(icaos);
         }
 
+        /// <summary>
+        /// Retrieves all TAFs disseminated over the last number of hours
+        /// within the box defined by the Latitude and Longitude coordinates
+        /// </summary>
+        /// <param name="maxLongitude"></param>
+        /// <param name="minLongitude"></param>
+        /// <param name="maxLatitude"></param>
+        /// <param name="minLatitude"></param>
+        /// <param name="hoursBeforeNow"></param>
+        /// <returns></returns>
+        public async Task<List<ForecastDto>> GetForecastsInBox(int maxLongitude,
+            int minLongitude,
+            int maxLatitude,
+            int minLatitude,
+            int hoursBeforeNow = 4)
+        {
+            if (!InputValidator.ValidateLatitude(minLatitude))
+            {
+                throw new ArgumentOutOfRangeException($"'{nameof(minLatitude)}' is outside the permitted range of 90 to -90");
+            }
+            if (!InputValidator.ValidateLatitude(maxLatitude))
+            {
+                throw new ArgumentOutOfRangeException($"'{nameof(maxLatitude)}' is outside the permitted range of 90 to -90");
+            }
+            if (!InputValidator.ValidateLongitude(minLongitude))
+            {
+                throw new ArgumentOutOfRangeException($"'{nameof(minLongitude)}' is outside the permitted range of 180 to -180");
+            }
+            if (!InputValidator.ValidateLongitude(maxLongitude))
+            {
+                throw new ArgumentOutOfRangeException($"'{nameof(maxLongitude)}' is outside the permitted range of 180 to -180");
+            }
+
+            return await _tafAccessor.GetForecastsInBox(maxLongitude, minLongitude, maxLatitude, minLatitude, hoursBeforeNow);
+
+        }
+
+        /// <summary>
+        /// Retrieves all TAFs disseminated over the last number of hours
+        /// within the box defined by the Latitude and Longitude coordinates
+        /// </summary>
+        /// <param name="longitude"></param>
+        /// <param name="latitude"></param>
+        /// <param name="radial"></param>
+        /// <param name="hoursBeforeNow"></param>
+        /// <returns></returns>
+        public async Task<List<ForecastDto>> GetForecastsInRadial(int longitude,
+            int latitude,
+            int radial,
+            int hoursBeforeNow = 4)
+        {
+            if (radial <= 0)
+            {
+                throw new ArgumentOutOfRangeException($"'{nameof(radial)}' must be greater than 0 but less than 500");
+            }
+            if (!InputValidator.ValidateLatitude(latitude))
+            {
+                throw new ArgumentOutOfRangeException($"'{nameof(latitude)}' is outside the permitted range of 90 to -90");
+            }
+            if (!InputValidator.ValidateLongitude(longitude))
+            {
+                throw new ArgumentOutOfRangeException($"'{nameof(longitude)}' is outside the permitted range of 180 to -180");
+            }
+
+            return await _tafAccessor.GetForecastsInRadial(longitude, latitude, radial, hoursBeforeNow);
+
+        }
         #endregion Forecasts
     }
 }
