@@ -16,26 +16,39 @@ namespace BNolan.AviationWx.NET.Accessors
         private readonly ParserType _parserType;
         private readonly IFormatProvider _formatProvider = new CultureInfo(ParserConstants.StringCulture);
 
+        /// <summary>
+        /// Configure the class to use the default parser type and connector
+        /// </summary>
         public METARAccessor()
         {
             _parserType = ParserType.XML;
             _connector = new Http();
         }
 
+        /// <summary>
+        /// Configure the class to use the defined parser and default connector
+        /// </summary>
+        /// <param name="parser"></param>
         public METARAccessor(ParserType parser)
             : this()
         {
             _parserType = parser;
         }
 
+        /// <summary>
+        /// Configure the class to request data via the included connector
+        /// and request data in the format associated with the parser
+        /// </summary>
+        /// <param name="parser"></param>
+        /// <param name="connector"></param>
         public METARAccessor(ParserType parser, IConnector connector)
+            : this(parser)
         {
-            _parserType = parser;
             _connector = connector;
         }
 
         /// <summary>
-        /// REF: https://aviationweather.gov/adds/dataserver_current/httpparam?dataSource=metars&requestType=retrieve&format=xml&hoursBeforeNow=12&mostRecent=true&stationString=PHNL%20KSEA
+        /// Retrieves the most recent observation reported for the ICAO
         /// </summary>
         /// <param name="icaos"></param>
         public async Task<ObservationDto> GetLatestObservationAsync(string icao)
@@ -47,7 +60,13 @@ namespace BNolan.AviationWx.NET.Accessors
             return ConvertToDTO(response, new List<string> { icao }).FirstOrDefault();
         }
 
-        public async Task<List<ObservationDto>> GetPreviousHoursObservationss(IList<string> icaos, int numHours)
+        /// <summary>
+        /// Get all observations reported over last number of hours for the given ICAOs
+        /// </summary>
+        /// <param name="icaos"></param>
+        /// <param name="numHours"></param>
+        /// <returns></returns>
+        public async Task<List<ObservationDto>> GetPreviousHoursObservationsAsync(IList<string> icaos, int numHours)
         {
             var stations = String.Join("%20", icaos);
             var url = URLConstants.BaseURL + URLConstants.BasePath +
@@ -59,6 +78,13 @@ namespace BNolan.AviationWx.NET.Accessors
             return ConvertToDTO(response, icaos);
         }
 
+        /// <summary>
+        /// Converts the pre-formatted string into the one or more Observation
+        /// objects
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="icaos"></param>
+        /// <returns></returns>
         private List<ObservationDto> ConvertToDTO(string data,
             IList<string> icaos)
         {

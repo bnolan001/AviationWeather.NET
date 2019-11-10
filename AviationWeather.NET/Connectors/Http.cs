@@ -8,12 +8,18 @@ namespace BNolan.AviationWx.NET.Connectors
         private static HttpClient _httpClient = new HttpClient();
 
         /// <summary>
-        ///  
+        ///  Default constructor
         /// </summary>
         public Http()
         {
         }
 
+        /// <summary>
+        /// Sends a GET request via the HTTPClient against the requested
+        /// URL
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
         public async Task<string> GetAsync(string url)
         {
             var result = await _httpClient.GetAsync(url);

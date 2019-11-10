@@ -16,6 +16,12 @@ namespace BNolan.AviationWx.NET.Parsers
                 throw new ArgumentException($"'{nameof(data)}' cannot be null or empty.");
             }
 
+            if (icaos == null 
+                || icaos.Count == 0)
+            {
+                throw new ArgumentException($"'{nameof(icaos)}' cannot be null or empty.");
+            }
+
             var obsDto = new List<ObservationDto>();
             var foundHeader = false;
             var fieldOrder = new List<METARCSVField>();
@@ -83,6 +89,17 @@ namespace BNolan.AviationWx.NET.Parsers
 
         public ObservationDto GetObservation(string line, List<METARCSVField> fieldOrder)
         {
+            if (String.IsNullOrWhiteSpace(line))
+            {
+                throw new ArgumentException($"'{nameof(line)}' cannot be null or empty.");
+            }
+
+            if (fieldOrder == null
+                || fieldOrder.Count == 0)
+            {
+                throw new ArgumentException($"'{nameof(line)}' cannot be null or empty");
+            }
+
             var dto = new ObservationDto()
             {
                 GeographicData = new GeographicDataDto(),
@@ -327,12 +344,20 @@ namespace BNolan.AviationWx.NET.Parsers
             return dto;
         }
 
+        /// <summary>
+        /// Checks to see if the value passed in is set to true.  If it is not
+        /// set to a boolean or is set to false then it will return false
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public bool IsFlagEnabled(string value)
         {
             return !String.IsNullOrWhiteSpace(value)
                 && bool.Parse(value);
         }
-        
+
+        #region Reset Fields
+
         /// <summary>
         /// Because not all properties will have values in each observation
         /// reset those fields that are objects which have no values
@@ -401,5 +426,8 @@ namespace BNolan.AviationWx.NET.Parsers
                 dto._24HourData = null;
             }
         }
+
+        #endregion Reset Fields
+
     }
 }
