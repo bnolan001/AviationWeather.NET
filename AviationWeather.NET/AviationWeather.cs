@@ -44,15 +44,16 @@ namespace BNolan.AviationWx.NET
         /// <summary>
         /// Retrieves the most recent observation associated with the ICAO
         /// </summary>
-        /// <param name="icao"></param>
+        /// <param name="icaos"></param>
         /// <returns></returns>
-        public async Task<ObservationDto> GetLatestObservationAsync(string icao)
+        public async Task<List<ObservationDto>> GetLatestObservationAsync(IList<string> icaos)
         {
-            if (String.IsNullOrWhiteSpace(icao))
+            if (icaos == null
+                || icaos.Count == 0)
             {
-                throw new ArgumentException($"{nameof(icao)} cannot be null or empty.");
+                throw new ArgumentException($"{nameof(icaos)} cannot be null or empty.");
             }
-            return await _metarAccessor.GetLatestObservationAsync(icao);
+            return await _metarAccessor.GetLatestObservationAsync(icaos);
         }
 
         /// <summary>

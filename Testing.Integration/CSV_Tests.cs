@@ -21,24 +21,26 @@ namespace Testing.Integration
         [Test]
         public void GetLatestObservation_Observation_Single_Valid()
         {
-            var request = _aviationWeather.GetLatestObservationAsync("KIAD");
+            var request = _aviationWeather.GetLatestObservationAsync(new List<string> { "KIAD" });
             request.Wait();
             var obs = request.Result;
             obs.Should().NotBeNull();
-            obs.METAR.Count.Should().Be(1);
-            obs.METAR[0].RawMETAR.Should().NotBeNullOrWhiteSpace();
-            obs.ICAO.Should().Be("KIAD");
+            obs.Count.Should().Be(1);
+            obs[0].METAR.Count.Should().Be(1);
+            obs[0].METAR[0].RawMETAR.Should().NotBeNullOrWhiteSpace();
+            obs[0].ICAO.Should().Be("KIAD");
         }
 
         [Test]
         public void GetLatestObservation_Observation_Single_InValid()
         {
-            var request = _aviationWeather.GetLatestObservationAsync("999Z");
+            var request = _aviationWeather.GetLatestObservationAsync(new List<string> { "999Z" });
             request.Wait();
             var obs = request.Result;
             obs.Should().NotBeNull();
-            obs.METAR.Count.Should().Be(0);
-            obs.ICAO.Should().Be("999Z");
+            obs.Count.Should().Be(1);
+            obs[0].METAR.Count.Should().Be(0);
+            obs[0].ICAO.Should().Be("999Z");
 
         }
 

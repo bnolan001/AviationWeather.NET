@@ -51,13 +51,26 @@ namespace BNolan.AviationWx.NET.Accessors
         /// Retrieves the most recent observation reported for the ICAO
         /// </summary>
         /// <param name="icaos"></param>
-        public async Task<ObservationDto> GetLatestObservationAsync(string icao)
+        public async Task<List<ObservationDto>> GetLatestObservationAsync(IList<string> icaos)
         {
-            var url = URLConstants.BaseURL + URLConstants.BasePath +
-                URLConstants.LatestMETAR.Replace("{format}", _parserType.Name)
-                .Replace("{icao}", icao);
-            var response = await _connector.GetAsync(url);
-            return ConvertToDTO(response, new List<string> { icao }).FirstOrDefault();
+            var requests = new List<Task<string>>();
+            // The get latest call doesn't accept multiple ICAOs in a single request
+            // so mechanically request each obs
+            foreach (var icao in icaos)
+            {
+                var url = URLConstants.BaseURL + URLConstants.BasePath +
+                    URLConstants.LatestMETAR.Replace("{format}", _parserType.Name)
+                    .Replace("{icao}", icao);
+                requests.Add(_connector.GetAsync(url));
+            }
+            var results = await Task.WhenAll(requests.ToArray());
+            var obsDTOs = new List<ObservationDto>();
+            for(var idx = 0; idx < icaos.Count(); idx++)
+            {
+                obsDTOs.Add(ConvertToDTO(results[idx], new List<string> { icaos[idx] }).First());
+            }
+            
+            return obsDTOs;
         }
 
         /// <summary>
