@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Xml.Serialization;
 
-namespace BNolan.AviationWx.NET.Models.XML.AWMETAR
+namespace BNolan.AviationWx.NET.Models.XML.METAR
 {
     [GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [SerializableAttribute()]
@@ -12,22 +12,21 @@ namespace BNolan.AviationWx.NET.Models.XML.AWMETAR
     [DesignerCategoryAttribute("code")]
     [XmlTypeAttribute(AnonymousType = true)]
     [XmlRootAttribute(Namespace = "", IsNullable = false)]
-    public partial class data_source
+    public partial class warnings
     {
 
-        private string nameField;
+        private string warningField;
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
-        public string name
+        public string warning
         {
             get
             {
-                return this.nameField;
+                return this.warningField;
             }
             set
             {
-                this.nameField = value;
+                this.warningField = value;
             }
         }
     }

@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Xml.Serialization;
 
-namespace BNolan.AviationWx.NET.Models.XML.AWTAF
+namespace BNolan.AviationWx.NET.Models.XML.TAF
 {
     [GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [SerializableAttribute()]
@@ -12,22 +12,21 @@ namespace BNolan.AviationWx.NET.Models.XML.AWTAF
     [DesignerCategoryAttribute("code")]
     [XmlTypeAttribute(AnonymousType = true)]
     [XmlRootAttribute(Namespace = "", IsNullable = false)]
-    public partial class request
+    public partial class warnings
     {
 
-        private string typeField;
+        private string warningField;
 
         /// <remarks/>
-        [XmlAttributeAttribute()]
-        public string type
+        public string warning
         {
             get
             {
-                return this.typeField;
+                return this.warningField;
             }
             set
             {
-                this.typeField = value;
+                this.warningField = value;
             }
         }
     }

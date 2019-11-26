@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Xml.Serialization;
 
-namespace BNolan.AviationWx.NET.Models.XML.AWMETAR
+namespace BNolan.AviationWx.NET.Models.XML.TAF
 {
     [GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [SerializableAttribute()]
@@ -128,8 +128,8 @@ namespace BNolan.AviationWx.NET.Models.XML.AWMETAR
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute("1.2")]
+        [XmlAttributeAttribute()]
+        [DefaultValueAttribute("1.2")]
         public string version
         {
             get

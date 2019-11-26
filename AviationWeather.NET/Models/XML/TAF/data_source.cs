@@ -4,30 +4,33 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Xml.Serialization;
 
-namespace BNolan.AviationWx.NET.Models.XML.AWMETAR
+namespace BNolan.AviationWx.NET.Models.XML.TAF
 {
+    /// <remarks/>
     [GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [SerializableAttribute()]
     [DebuggerStepThroughAttribute()]
     [DesignerCategoryAttribute("code")]
     [XmlTypeAttribute(AnonymousType = true)]
     [XmlRootAttribute(Namespace = "", IsNullable = false)]
-    public partial class errors
+    public partial class data_source
     {
 
-        private string errorField;
+        private string nameField;
 
         /// <remarks/>
-        public string error
+        [XmlAttributeAttribute()]
+        public string name
         {
             get
             {
-                return this.errorField;
+                return this.nameField;
             }
             set
             {
-                this.errorField = value;
+                this.nameField = value;
             }
         }
     }
+
 }

@@ -1,6 +1,6 @@
 ﻿using BNolan.AviationWx.NET.Models.DTOs;
 using BNolan.AviationWx.NET.Models.Enums;
-using BNolan.AviationWx.NET.Models.XML.AWMETAR;
+using BNolan.AviationWx.NET.Models.XML.METAR;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;

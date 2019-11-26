@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Xml.Serialization;
 
-namespace BNolan.AviationWx.NET.Models.XML.AWTAF
+namespace BNolan.AviationWx.NET.Models.XML.METAR
 {
     [GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [SerializableAttribute()]
@@ -15,23 +15,23 @@ namespace BNolan.AviationWx.NET.Models.XML.AWTAF
     public partial class data
     {
 
-        private TAF[] tAFField;
+        private METAR[] mETARField;
 
         private int num_resultsField;
 
         private bool num_resultsFieldSpecified;
 
         /// <remarks/>
-        [XmlElementAttribute("TAF")]
-        public TAF[] TAF
+        [XmlElementAttribute("METAR")]
+        public METAR[] METAR
         {
             get
             {
-                return this.tAFField;
+                return this.mETARField;
             }
             set
             {
-                this.tAFField = value;
+                this.mETARField = value;
             }
         }
 
