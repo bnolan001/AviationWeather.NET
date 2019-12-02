@@ -85,7 +85,7 @@ namespace BNolan.AviationWx.NET.Parsers
             {
                 Latitude = xml.latitude,
                 Longitude = xml.longitude,
-                Elevation_M = xml.elevation_m
+                Elevation = xml.elevation_m
             };
         }
 
@@ -96,31 +96,31 @@ namespace BNolan.AviationWx.NET.Parsers
         /// <param name="xml"></param>
         private void ParseCurrentWeatherData(METARDto dto, METAR xml)
         {
-            dto.Altimeter_Hg = xml.altim_in_hg;
-            dto.Dewpoint_C = xml.dewpoint_c;
+            dto.Altimeter = xml.altim_in_hg;
+            dto.Dewpoint = xml.dewpoint_c;
             dto.ObsTime = ParserHelpers.ParseDateTime(xml.observation_time);
-            dto.Precipitation_In = ParserHelpers.GetValue(xml.precip_inSpecified, xml.precip_in);
-            dto.Snow_In = ParserHelpers.GetValue(xml.snow_inSpecified, xml.snow_in);
+            dto.Precipitation = ParserHelpers.GetValue(xml.precip_inSpecified, xml.precip_in);
+            dto.Snow = ParserHelpers.GetValue(xml.snow_inSpecified, xml.snow_in);
             dto.RawMETAR = xml.raw_text;
-            dto.SeaLevelPressure_Mb = xml.sea_level_pressure_mb;
-            dto.SkyCondition = xml.sky_condition.Select(sc => new SkyConditionDto() { SkyCondition = SkyConditionType.GetByName(sc.sky_cover), CloudBase_Ft = sc.cloud_base_ft_agl }).ToList();
-            dto.Temperature_C = xml.temp_c;
-            dto.VerticalVisibility_Ft = ParserHelpers.GetValue(xml.vert_vis_ftSpecified, xml.vert_vis_ft);
-            dto.Visibility_SM = xml.visibility_statute_mi;
+            dto.SeaLevelPressure = xml.sea_level_pressure_mb;
+            dto.SkyCondition.AddRange(xml.sky_condition.Select(sc => new SkyConditionDto() { SkyCondition = SkyConditionType.ByName(sc.sky_cover), CloudBase = sc.cloud_base_ft_agl }));
+            dto.Temperature = xml.temp_c;
+            dto.VerticalVisibility = ParserHelpers.GetValue(xml.vert_vis_ftSpecified, xml.vert_vis_ft);
+            dto.Visibility = xml.visibility_statute_mi;
             dto.Weather = xml.wx_string;
             dto.Wind = new WindDto()
             {
-                Direction_D = xml.wind_dir_degrees,
-                Gust_Kt = ParserHelpers.GetValue(xml.wind_gust_ktSpecified, xml.wind_gust_kt),
-                Speed_Kt = xml.wind_speed_kt,
+                Direction = xml.wind_dir_degrees,
+                Gust = ParserHelpers.GetValue(xml.wind_gust_ktSpecified, xml.wind_gust_kt),
+                Speed = xml.wind_speed_kt,
             };
-            dto.FlightCagegory = FlightCategoryType.GetByName(xml.flight_category);
-            dto.ObsType = METARType.GetByName(xml.metar_type);
+            dto.FlightCagegory = FlightCategoryType.ByName(xml.flight_category);
+            dto.ObsType = METARType.ByName(xml.metar_type);
             if (xml.maxT_cSpecified || xml.minT_cSpecified)
             {
                 dto.TemperatureRange = new TemperatureRangeDto();
-                dto.TemperatureRange.MaxTemperature_C = ParserHelpers.GetValue(xml.maxT_cSpecified, xml.maxT_c);
-                dto.TemperatureRange.MinTemperature_C = ParserHelpers.GetValue(xml.minT_cSpecified, xml.minT_c);
+                dto.TemperatureRange.MaxTemperature = ParserHelpers.GetValue(xml.maxT_cSpecified, xml.maxT_c);
+                dto.TemperatureRange.MinTemperature = ParserHelpers.GetValue(xml.minT_cSpecified, xml.minT_c);
             }
         }
 
@@ -133,9 +133,9 @@ namespace BNolan.AviationWx.NET.Parsers
         {
             if (xml.pcp3hr_inSpecified || xml.three_hr_pressure_tendency_mbSpecified)
             {
-                dto._3HourObsData = new _3HourObsData();
-                dto._3HourObsData.Precipitation_In = ParserHelpers.GetValue(xml.pcp3hr_inSpecified, xml.pcp3hr_in);
-                dto._3HourObsData.PressureTendency_Mb = ParserHelpers.GetValue(xml.three_hr_pressure_tendency_mbSpecified, xml.three_hr_pressure_tendency_mb);
+                dto.ThreeHourObsData = new ThreeHourObsData();
+                dto.ThreeHourObsData.Precipitation = ParserHelpers.GetValue(xml.pcp3hr_inSpecified, xml.pcp3hr_in);
+                dto.ThreeHourObsData.PressureTendency = ParserHelpers.GetValue(xml.three_hr_pressure_tendency_mbSpecified, xml.three_hr_pressure_tendency_mb);
             }
         }
 
@@ -148,9 +148,9 @@ namespace BNolan.AviationWx.NET.Parsers
         {
             if (xml.pcp6hr_inSpecified)
             {
-                dto._6HourData = new _6HourObsDataDto()
+                dto.SixHourData = new SixHourObsDataDto()
                 {
-                    Precipitation_In = xml.pcp6hr_in
+                    Precipitation = xml.pcp6hr_in
                 };
             }
         }
@@ -166,10 +166,10 @@ namespace BNolan.AviationWx.NET.Parsers
                 || xml.maxT24hr_cSpecified
                 || xml.minT24hr_cSpecified)
             {
-                dto._24HourData = new _24HourObsDataDto();
-                dto._24HourData.Precipitation_In = ParserHelpers.GetValue(xml.pcp24hr_inSpecified, xml.pcp24hr_in);
-                dto._24HourData.MaxTemperature_C = ParserHelpers.GetValue(xml.maxT24hr_cSpecified, xml.maxT24hr_c);
-                dto._24HourData.MinTemperature_C = ParserHelpers.GetValue(xml.minT24hr_cSpecified, xml.minT24hr_c);
+                dto.TwentyFourHourData = new TwentyFourHourObsDataDto();
+                dto.TwentyFourHourData.Precipitation = ParserHelpers.GetValue(xml.pcp24hr_inSpecified, xml.pcp24hr_in);
+                dto.TwentyFourHourData.MaxTemperature = ParserHelpers.GetValue(xml.maxT24hr_cSpecified, xml.maxT24hr_c);
+                dto.TwentyFourHourData.MinTemperature = ParserHelpers.GetValue(xml.minT24hr_cSpecified, xml.minT24hr_c);
             }
         }
 

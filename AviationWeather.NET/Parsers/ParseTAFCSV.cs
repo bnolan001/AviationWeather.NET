@@ -68,7 +68,7 @@ namespace BNolan.AviationWx.NET.Parsers
         /// </summary>
         /// <param name="line"></param>
         /// <returns></returns>
-        public List<TAFCSVField> GetFieldOrder(string line)
+        private List<TAFCSVField> GetFieldOrder(string line)
         {
 
             if (String.IsNullOrWhiteSpace(line))
@@ -77,11 +77,11 @@ namespace BNolan.AviationWx.NET.Parsers
             }
 
             var fields = line.Split(ParserConstants.CSVSplitCharacter);
-            return fields.Select(f => TAFCSVField.ByName(f.Trim())).ToList();
+            return fields.Select(f => String.IsNullOrWhiteSpace(f)? TAFCSVField.Unknown: TAFCSVField.ByName(f.Trim())).ToList();
         }
 
 
-        public ForecastDto GetForecast(string line, List<TAFCSVField> fieldOrder)
+        private ForecastDto GetForecast(string line, List<TAFCSVField> fieldOrder)
         {
             var dto = new ForecastDto()
             {
@@ -95,7 +95,7 @@ namespace BNolan.AviationWx.NET.Parsers
             var taf = dto.TAF[0];
             TAFLineDto tafLine = new TAFLineDto();
             var fields = line.Split(ParserConstants.CSVSplitCharacter);
-            for (var idx = 0; idx < fieldOrder.Count && idx < fields.Count(); idx++)
+            for (var idx = 0; idx < fieldOrder.Count && idx < fields.Length; idx++)
             {
                 if (fieldOrder[idx] == TAFCSVField.fcst_time_from
                     && String.IsNullOrWhiteSpace(fields[idx]))
@@ -105,7 +105,7 @@ namespace BNolan.AviationWx.NET.Parsers
                 }
 
                 // Skip all unknown and empty fields
-                if (fieldOrder[idx] == TAFCSVField.unknown
+                if (fieldOrder[idx] == TAFCSVField.Unknown
                     || String.IsNullOrWhiteSpace(fields[idx]))
                 {
                     continue;
@@ -120,7 +120,7 @@ namespace BNolan.AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == TAFCSVField.altim_in_hg)
                 {
-                    tafLine.Altimeter_Hg = float.Parse(fieldVal);
+                    tafLine.Altimeter = float.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == TAFCSVField.bulletin_time)
@@ -135,14 +135,14 @@ namespace BNolan.AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == TAFCSVField.cloud_base_ft_agl)
                 {
-                    tafLine.SkyCondition[tafLine.SkyCondition.Count() - 1].CloudBase_Ft = int.Parse(fieldVal);
+                    tafLine.SkyCondition[tafLine.SkyCondition.Count - 1].CloudBase = int.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == TAFCSVField.sky_cover)
                 {
                     tafLine.SkyCondition.Add(new SkyConditionDto()
                     {
-                        SkyCondition = SkyConditionType.GetByName(fieldVal)
+                        SkyCondition = SkyConditionType.ByName(fieldVal)
                     });
                     continue;
                 }
@@ -165,7 +165,7 @@ namespace BNolan.AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == TAFCSVField.icing_intensity)
                 {
-                    tafLine.IcingHazards.Add(new IcingDto()
+                    tafLine.IcingHazards.Add(new HazardDto()
                     {
                         Intensity = fieldVal
                     });
@@ -173,12 +173,12 @@ namespace BNolan.AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == TAFCSVField.icing_max_alt_ft_agl)
                 {
-                    tafLine.IcingHazards[tafLine.IcingHazards.Count() - 1].MaxAltitude_Ft = int.Parse(fieldVal);
+                    tafLine.IcingHazards[tafLine.IcingHazards.Count - 1].MaxAltitude = int.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == TAFCSVField.icing_min_alt_ft_agl)
                 {
-                    tafLine.IcingHazards[tafLine.IcingHazards.Count() - 1].MinAltitude_Ft = int.Parse(fieldVal);
+                    tafLine.IcingHazards[tafLine.IcingHazards.Count - 1].MinAltitude = int.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == TAFCSVField.issue_time)
@@ -193,19 +193,19 @@ namespace BNolan.AviationWx.NET.Parsers
                     {
                         tafLine.TemperatureRange = new TemperatureRangeDto()
                         {
-                            MaxTemperature_C = tempC
+                            MaxTemperature = tempC
                         };
                     }
                     else
                     {
-                        if (tempC > tafLine.TemperatureRange.MaxTemperature_C)
+                        if (tempC > tafLine.TemperatureRange.MaxTemperature)
                         {
-                            tafLine.TemperatureRange.MinTemperature_C = tafLine.TemperatureRange.MaxTemperature_C;
-                            tafLine.TemperatureRange.MaxTemperature_C = tempC;
+                            tafLine.TemperatureRange.MinTemperature = tafLine.TemperatureRange.MaxTemperature;
+                            tafLine.TemperatureRange.MaxTemperature = tempC;
                         }
                         else
                         {
-                            tafLine.TemperatureRange.MinTemperature_C = tempC;
+                            tafLine.TemperatureRange.MinTemperature = tempC;
                         }
                     }
                     continue;
@@ -227,7 +227,7 @@ namespace BNolan.AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == TAFCSVField.sfc_temp_c)
                 {
-                    tafLine.SurfaceTemperature_C = float.Parse(fieldVal);
+                    tafLine.Temperature = float.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == TAFCSVField.station_id)
@@ -242,7 +242,7 @@ namespace BNolan.AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == TAFCSVField.turbulence_intensity)
                 {
-                    tafLine.TurbulenceHazards.Add(new TurbulenceDto()
+                    tafLine.TurbulenceHazards.Add(new HazardDto()
                     {
                         Intensity = fieldVal
                     });
@@ -250,12 +250,12 @@ namespace BNolan.AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == TAFCSVField.turbulence_max_alt_ft_agl)
                 {
-                    tafLine.TurbulenceHazards[tafLine.TurbulenceHazards.Count() - 1].MaxAltitude_Ft = int.Parse(fieldVal);
+                    tafLine.TurbulenceHazards[tafLine.TurbulenceHazards.Count - 1].MaxAltitude = int.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == TAFCSVField.turbulence_min_alt_ft_agl)
                 {
-                    tafLine.TurbulenceHazards[tafLine.TurbulenceHazards.Count() - 1].MinAltitude_Ft = int.Parse(fieldVal);
+                    tafLine.TurbulenceHazards[tafLine.TurbulenceHazards.Count - 1].MinAltitude = int.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == TAFCSVField.valid_time)
@@ -275,18 +275,18 @@ namespace BNolan.AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == TAFCSVField.vert_vis_ft)
                 {
-                    tafLine.VerticalVisibility_Ft = int.Parse(fieldVal);
+                    tafLine.VerticalVisibility = int.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == TAFCSVField.visibility_statute_mi)
                 {
-                    tafLine.Visibility_SM = float.Parse(fieldVal);
+                    tafLine.Visibility = float.Parse(fieldVal);
                     continue;
                 }
 
                 if (fieldOrder[idx] == TAFCSVField.elevation_m)
                 {
-                    dto.GeographicData.Elevation_M = float.Parse(fieldVal);
+                    dto.GeographicData.Elevation = float.Parse(fieldVal);
                     continue;
                 }
 
@@ -304,18 +304,18 @@ namespace BNolan.AviationWx.NET.Parsers
                 {
                     tafLine.Wind = new WindDto()
                     {
-                        Direction_D = int.Parse(fieldVal)
+                        Direction = int.Parse(fieldVal)
                     };
                     continue;
                 }
                 if (fieldOrder[idx] == TAFCSVField.wind_gust_kt)
                 {
-                    tafLine.Wind.Gust_Kt = int.Parse(fieldVal);
+                    tafLine.Wind.Gust = int.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == TAFCSVField.wind_speed_kt)
                 {
-                    tafLine.Wind.Speed_Kt = int.Parse(fieldVal);
+                    tafLine.Wind.Speed = int.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == TAFCSVField.wx_string)
@@ -327,18 +327,18 @@ namespace BNolan.AviationWx.NET.Parsers
                 {
                     tafLine.WindShear = new WindShearDto()
                     {
-                        Height_Ft = int.Parse(fieldVal)
+                        Height = int.Parse(fieldVal)
                     };
                     continue;
                 }
                 if (fieldOrder[idx] == TAFCSVField.wind_shear_dir_degrees)
                 {
-                    tafLine.WindShear.Direction_D = int.Parse(fieldVal);
+                    tafLine.WindShear.Direction = int.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == TAFCSVField.wind_shear_speed_kt)
                 {
-                    tafLine.WindShear.Speed_Kt = int.Parse(fieldVal);
+                    tafLine.WindShear.Speed = int.Parse(fieldVal);
                     continue;
                 }
             }

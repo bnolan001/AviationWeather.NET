@@ -2,11 +2,18 @@
 
 namespace BNolan.AviationWx.NET.Models.DTOs
 {
-    public class _3HourObsData
+    public class ThreeHourObsData
     {
-        public Nullable<float> PressureTendency_Mb { get; set; }
+        /// <summary>
+        /// Three hour pressure tendancy.  Measurement in millibars.
+        /// </summary>
+        public float? PressureTendency { get; set; }
 
-        public Nullable<float> Precipitation_In { get; set; }
+        /// <summary>
+        /// Total precipitation recorded over the previous three hours.  Measurement
+        /// is in inches.
+        /// </summary>
+        public float? Precipitation { get; set; }
 
     }
 }

@@ -4,8 +4,14 @@ namespace BNolan.AviationWx.NET.Models.DTOs
 {
     public class TemperatureRangeDto
     {
-        public Nullable<float> MaxTemperature_C { get; set; }
+        /// <summary>
+        /// Maximum temperature in degrees Celcius.
+        /// </summary>
+        public float? MaxTemperature { get; set; }
 
-        public Nullable<float> MinTemperature_C { get; set; }
+        /// <summary>
+        /// Minimum temperature in degrees Celcius.
+        /// </summary>
+        public float? MinTemperature { get; set; }
     }
 }

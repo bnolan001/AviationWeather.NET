@@ -5,18 +5,18 @@
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public class station
+    public partial class responseDataStation
     {
 
         private string station_idField;
 
-        private uint wmo_idField;
+        private int? wmo_idField;
 
-        private decimal latitudeField;
+        private float latitudeField;
 
-        private decimal longitudeField;
+        private float longitudeField;
 
-        private decimal elevation_mField;
+        private float elevation_mField;
 
         private string siteField;
 
@@ -24,7 +24,7 @@
 
         private string countryField;
 
-        private stationsite_type site_typeField;
+        private responseDataStationSite_type site_typeField;
 
         /// <remarks/>
         public string station_id
@@ -40,7 +40,7 @@
         }
 
         /// <remarks/>
-        public uint wmo_id
+        public int? wmo_id
         {
             get
             {
@@ -53,7 +53,7 @@
         }
 
         /// <remarks/>
-        public decimal latitude
+        public float latitude
         {
             get
             {
@@ -66,7 +66,7 @@
         }
 
         /// <remarks/>
-        public decimal longitude
+        public float longitude
         {
             get
             {
@@ -79,7 +79,7 @@
         }
 
         /// <remarks/>
-        public decimal elevation_m
+        public float elevation_m
         {
             get
             {
@@ -131,7 +131,7 @@
         }
 
         /// <remarks/>
-        public stationsite_type site_type
+        public responseDataStationSite_type site_type
         {
             get
             {

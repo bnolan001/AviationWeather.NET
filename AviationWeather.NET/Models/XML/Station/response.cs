@@ -6,22 +6,22 @@
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
     [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
-    public class response
+    public partial class response
     {
 
         private uint request_indexField;
 
-        private data_source data_sourceField;
+        private responseData_source data_sourceField;
 
-        private request requestField;
+        private responseRequest requestField;
 
         private object errorsField;
 
         private object warningsField;
 
-        private byte time_taken_msField;
+        private uint time_taken_msField;
 
-        private data dataField;
+        private responseData dataField;
 
         private decimal versionField;
 
@@ -41,7 +41,7 @@
         }
 
         /// <remarks/>
-        public data_source data_source
+        public responseData_source data_source
         {
             get
             {
@@ -54,7 +54,7 @@
         }
 
         /// <remarks/>
-        public request request
+        public responseRequest request
         {
             get
             {
@@ -93,7 +93,7 @@
         }
 
         /// <remarks/>
-        public byte time_taken_ms
+        public uint time_taken_ms
         {
             get
             {
@@ -106,7 +106,7 @@
         }
 
         /// <remarks/>
-        public data data
+        public responseData data
         {
             get
             {

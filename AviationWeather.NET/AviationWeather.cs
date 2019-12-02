@@ -14,30 +14,33 @@ namespace BNolan.AviationWx.NET
         private readonly ParserType _parserType;
         private METARAccessor _metarAccessor;
         private TAFAccessor _tafAccessor;
+        private StationDataAccessor _stationDataAccessor;
 
         /// <summary>
         /// Constructor utilizing the default HTTP connector
         /// </summary>
-        /// <param name="parser"></param>
+        /// <param name="parser">Which data format should be retrieved</param>
         public AviationWeather(ParserType parser)
         {
             _parserType = parser;
             _connector = new Http();
             _metarAccessor = new METARAccessor(_parserType, _connector);
             _tafAccessor = new TAFAccessor(_parserType, _connector);
+            _stationDataAccessor = new StationDataAccessor(_parserType, _connector);
         }
 
         /// <summary>
         /// Constructor utilizing the client defined connector
         /// </summary>
-        /// <param name="parser"></param>
-        /// <param name="connector"></param>
+        /// <param name="parser">Which data format should be retrieved</param>
+        /// <param name="connector">Connection class used to retrieve the data</param>
         public AviationWeather(ParserType parser, IConnector connector)
         {
             _parserType = parser;
             _connector = connector;
             _metarAccessor = new METARAccessor(_parserType, _connector);
             _tafAccessor = new TAFAccessor(_parserType, _connector);
+            _stationDataAccessor = new StationDataAccessor(_parserType, _connector);
         }
 
         #region Observations
@@ -107,7 +110,7 @@ namespace BNolan.AviationWx.NET
         /// <param name="minLatitude"></param>
         /// <param name="hoursBeforeNow"></param>
         /// <returns></returns>
-        public async Task<List<ForecastDto>> GetForecastsInBox(int maxLongitude,
+        public async Task<List<ForecastDto>> GetForecastsInBoxAsync(int maxLongitude,
             int minLongitude,
             int maxLatitude,
             int minLatitude,
@@ -130,7 +133,7 @@ namespace BNolan.AviationWx.NET
                 throw new ArgumentOutOfRangeException($"'{nameof(maxLongitude)}' is outside the permitted range of 180 to -180");
             }
 
-            return await _tafAccessor.GetForecastsInBox(maxLongitude, minLongitude, maxLatitude, minLatitude, hoursBeforeNow);
+            return await _tafAccessor.GetForecastsInBoxAsync(maxLongitude, minLongitude, maxLatitude, minLatitude, hoursBeforeNow);
 
         }
 
@@ -143,7 +146,7 @@ namespace BNolan.AviationWx.NET
         /// <param name="radial"></param>
         /// <param name="hoursBeforeNow"></param>
         /// <returns></returns>
-        public async Task<List<ForecastDto>> GetForecastsInRadial(int longitude,
+        public async Task<List<ForecastDto>> GetForecastsInRadialAsync(int longitude,
             int latitude,
             int radial,
             int hoursBeforeNow = 4)
@@ -161,9 +164,63 @@ namespace BNolan.AviationWx.NET
                 throw new ArgumentOutOfRangeException($"'{nameof(longitude)}' is outside the permitted range of 180 to -180");
             }
 
-            return await _tafAccessor.GetForecastsInRadial(longitude, latitude, radial, hoursBeforeNow);
+            return await _tafAccessor.GetForecastsInRadialAsync(longitude, latitude, radial, hoursBeforeNow);
 
         }
         #endregion Forecasts
+
+        #region Station Info
+
+        /// <summary>
+        /// Retrieves the station information associated with the ICAOs.  
+        /// </summary>
+        /// <param name="icaos"></param>
+        /// <returns>Empty list if none of the ICAOs are found.</returns>
+        public async Task<List<StationInfoDto>> GetStationInfoByICAOAsync(IList<string> icaos)
+        {
+            if (icaos == null
+                || icaos.Count == 0)
+            {
+                throw new ArgumentException($"{nameof(icaos)} cannot be null or empty.");
+            }
+
+            return await _stationDataAccessor.GetStationInformationAsync(icaos);
+        }
+
+        // <summary>
+        /// Retrieves the station information for all ICAOs located in the state or province.  
+        /// The abbreviation is expected to be the two letter abbreviation for the state or province.
+        /// </summary>
+        /// <param name="icaos"></param>
+        /// <returns>Empty list if none of the ICAOs are found.</returns>
+        public async Task<List<StationInfoDto>> GetStationInfoByStateOrProvinceAsync(IList<string> abbreviations)
+        {
+            if (abbreviations == null
+                || abbreviations.Count == 0)
+            {
+                throw new ArgumentException($"{nameof(abbreviations)} cannot be null or empty.");
+            }
+
+            return await _stationDataAccessor.GetStationsByStateOrProvinceAsync(abbreviations);
+        }
+
+        /// <summary>
+        /// Retrieves the station information for all ICAOs located in the country.  
+        /// The abbreviation is expected to be the two letter abbreviation for the country.
+        /// </summary>
+        /// <param name="abbreviations"></param>
+        /// <returns></returns>
+        public async Task<List<StationInfoDto>> GetStationInfoByCountryAsync(IList<string> abbreviations)
+        {
+            if (abbreviations == null
+                || abbreviations.Count == 0)
+            {
+                throw new ArgumentException($"{nameof(abbreviations)} cannot be null or empty.");
+            }
+
+            return await _stationDataAccessor.GetStationsByCountryAsync(abbreviations);
+        }
+
+        #endregion Station Info
     }
 }

@@ -2,8 +2,12 @@
 
 namespace BNolan.AviationWx.NET.Models.DTOs
 {
-    public class _24HourObsDataDto : TemperatureRangeDto
+    public class TwentyFourHourObsDataDto : TemperatureRangeDto
     {
-        public Nullable<float> Precipitation_In { get; set; }
+        /// <summary>
+        /// Total precipitation recorded over the previous 24 hours.  Measurement
+        /// is in inches.
+        /// </summary>
+        public float? Precipitation { get; set; }
     }
 }

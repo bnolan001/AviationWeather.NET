@@ -21,7 +21,7 @@ namespace Testing.Unit
             forecasts.Count().Should().Be(1);
             var fcst = forecasts[0];
             fcst.GeographicData.Should().NotBeNull();
-            fcst.GeographicData.Elevation_M.Should().Be(18.0f);
+            fcst.GeographicData.Elevation.Should().Be(18.0f);
             fcst.GeographicData.Latitude.Should().Be(39.87f);
             fcst.GeographicData.Longitude.Should().Be(-75.23f);
             fcst.ICAO.Should().Be("KPHL");
@@ -35,46 +35,46 @@ namespace Testing.Unit
             taf.ValidTimeEnd.Should().Be(ParserHelpers.ParseDateTime("2019-10-28T06:00:00Z"));
             taf.TAFLine.Count().Should().Be(6);
             var tafLine = taf.TAFLine[0];
-            tafLine.Altimeter_Hg.Should().BeNull();
+            tafLine.Altimeter.Should().BeNull();
             tafLine.ForecastTimeEnd.Should().Be(ParserHelpers.ParseDateTime("2019-10-27T08:00:00Z"));
             tafLine.ForecastTimeStart.Should().Be(ParserHelpers.ParseDateTime("2019-10-27T00:00:00Z"));
             tafLine.IcingHazards.Count.Should().Be(0);
             tafLine.NotDecoded.Should().BeNull();
             tafLine.Probability.Should().BeNull();
             tafLine.SkyCondition.Count().Should().Be(2);
-            tafLine.SkyCondition[0].CloudBase_Ft.Should().Be(4000);
+            tafLine.SkyCondition[0].CloudBase.Should().Be(4000);
             tafLine.SkyCondition[0].SkyCondition.Should().Be(SkyConditionType.SCT);
-            tafLine.SkyCondition[1].CloudBase_Ft.Should().Be(10000);
+            tafLine.SkyCondition[1].CloudBase.Should().Be(10000);
             tafLine.SkyCondition[1].SkyCondition.Should().Be(SkyConditionType.BKN);
             tafLine.Wind.Should().NotBeNull();
-            tafLine.Wind.Direction_D.Should().Be(110);
-            tafLine.Wind.Gust_Kt.Should().BeNull();
-            tafLine.Wind.Speed_Kt.Should().Be(8);
+            tafLine.Wind.Direction.Should().Be(110);
+            tafLine.Wind.Gust.Should().BeNull();
+            tafLine.Wind.Speed.Should().Be(8);
             tafLine.WindShear.Should().BeNull();
             tafLine.Weather.Should().BeNull();
-            tafLine.Visibility_SM.Should().Be(6.21f);
+            tafLine.Visibility.Should().Be(6.21f);
 
             tafLine = taf.TAFLine[2];
             tafLine.ChangeIndicator.Should().Be(ChangeIndicatorType.FM);
-            tafLine.Altimeter_Hg.Should().BeNull();
+            tafLine.Altimeter.Should().BeNull();
             tafLine.ForecastTimeEnd.Should().Be(ParserHelpers.ParseDateTime("2019-10-27T13:00:00Z"));
             tafLine.ForecastTimeStart.Should().Be(ParserHelpers.ParseDateTime("2019-10-27T10:00:00Z"));
             tafLine.IcingHazards.Count.Should().Be(0);
             tafLine.NotDecoded.Should().BeNull();
             tafLine.Probability.Should().BeNull();
             tafLine.SkyCondition.Count().Should().Be(1);
-            tafLine.SkyCondition[0].CloudBase_Ft.Should().Be(1000);
+            tafLine.SkyCondition[0].CloudBase.Should().Be(1000);
             tafLine.SkyCondition[0].SkyCondition.Should().Be(SkyConditionType.OVC);
             tafLine.Wind.Should().NotBeNull();
-            tafLine.Wind.Direction_D.Should().Be(100);
-            tafLine.Wind.Gust_Kt.Should().Be(20);
-            tafLine.Wind.Speed_Kt.Should().Be(12);
+            tafLine.Wind.Direction.Should().Be(100);
+            tafLine.Wind.Gust.Should().Be(20);
+            tafLine.Wind.Speed.Should().Be(12);
             tafLine.WindShear.Should().NotBeNull();
-            tafLine.WindShear.Direction_D.Should().Be(160);
-            tafLine.WindShear.Height_Ft.Should().Be(2000);
-            tafLine.WindShear.Speed_Kt.Should().Be(40);
+            tafLine.WindShear.Direction.Should().Be(160);
+            tafLine.WindShear.Height.Should().Be(2000);
+            tafLine.WindShear.Speed.Should().Be(40);
             tafLine.Weather.Should().Be("-RA BR");
-            tafLine.Visibility_SM.Should().Be(5.0f);
+            tafLine.Visibility.Should().Be(5.0f);
 
 
         }
@@ -111,13 +111,13 @@ namespace Testing.Unit
             taf.TAFLine[1].ChangeIndicator.Should().Be(ChangeIndicatorType.BECMG);
             taf.TAFLine[1].TurbulenceHazards.Count().Should().Be(1);
             taf.TAFLine[1].TurbulenceHazards[0].Intensity.Should().Be("1");
-            taf.TAFLine[1].TurbulenceHazards[0].MinAltitude_Ft.Should().Be(500);
-            taf.TAFLine[1].TurbulenceHazards[0].MaxAltitude_Ft.Should().Be(2500);
+            taf.TAFLine[1].TurbulenceHazards[0].MinAltitude.Should().Be(500);
+            taf.TAFLine[1].TurbulenceHazards[0].MaxAltitude.Should().Be(2500);
 
             taf.TAFLine[3].IcingHazards.Count().Should().Be(1);
             taf.TAFLine[3].IcingHazards[0].Intensity.Should().Be("2");
-            taf.TAFLine[3].IcingHazards[0].MinAltitude_Ft.Should().Be(8000);
-            taf.TAFLine[3].IcingHazards[0].MaxAltitude_Ft.Should().Be(16000);
+            taf.TAFLine[3].IcingHazards[0].MinAltitude.Should().Be(8000);
+            taf.TAFLine[3].IcingHazards[0].MaxAltitude.Should().Be(16000);
         }
     }
 }

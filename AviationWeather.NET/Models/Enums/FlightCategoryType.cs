@@ -10,9 +10,14 @@ namespace BNolan.AviationWx.NET.Models.Enums
     public class FlightCategoryType
     {
         public static readonly FlightCategoryType VFR = new FlightCategoryType("VFR", 1, "Visual Flight Rules");
-        public static readonly FlightCategoryType MVFR = new FlightCategoryType("MVFR", 2, "Marginal Visual Flight Rules");
-        public static readonly FlightCategoryType IFR = new FlightCategoryType("IFR", 3, "Instrument Flight Rules");
-        public static readonly FlightCategoryType LIFR = new FlightCategoryType("LIFR", 4, "Low Instrument Flight Rules");
+
+        public static readonly FlightCategoryType MVFR = new FlightCategoryType("MVFR", VFR.Value + 1, "Marginal Visual Flight Rules");
+
+        public static readonly FlightCategoryType IFR = new FlightCategoryType("IFR", MVFR.Value + 1, "Instrument Flight Rules");
+
+        public static readonly FlightCategoryType LIFR = new FlightCategoryType("LIFR", IFR.Value + 1, "Low Instrument Flight Rules");
+
+        public static readonly FlightCategoryType Unknown = new FlightCategoryType("Unknown", LIFR.Value + 1, "Unknown");
 
         public string Name { get; private set; }
 
@@ -32,24 +37,38 @@ namespace BNolan.AviationWx.NET.Models.Enums
             return new List<FlightCategoryType> { VFR, MVFR, IFR, LIFR };
         }
 
-        public static FlightCategoryType GetByName(string name)
+        public static FlightCategoryType ByName(string name)
         {
             if (String.IsNullOrWhiteSpace(name))
             {
-                throw new ArgumentNullException($"{nameof(name)} must have a value.");
+                throw new ArgumentNullException($"'{nameof(name)} 'must have a value.");
             }
 
-            return List().Where(s => s.Name.Equals(name, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+            var field = List().Where(m => String.Equals(m.Name, name, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+
+            if (field == null)
+            {
+                field = Unknown;
+            }
+
+            return field;
         }
 
-        public static FlightCategoryType GetByValue(int value)
+        public static FlightCategoryType ByValue(int value)
         {
             if (value < 0)
             {
-                throw new ArgumentException($"{nameof(value)} must have a value greater than 0.");
+                throw new ArgumentException($"'{nameof(value)} 'must have a value greater than 0.");
             }
 
-            return List().Where(s => s.Value == value).FirstOrDefault();
+            var field = List().Where(m => m.Value == value).FirstOrDefault();
+
+            if (field == null)
+            {
+                field = Unknown;
+            }
+
+            return field;
         }
     }
 }

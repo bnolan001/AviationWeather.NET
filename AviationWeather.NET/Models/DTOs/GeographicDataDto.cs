@@ -7,8 +7,8 @@
         public float Longitude { get; set; }
 
         /// <summary>
-        /// Height of the station as compared to sea level in meters
+        /// Height of the station as compared to sea level in meters.
         /// </summary>
-        public float Elevation_M { get; set; }
+        public float Elevation { get; set; }
     }
 }

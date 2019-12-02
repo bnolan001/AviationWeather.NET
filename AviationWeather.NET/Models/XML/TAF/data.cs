@@ -17,7 +17,7 @@ namespace BNolan.AviationWx.NET.Models.XML.TAF
 
         private TAF[] tAFField;
 
-        private int num_resultsField;
+        private uint num_resultsField;
 
         private bool num_resultsFieldSpecified;
 
@@ -37,7 +37,7 @@ namespace BNolan.AviationWx.NET.Models.XML.TAF
 
         /// <remarks/>
         [XmlAttributeAttribute()]
-        public int num_results
+        public uint num_results
         {
             get
             {

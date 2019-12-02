@@ -23,7 +23,7 @@ namespace Testing.Unit
         {
             Action a = () =>
             {
-                _aviationWeather.GetForecastsInBox(0, 0, 0, -91, 0).Wait();
+                _aviationWeather.GetForecastsInBoxAsync(0, 0, 0, -91, 0).Wait();
             };
 
             a.Should().Throw<ArgumentOutOfRangeException>();
@@ -34,7 +34,7 @@ namespace Testing.Unit
         {
             Action a = () =>
             {
-                _aviationWeather.GetForecastsInBox(0, 0, 91, 0, 0).Wait();
+                _aviationWeather.GetForecastsInBoxAsync(0, 0, 91, 0, 0).Wait();
             };
 
             a.Should().Throw<ArgumentOutOfRangeException>();
@@ -45,7 +45,7 @@ namespace Testing.Unit
         {
             Action a = () =>
             {
-                _aviationWeather.GetForecastsInBox(0, -181, 0, 0, 0).Wait();
+                _aviationWeather.GetForecastsInBoxAsync(0, -181, 0, 0, 0).Wait();
             };
 
             a.Should().Throw<ArgumentOutOfRangeException>();
@@ -56,7 +56,7 @@ namespace Testing.Unit
         {
             Action a = () =>
             {
-                _aviationWeather.GetForecastsInBox(181, 0, 0, 0, 0).Wait();
+                _aviationWeather.GetForecastsInBoxAsync(181, 0, 0, 0, 0).Wait();
             };
 
             a.Should().Throw<ArgumentOutOfRangeException>();
@@ -71,7 +71,7 @@ namespace Testing.Unit
         {
             Action a = () =>
             {
-                _aviationWeather.GetForecastsInRadial(0, 0, 0, 0).Wait();
+                _aviationWeather.GetForecastsInRadialAsync(0, 0, 0, 0).Wait();
             };
 
             a.Should().Throw<ArgumentOutOfRangeException>();
@@ -82,7 +82,7 @@ namespace Testing.Unit
         {
             Action a = () =>
             {
-                _aviationWeather.GetForecastsInRadial(0, -91, 1, 0).Wait();
+                _aviationWeather.GetForecastsInRadialAsync(0, -91, 1, 0).Wait();
             };
 
             a.Should().Throw<ArgumentOutOfRangeException>();
@@ -93,7 +93,7 @@ namespace Testing.Unit
         {
             Action a = () =>
             {
-                _aviationWeather.GetForecastsInRadial(181, 0, 1, 0).Wait();
+                _aviationWeather.GetForecastsInRadialAsync(181, 0, 1, 0).Wait();
             };
 
             a.Should().Throw<ArgumentOutOfRangeException>();

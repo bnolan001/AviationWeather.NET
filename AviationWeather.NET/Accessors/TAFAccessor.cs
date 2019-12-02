@@ -72,7 +72,7 @@ namespace BNolan.AviationWx.NET.Accessors
         /// <param name="minLatitude"></param>
         /// <param name="hoursBeforeNow"></param>
         /// <returns></returns>
-        public async Task<List<ForecastDto>> GetForecastsInBox(int maxLongitude, 
+        public async Task<List<ForecastDto>> GetForecastsInBoxAsync(int maxLongitude, 
             int minLongitude, 
             int maxLatitude, 
             int minLatitude,
@@ -99,7 +99,7 @@ namespace BNolan.AviationWx.NET.Accessors
         /// <param name="radial"></param>
         /// <param name="hoursBeforeNow"></param>
         /// <returns></returns>
-        public async Task<List<ForecastDto>> GetForecastsInRadial(int longitude,
+        public async Task<List<ForecastDto>> GetForecastsInRadialAsync(int longitude,
             int latitude,
             int radial,
             int hoursBeforeNow = 4)

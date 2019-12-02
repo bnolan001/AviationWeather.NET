@@ -7,7 +7,10 @@ namespace BNolan.AviationWx.NET.Models.Enums
     public class METARType
     {
         public static readonly METARType METAR = new METARType("METAR", 1, "METAR");
-        public static readonly METARType SPECI = new METARType("SPECI", 2, "Special");
+
+        public static readonly METARType SPECI = new METARType("SPECI", METAR.Value + 1, "Special");
+
+        public static readonly METARType Unknown = new METARType("Unknown", SPECI.Value + 1, "Unknnown");
 
         public string Name { get; private set; }
 
@@ -27,24 +30,38 @@ namespace BNolan.AviationWx.NET.Models.Enums
             return new List<METARType> { METAR, SPECI };
         }
 
-        public static METARType GetByName(string name)
+        public static METARType ByName(string name)
         {
             if (String.IsNullOrWhiteSpace(name))
             {
-                throw new ArgumentNullException($"{nameof(name)} must have a value.");
+                throw new ArgumentNullException($"'{nameof(name)} 'must have a value.");
             }
 
-            return List().Where(s => s.Name.Equals(name, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+            var field = List().Where(m => String.Equals(m.Name, name, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+
+            if (field == null)
+            {
+                field = Unknown;
+            }
+
+            return field;
         }
 
-        public static METARType GetByValue(int value)
+        public static METARType ByValue(int value)
         {
             if (value < 0)
             {
-                throw new ArgumentException($"{nameof(value)} must have a value greater than 0.");
+                throw new ArgumentException($"'{nameof(value)} 'must have a value greater than 0.");
             }
 
-            return List().Where(s => s.Value == value).FirstOrDefault();
+            var field = List().Where(m => m.Value == value).FirstOrDefault();
+
+            if (field == null)
+            {
+                field = Unknown;
+            }
+
+            return field;
         }
     }
 }

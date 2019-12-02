@@ -1,18 +1,21 @@
-﻿namespace BNolan.AviationWx.NET.Models.XML.Station
+﻿using System.Collections.Generic;
+
+namespace BNolan.AviationWx.NET.Models.XML.Station
 {
     /// <remarks/>
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public class data
+    public partial class responseData
     {
 
-        private station stationField;
+        private responseDataStation[] stationField;
 
-        private byte num_resultsField;
+        private uint num_resultsField;
 
         /// <remarks/>
-        public station Station
+        [System.Xml.Serialization.XmlElementAttribute("Station")]
+        public responseDataStation[] Station
         {
             get
             {
@@ -26,7 +29,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public byte num_results
+        public uint num_results
         {
             get
             {

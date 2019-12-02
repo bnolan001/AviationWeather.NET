@@ -75,7 +75,7 @@ namespace BNolan.AviationWx.NET.Parsers
         /// </summary>
         /// <param name="line"></param>
         /// <returns></returns>
-        public List<METARCSVField> GetFieldOrder(string line)
+        private List<METARCSVField> GetFieldOrder(string line)
         {
 
             if (String.IsNullOrWhiteSpace(line))
@@ -87,7 +87,7 @@ namespace BNolan.AviationWx.NET.Parsers
             return fields.Select(f => METARCSVField.ByName(f.Trim())).ToList();
         }
 
-        public ObservationDto GetObservation(string line, List<METARCSVField> fieldOrder)
+        private ObservationDto GetObservation(string line, List<METARCSVField> fieldOrder)
         {
             if (String.IsNullOrWhiteSpace(line))
             {
@@ -107,9 +107,9 @@ namespace BNolan.AviationWx.NET.Parsers
                 {
                     new METARDto()
                     {
-                        _3HourObsData = new _3HourObsData(),
-                        _6HourData = new _6HourObsDataDto(),
-                        _24HourData = new _24HourObsDataDto(),
+                        ThreeHourObsData = new ThreeHourObsData(),
+                        SixHourData = new SixHourObsDataDto(),
+                        TwentyFourHourData = new TwentyFourHourObsDataDto(),
                         TemperatureRange = new TemperatureRangeDto(),
                         Wind = new WindDto()
                     }
@@ -120,7 +120,7 @@ namespace BNolan.AviationWx.NET.Parsers
             for (var idx = 0; idx < fieldOrder.Count && idx < fields.Count(); idx++)
             {
                 // Skip all unknown and empty fields
-                if (fieldOrder[idx] == METARCSVField.unknown
+                if (fieldOrder[idx] == METARCSVField.Unknown
                     || String.IsNullOrWhiteSpace(fields[idx]))
                 {
                     continue;
@@ -130,7 +130,7 @@ namespace BNolan.AviationWx.NET.Parsers
 
                 if (fieldOrder[idx] == METARCSVField.altim_in_hg)
                 {
-                    obs.Altimeter_Hg = float.Parse(fieldVal);
+                    obs.Altimeter = float.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.auto)
@@ -151,30 +151,30 @@ namespace BNolan.AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == METARCSVField.cloud_base_ft_agl)
                 {
-                    obs.SkyCondition[obs.SkyCondition.Count() - 1].CloudBase_Ft = int.Parse(fieldVal);
+                    obs.SkyCondition[obs.SkyCondition.Count() - 1].CloudBase = int.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.sky_cover)
                 {
                     obs.SkyCondition.Add(new SkyConditionDto()
                     {
-                        SkyCondition = SkyConditionType.GetByName(fieldVal)
+                        SkyCondition = SkyConditionType.ByName(fieldVal)
                     });
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.dewpoint_c)
                 {
-                    obs.Dewpoint_C = float.Parse(fieldVal);
+                    obs.Dewpoint = float.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.elevation_m)
                 {
-                    dto.GeographicData.Elevation_M = float.Parse(fieldVal);
+                    dto.GeographicData.Elevation = float.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.flight_category)
                 {
-                    obs.FlightCagegory = FlightCategoryType.GetByName(fieldVal);
+                    obs.FlightCagegory = FlightCategoryType.ByName(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.freezing_rain_sensor_off)
@@ -213,27 +213,27 @@ namespace BNolan.AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == METARCSVField.maxT24hr_c)
                 {
-                    obs._24HourData.MaxTemperature_C = float.Parse(fieldVal);
+                    obs.TwentyFourHourData.MaxTemperature = float.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.maxT_c)
                 {
-                    obs.TemperatureRange.MaxTemperature_C = float.Parse(fieldVal);
+                    obs.TemperatureRange.MaxTemperature = float.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.metar_type)
                 {
-                    obs.ObsType = METARType.GetByName(fieldVal);
+                    obs.ObsType = METARType.ByName(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.minT24hr_c)
                 {
-                    obs._24HourData.MinTemperature_C = float.Parse(fieldVal);
+                    obs.TwentyFourHourData.MinTemperature = float.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.minT_c)
                 {
-                    obs.TemperatureRange.MinTemperature_C = float.Parse(fieldVal);
+                    obs.TemperatureRange.MinTemperature = float.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.no_signal)
@@ -251,22 +251,22 @@ namespace BNolan.AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == METARCSVField.pcp24hr_in)
                 {
-                    obs._24HourData.Precipitation_In = float.Parse(fieldVal);
+                    obs.TwentyFourHourData.Precipitation = float.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.pcp3hr_in)
                 {
-                    obs._3HourObsData.Precipitation_In = float.Parse(fieldVal);
+                    obs.ThreeHourObsData.Precipitation = float.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.pcp6hr_in)
                 {
-                    obs._6HourData.Precipitation_In = float.Parse(fieldVal);
+                    obs.SixHourData.Precipitation = float.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.precip_in)
                 {
-                    obs.Precipitation_In = float.Parse(fieldVal);
+                    obs.Precipitation = float.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.present_weather_sensor_off)
@@ -284,12 +284,12 @@ namespace BNolan.AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == METARCSVField.sea_level_pressure_mb)
                 {
-                    obs.SeaLevelPressure_Mb = float.Parse(fieldVal);
+                    obs.SeaLevelPressure = float.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.snow_in)
                 {
-                    obs.Snow_In = float.Parse(fieldVal);
+                    obs.Snow = float.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.station_id)
@@ -299,37 +299,37 @@ namespace BNolan.AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == METARCSVField.temp_c)
                 {
-                    obs.Temperature_C = float.Parse(fieldVal);
+                    obs.Temperature = float.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.three_hr_pressure_tendency_mb)
                 {
-                    obs._3HourObsData.PressureTendency_Mb = float.Parse(fieldVal);
+                    obs.ThreeHourObsData.PressureTendency = float.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.vert_vis_ft)
                 {
-                    obs.VerticalVisibility_Ft = int.Parse(fieldVal);
+                    obs.VerticalVisibility = int.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.visibility_statute_mi)
                 {
-                    obs.Visibility_SM = float.Parse(fieldVal);
+                    obs.Visibility = float.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.wind_dir_degrees)
                 {
-                    obs.Wind.Direction_D = int.Parse(fieldVal);                    
+                    obs.Wind.Direction = int.Parse(fieldVal);                    
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.wind_gust_kt)
                 {
-                    obs.Wind.Gust_Kt = int.Parse(fieldVal);
+                    obs.Wind.Gust = int.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.wind_speed_kt)
                 {
-                    obs.Wind.Speed_Kt = int.Parse(fieldVal);
+                    obs.Wind.Speed = int.Parse(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.wx_string)
@@ -350,7 +350,7 @@ namespace BNolan.AviationWx.NET.Parsers
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public bool IsFlagEnabled(string value)
+        private bool IsFlagEnabled(string value)
         {
             return !String.IsNullOrWhiteSpace(value)
                 && bool.Parse(value);
@@ -383,9 +383,9 @@ namespace BNolan.AviationWx.NET.Parsers
 
         private void ResetWindDataIfNullValues(METARDto dto)
         {
-            if (dto.Wind.Direction_D == null
-                && dto.Wind.Speed_Kt == null
-                && dto.Wind.Gust_Kt == null)
+            if (dto.Wind.Direction == null
+                && dto.Wind.Speed == null
+                && dto.Wind.Gust == null)
             {
                 dto.Wind = null;
             }
@@ -393,8 +393,8 @@ namespace BNolan.AviationWx.NET.Parsers
 
         private void ResetTemperatureRangeIfNullValues(METARDto dto)
         {
-            if (dto.TemperatureRange.MaxTemperature_C == null
-                && dto.TemperatureRange.MinTemperature_C == null)
+            if (dto.TemperatureRange.MaxTemperature == null
+                && dto.TemperatureRange.MinTemperature == null)
             {
                 dto.TemperatureRange = null;
             }
@@ -402,28 +402,28 @@ namespace BNolan.AviationWx.NET.Parsers
 
         private void Reset3HourDataIfNullValues(METARDto dto)
         {
-            if (dto._3HourObsData.Precipitation_In == null
-                && dto._3HourObsData.PressureTendency_Mb == null)
+            if (dto.ThreeHourObsData.Precipitation == null
+                && dto.ThreeHourObsData.PressureTendency == null)
             {
-                dto._3HourObsData = null;
+                dto.ThreeHourObsData = null;
             }
         }
 
         private void Reset6HourDataIfNullValues(METARDto dto)
         {
-            if (dto._6HourData.Precipitation_In == null)
+            if (dto.SixHourData.Precipitation == null)
             {
-                dto._6HourData = null;
+                dto.SixHourData = null;
             }
         }
 
         private void Reset24HourDataIfNullValues(METARDto dto)
         {
-            if (dto._24HourData.MaxTemperature_C == null
-                && dto._24HourData.MinTemperature_C == null
-                && dto._24HourData.Precipitation_In == null)
+            if (dto.TwentyFourHourData.MaxTemperature == null
+                && dto.TwentyFourHourData.MinTemperature == null
+                && dto.TwentyFourHourData.Precipitation == null)
             {
-                dto._24HourData = null;
+                dto.TwentyFourHourData = null;
             }
         }
 

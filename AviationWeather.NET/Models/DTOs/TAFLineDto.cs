@@ -7,6 +7,12 @@ namespace BNolan.AviationWx.NET.Models.DTOs
 {
     public class TAFLineDto
     {
+        private List<HazardDto> _iHazards;
+
+        private List<HazardDto> _tHazards;
+
+        private List<SkyConditionDto> _sConditions;
+
         public DateTimeOffset ForecastTimeStart { get; set; }
 
         public DateTimeOffset ForecastTimeEnd { get; set; }
@@ -21,31 +27,44 @@ namespace BNolan.AviationWx.NET.Models.DTOs
 
         public WindShearDto WindShear { get; set; }
 
-        public Nullable<float> Visibility_SM { get; set; }
+        /// <summary>
+        /// Predominant visibility in Statute Miles.
+        /// </summary>
+        public float? Visibility { get; set; }
 
-        public Nullable<float> Altimeter_Hg { get; set; }
+        /// <summary>
+        /// Altimeter in inches mercury.
+        /// </summary>
+        public float? Altimeter { get; set; }
 
-        public int? VerticalVisibility_Ft { get; set; }
+        /// <summary>
+        /// Distance visible vertically into an undefined ceiling.  Measurement
+        /// is in feet.
+        /// </summary>
+        public int? VerticalVisibility { get; set; }
 
         public string Weather { get; set; }
 
         public string NotDecoded { get; set; }
 
-        public List<IcingDto> IcingHazards { get; set; }
+        public List<HazardDto> IcingHazards { get => _iHazards; }
 
-        public List<TurbulenceDto> TurbulenceHazards { get; set; }
+        public List<HazardDto> TurbulenceHazards { get => _tHazards; }
 
-        public List<SkyConditionDto> SkyCondition { get; set; }
+        public List<SkyConditionDto> SkyCondition { get => _sConditions;}
 
-        public Nullable<float> SurfaceTemperature_C { get; set; }
+        /// <summary>
+        /// Temperature in degrees Celcius
+        /// </summary>
+        public float? Temperature { get; set; }
 
         public TemperatureRangeDto TemperatureRange { get; set; }
 
         public TAFLineDto()
         {
-            IcingHazards = new List<IcingDto>();
-            TurbulenceHazards = new List<TurbulenceDto>();
-            SkyCondition = new List<SkyConditionDto>();
+            _iHazards = new List<HazardDto>();
+            _tHazards = new List<HazardDto>();
+            _sConditions = new List<SkyConditionDto>();
             ForecastTimeStart = ParserConstants.DefaultDateTime;
         }
     }

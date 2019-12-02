@@ -16,7 +16,7 @@ namespace BNolan.AviationWx.NET.Parsers
         /// <param name="isPresent"></param>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static Nullable<float> GetValue(bool isPresent, float value)
+        public static float? GetValue(bool isPresent, float value)
         {
             if (isPresent)
             {
@@ -61,7 +61,6 @@ namespace BNolan.AviationWx.NET.Parsers
             var missingICAOs = requestedICAOs.Where(r => !foundICAOs.Contains(r.Trim().ToUpper(_cultureInfo))).ToList();
             return missingICAOs.Select(m => new ObservationDto() { ICAO = m }).ToList();
         }
-        
 
         public static List<ForecastDto> GetMissingStations(List<ForecastDto> foundObservations, IList<string> requestedICAOs)
         {

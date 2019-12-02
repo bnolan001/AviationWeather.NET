@@ -6,6 +6,9 @@ namespace BNolan.AviationWx.NET.Models.DTOs
     {
         public SkyConditionType SkyCondition { get; set; }
 
-        public int CloudBase_Ft { get; set; }
+        /// <summary>
+        /// Minimum height of the cloud layer, measured in feet.
+        /// </summary>
+        public int CloudBase { get; set; }
     }
 }

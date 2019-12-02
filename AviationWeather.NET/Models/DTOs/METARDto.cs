@@ -6,42 +6,72 @@ namespace BNolan.AviationWx.NET.Models.DTOs
 {
     public class METARDto
     {
+        private List<SkyConditionDto> _skyCondition;
+        private List<QualityControlFlagType> _qcFlags;
 
         public DateTimeOffset ObsTime { get; set; }
 
         public string RawMETAR { get; set; }
 
-        public float Temperature_C { get; set; }
+        /// <summary>
+        /// Temperature measured in degrees Celcius.
+        /// </summary>
+        public float Temperature { get; set; }
 
-        public float Dewpoint_C { get; set; }
+        /// <summary>
+        /// Dewpoint measured in degrees Celcius.
+        /// </summary>
+        public float Dewpoint { get; set; }
 
         public WindDto Wind { get; set; }
 
-        public float Visibility_SM { get; set; }
+        /// <summary>
+        /// Predominant visibility in Statute Miles.
+        /// </summary>
+        public float Visibility { get; set; }
 
-        public float Altimeter_Hg { get; set; }
+        /// <summary>
+        /// Altimeter in inches mercury.
+        /// </summary>
+        public float Altimeter { get; set; }
 
-        public float? SeaLevelPressure_Mb { get; set; }
+        /// <summary>
+        /// The atmospheric pressure of the station it if was located at sea level, 
+        /// measured in millibars.
+        /// </summary>
+        public float? SeaLevelPressure { get; set; }
 
-        public List<SkyConditionDto> SkyCondition { get; set; }
+        public List<SkyConditionDto> SkyCondition { get => _skyCondition; }
 
         public FlightCategoryType FlightCagegory { get; set; }
 
-        public float? Precipitation_In { get; set; }
+        /// <summary>
+        /// Total precipitation recorded over the previous hour.  Measurement
+        /// is in inches.
+        /// </summary>
+        public float? Precipitation { get; set; }
 
-        public float? Snow_In { get; set; }
+        /// <summary>
+        /// Total snowfall recorded over the previous hour.  Measurement 
+        /// is in inches.
+        /// </summary>
+        public float? Snow { get; set; }
 
         public string Weather { get; set; }
         
-        public int? VerticalVisibility_Ft { get; set; }
+        /// <summary>
+        /// Distance visible vertically into an undefined ceiling.  Measurement
+        /// is in feet.
+        /// </summary>
+        public int? VerticalVisibility { get; set; }
 
-        public _3HourObsData _3HourObsData { get; set; }
+        public ThreeHourObsData ThreeHourObsData { get; set; }
 
-        public _6HourObsDataDto _6HourData { get; set; }
+        public SixHourObsDataDto SixHourData { get; set; }
 
-        public _24HourObsDataDto _24HourData { get; set; }
+        public TwentyFourHourObsDataDto TwentyFourHourData { get; set; }
         
-        public List<QualityControlFlagType> QualityControlFlags { get; set; }
+        public List<QualityControlFlagType> QualityControlFlags { get => _qcFlags; }
 
         public TemperatureRangeDto TemperatureRange { get; set; }
 
@@ -49,8 +79,8 @@ namespace BNolan.AviationWx.NET.Models.DTOs
 
         public METARDto()
         {
-            SkyCondition = new List<SkyConditionDto>();
-            QualityControlFlags = new List<QualityControlFlagType>();
+            _skyCondition = new List<SkyConditionDto>();
+            _qcFlags = new List<QualityControlFlagType>();
         }
     }
 }

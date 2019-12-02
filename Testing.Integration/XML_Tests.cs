@@ -1,5 +1,6 @@
 using BNolan.AviationWx.NET;
 using BNolan.AviationWx.NET.Models.Constants;
+using BNolan.AviationWx.NET.Models.Enums;
 using FluentAssertions;
 using NUnit.Framework;
 using System;
@@ -123,7 +124,7 @@ namespace Testing.Integration
         [Test]
         public void GetForecastsInBox_Valid()
         {
-            var request = _aviationWeather.GetForecastsInBox(25, -130, 65, -40, 3);
+            var request = _aviationWeather.GetForecastsInBoxAsync(25, -130, 65, -40, 3);
             request.Wait();
             var forecasts = request.Result;
             forecasts.Should().NotBeNull();
@@ -137,7 +138,7 @@ namespace Testing.Integration
         [Test]
         public void GetForecastsInRadial_Valid()
         {
-            var request = _aviationWeather.GetForecastsInRadial(25, 65, 50, 3);
+            var request = _aviationWeather.GetForecastsInRadialAsync(25, 65, 50, 3);
             request.Wait();
             var forecasts = request.Result;
             forecasts.Should().NotBeNull();
@@ -147,5 +148,93 @@ namespace Testing.Integration
         #endregion GetForecastsInRadial
 
         #endregion TAF
+
+        #region Station Info
+
+        [Test]
+        public void GetStationInformation_Single_Valid()
+        {
+            var request = _aviationWeather.GetStationInfoByICAOAsync(new List<string>(){ "KLAX" });
+            request.Wait();
+            var stations = request.Result;
+            stations.Should().NotBeNullOrEmpty();
+            stations.Count.Should().Be(1);
+            stations[0].ICAO.Should().Be("KLAX");
+            stations[0].WMOID.Should().Be(72295);
+            stations[0].State.Should().Be("CA");
+            stations[0].Country.Should().Be("US");
+            stations[0].Name.Should().Be("LOS ANGELES");
+            stations[0].GeographicData.Should().NotBeNull();
+            stations[0].GeographicData.Elevation.Should().Be(46.0f);
+            stations[0].GeographicData.Latitude.Should().Be(33.93f);
+            stations[0].GeographicData.Longitude.Should().Be(-118.38f);
+            stations[0].SiteType.Should().Contain(SiteType.METAR);
+            stations[0].SiteType.Should().Contain(SiteType.TAF);
+        }
+
+
+        [Test]
+        public void GetStationInformation_Single_InValid()
+        {
+            var request = _aviationWeather.GetStationInfoByICAOAsync(new List<string>() { "9999" });
+            request.Wait();
+            var stations = request.Result;
+            stations.Should().BeEmpty();
+
+        }
+
+        [Test]
+        public void GetStationInformation_Multiple_Valid()
+        {
+            var request = _aviationWeather.GetStationInfoByICAOAsync(new List<string>() { "SLSA", "YPXM" });
+            request.Wait();
+            var stations = request.Result;
+            stations.Should().NotBeEmpty();
+
+            stations[0].ICAO.Should().Be("SLSA");
+            stations[1].ICAO.Should().Be("YPXM");
+        }
+
+        [Test]
+        public void GetStationInfoByCountry_Valid()
+        {
+            var request = _aviationWeather.GetStationInfoByCountryAsync(new List<string>() { "US" });
+            request.Wait();
+            var stations = request.Result;
+            stations.Should().NotBeEmpty();
+
+            stations.Count.Should().BeGreaterThan(500);
+        }
+
+        [Test]
+        public void GetStationInfoByCountry_InValid()
+        {
+            var request = _aviationWeather.GetStationInfoByCountryAsync(new List<string>() { "99" });
+            request.Wait();
+            var stations = request.Result;
+            stations.Should().BeEmpty();
+        }
+
+        [Test]
+        public void GetStationInfoByStateOrProvince_Valid()
+        {
+            var request = _aviationWeather.GetStationInfoByStateOrProvinceAsync(new List<string>() { "PA" });
+            request.Wait();
+            var stations = request.Result;
+            stations.Should().NotBeEmpty();
+
+            stations.Count.Should().BeGreaterThan(10);
+        }
+
+        [Test]
+        public void GetStationInfoByStateOrProvince_InValid()
+        {
+            var request = _aviationWeather.GetStationInfoByStateOrProvinceAsync(new List<string>() { "99" });
+            request.Wait();
+            var stations = request.Result;
+            stations.Should().BeEmpty();
+        }
+
+        #endregion Station Info
     }
 }

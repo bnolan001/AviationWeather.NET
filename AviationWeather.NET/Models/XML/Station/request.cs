@@ -4,7 +4,7 @@
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public class request
+    public partial class responseRequest
     {
 
         private string typeField;

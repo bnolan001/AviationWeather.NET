@@ -25,7 +25,7 @@ namespace BNolan.AviationWx.NET.Models.XML.TAF
 
         private warnings warningsField;
 
-        private int time_taken_msField;
+        private uint time_taken_msField;
 
         private data dataField;
 
@@ -102,7 +102,7 @@ namespace BNolan.AviationWx.NET.Models.XML.TAF
         }
 
         /// <remarks/>
-        public int time_taken_ms
+        public uint time_taken_ms
         {
             get
             {

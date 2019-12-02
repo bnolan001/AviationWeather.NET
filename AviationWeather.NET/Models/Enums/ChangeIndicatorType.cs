@@ -7,9 +7,14 @@ namespace BNolan.AviationWx.NET.Models.Enums
     public class ChangeIndicatorType
     {
         public static readonly ChangeIndicatorType TEMPO = new ChangeIndicatorType("TEMPO", 1, "Temporary");
-        public static readonly ChangeIndicatorType BECMG = new ChangeIndicatorType("BECMG", 2, "Becoming");
-        public static readonly ChangeIndicatorType FM = new ChangeIndicatorType("FM", 2, "From");
-        public static readonly ChangeIndicatorType PROB = new ChangeIndicatorType("PROB", 2, "Probability");
+
+        public static readonly ChangeIndicatorType BECMG = new ChangeIndicatorType("BECMG", TEMPO.Value + 1, "Becoming");
+
+        public static readonly ChangeIndicatorType FM = new ChangeIndicatorType("FM", BECMG.Value + 1, "From");
+
+        public static readonly ChangeIndicatorType PROB = new ChangeIndicatorType("PROB", FM.Value + 1, "Probability");
+
+        public static readonly ChangeIndicatorType Unknown = new ChangeIndicatorType("Unknown", PROB.Value + 1, "Unknown");
 
         public string Name { get; private set; }
 
@@ -33,20 +38,34 @@ namespace BNolan.AviationWx.NET.Models.Enums
         {
             if (String.IsNullOrWhiteSpace(name))
             {
-                throw new ArgumentNullException($"{nameof(name)} must have a value.");
+                throw new ArgumentNullException($"'{nameof(name)} 'must have a value.");
             }
 
-            return List().Where(s => s.Name.Equals(name, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+            var field = List().Where(m => String.Equals(m.Name, name, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+
+            if (field == null)
+            {
+                field = Unknown;
+            }
+
+            return field;
         }
 
         public static ChangeIndicatorType GetByValue(int value)
         {
             if (value < 0)
             {
-                throw new ArgumentException($"{nameof(value)} must have a value greater than 0.");
+                throw new ArgumentException($"'{nameof(value)} 'must have a value greater than 0.");
             }
 
-            return List().Where(s => s.Value == value).FirstOrDefault();
+            var field = List().Where(m => m.Value == value).FirstOrDefault();
+
+            if (field == null)
+            {
+                field = Unknown;
+            }
+
+            return field;
         }
     }
 }

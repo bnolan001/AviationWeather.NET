@@ -168,7 +168,7 @@ namespace BNolan.AviationWx.NET.Models.XML.TAF
             }
         }
 
-        internal object Select(IcingDto icingDto)
+        internal object Select(HazardDto icingDto)
         {
             throw new NotImplementedException();
         }

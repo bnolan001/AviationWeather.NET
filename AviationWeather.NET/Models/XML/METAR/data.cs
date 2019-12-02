@@ -17,7 +17,7 @@ namespace BNolan.AviationWx.NET.Models.XML.METAR
 
         private METAR[] mETARField;
 
-        private int num_resultsField;
+        private uint num_resultsField;
 
         private bool num_resultsFieldSpecified;
 
@@ -37,7 +37,7 @@ namespace BNolan.AviationWx.NET.Models.XML.METAR
 
         /// <remarks/>
         [XmlAttributeAttribute()]
-        public int num_results
+        public uint num_results
         {
             get
             {

@@ -2,10 +2,11 @@
 {
 
     /// <remarks/>
+    /// <remarks/>
     [System.SerializableAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public class data_source
+    public partial class responseData_source
     {
 
         private string nameField;
