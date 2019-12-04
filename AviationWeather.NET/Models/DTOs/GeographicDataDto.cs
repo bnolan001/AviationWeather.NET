@@ -2,13 +2,13 @@
 {
     public class GeographicDataDto
     {
-        public float Latitude { get; set; }
+        public float? Latitude { get; set; }
 
-        public float Longitude { get; set; }
+        public float? Longitude { get; set; }
 
         /// <summary>
         /// Height of the station as compared to sea level in meters.
         /// </summary>
-        public float Elevation { get; set; }
+        public float? Elevation { get; set; }
     }
 }

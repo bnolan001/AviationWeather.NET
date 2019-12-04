@@ -1,7 +1,7 @@
 ﻿using BNolan.AviationWx.NET.Accessors;
 using BNolan.AviationWx.NET.Connectors;
-using BNolan.AviationWx.NET.Models.Constants;
 using BNolan.AviationWx.NET.Models.DTOs;
+using BNolan.AviationWx.NET.Models.Enums;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

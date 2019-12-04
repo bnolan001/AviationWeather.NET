@@ -16,24 +16,24 @@ namespace BNolan.AviationWx.NET.Models.DTOs
         /// <summary>
         /// Temperature measured in degrees Celcius.
         /// </summary>
-        public float Temperature { get; set; }
+        public float? Temperature { get; set; }
 
         /// <summary>
         /// Dewpoint measured in degrees Celcius.
         /// </summary>
-        public float Dewpoint { get; set; }
+        public float? Dewpoint { get; set; }
 
         public WindDto Wind { get; set; }
 
         /// <summary>
         /// Predominant visibility in Statute Miles.
         /// </summary>
-        public float Visibility { get; set; }
+        public float? Visibility { get; set; }
 
         /// <summary>
         /// Altimeter in inches mercury.
         /// </summary>
-        public float Altimeter { get; set; }
+        public float? Altimeter { get; set; }
 
         /// <summary>
         /// The atmospheric pressure of the station it if was located at sea level, 

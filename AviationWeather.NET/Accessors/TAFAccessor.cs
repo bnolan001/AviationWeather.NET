@@ -1,6 +1,7 @@
 ﻿using BNolan.AviationWx.NET.Connectors;
 using BNolan.AviationWx.NET.Models.Constants;
 using BNolan.AviationWx.NET.Models.DTOs;
+using BNolan.AviationWx.NET.Models.Enums;
 using BNolan.AviationWx.NET.Parsers;
 using System;
 using System.Collections.Generic;
@@ -128,6 +129,10 @@ namespace BNolan.AviationWx.NET.Accessors
             if (_parserType == ParserType.XML)
             {
                 parser = new ParseTAFXML();
+            }
+            else if (_parserType == ParserType.CSV)
+            {
+                parser = new ParseTAFCSV();
             }
 
             return parser.Parse(data, icaos);

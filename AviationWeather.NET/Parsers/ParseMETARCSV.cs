@@ -1,4 +1,5 @@
-﻿using BNolan.AviationWx.NET.Models.DTOs;
+﻿using BNolan.AviationWx.NET.Models.Constants;
+using BNolan.AviationWx.NET.Models.DTOs;
 using BNolan.AviationWx.NET.Models.Enums;
 using System;
 using System.Collections.Generic;
@@ -130,7 +131,7 @@ namespace BNolan.AviationWx.NET.Parsers
 
                 if (fieldOrder[idx] == METARCSVField.altim_in_hg)
                 {
-                    obs.Altimeter = float.Parse(fieldVal);
+                    obs.Altimeter = ParserHelpers.ParseFloat(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.auto)
@@ -151,7 +152,8 @@ namespace BNolan.AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == METARCSVField.cloud_base_ft_agl)
                 {
-                    obs.SkyCondition[obs.SkyCondition.Count() - 1].CloudBase = int.Parse(fieldVal);
+                    obs.SkyCondition[obs.SkyCondition.Count() - 1].CloudBase = 
+                        ParserHelpers.ParseInt(fieldVal)?? DefaultValue.Height;
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.sky_cover)
@@ -164,12 +166,12 @@ namespace BNolan.AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == METARCSVField.dewpoint_c)
                 {
-                    obs.Dewpoint = float.Parse(fieldVal);
+                    obs.Dewpoint = ParserHelpers.ParseFloat(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.elevation_m)
                 {
-                    dto.GeographicData.Elevation = float.Parse(fieldVal);
+                    dto.GeographicData.Elevation = ParserHelpers.ParseFloat(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.flight_category)
@@ -187,12 +189,12 @@ namespace BNolan.AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == METARCSVField.latitude)
                 {
-                    dto.GeographicData.Latitude = float.Parse(fieldVal);
+                    dto.GeographicData.Latitude = ParserHelpers.ParseFloat(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.longitude)
                 {
-                    dto.GeographicData.Longitude = float.Parse(fieldVal);
+                    dto.GeographicData.Longitude = ParserHelpers.ParseFloat(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.lightning_sensor_off)
@@ -213,12 +215,12 @@ namespace BNolan.AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == METARCSVField.maxT24hr_c)
                 {
-                    obs.TwentyFourHourData.MaxTemperature = float.Parse(fieldVal);
+                    obs.TwentyFourHourData.MaxTemperature = ParserHelpers.ParseFloat(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.maxT_c)
                 {
-                    obs.TemperatureRange.MaxTemperature = float.Parse(fieldVal);
+                    obs.TemperatureRange.MaxTemperature = ParserHelpers.ParseFloat(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.metar_type)
@@ -228,12 +230,12 @@ namespace BNolan.AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == METARCSVField.minT24hr_c)
                 {
-                    obs.TwentyFourHourData.MinTemperature = float.Parse(fieldVal);
+                    obs.TwentyFourHourData.MinTemperature = ParserHelpers.ParseFloat(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.minT_c)
                 {
-                    obs.TemperatureRange.MinTemperature = float.Parse(fieldVal);
+                    obs.TemperatureRange.MinTemperature = ParserHelpers.ParseFloat(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.no_signal)
@@ -251,22 +253,22 @@ namespace BNolan.AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == METARCSVField.pcp24hr_in)
                 {
-                    obs.TwentyFourHourData.Precipitation = float.Parse(fieldVal);
+                    obs.TwentyFourHourData.Precipitation = ParserHelpers.ParseFloat(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.pcp3hr_in)
                 {
-                    obs.ThreeHourObsData.Precipitation = float.Parse(fieldVal);
+                    obs.ThreeHourObsData.Precipitation = ParserHelpers.ParseFloat(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.pcp6hr_in)
                 {
-                    obs.SixHourData.Precipitation = float.Parse(fieldVal);
+                    obs.SixHourData.Precipitation = ParserHelpers.ParseFloat(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.precip_in)
                 {
-                    obs.Precipitation = float.Parse(fieldVal);
+                    obs.Precipitation = ParserHelpers.ParseFloat(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.present_weather_sensor_off)
@@ -284,12 +286,12 @@ namespace BNolan.AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == METARCSVField.sea_level_pressure_mb)
                 {
-                    obs.SeaLevelPressure = float.Parse(fieldVal);
+                    obs.SeaLevelPressure = ParserHelpers.ParseFloat(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.snow_in)
                 {
-                    obs.Snow = float.Parse(fieldVal);
+                    obs.Snow = ParserHelpers.ParseFloat(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.station_id)
@@ -299,37 +301,37 @@ namespace BNolan.AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == METARCSVField.temp_c)
                 {
-                    obs.Temperature = float.Parse(fieldVal);
+                    obs.Temperature = ParserHelpers.ParseFloat(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.three_hr_pressure_tendency_mb)
                 {
-                    obs.ThreeHourObsData.PressureTendency = float.Parse(fieldVal);
+                    obs.ThreeHourObsData.PressureTendency = ParserHelpers.ParseFloat(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.vert_vis_ft)
                 {
-                    obs.VerticalVisibility = int.Parse(fieldVal);
+                    obs.VerticalVisibility = ParserHelpers.ParseInt(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.visibility_statute_mi)
                 {
-                    obs.Visibility = float.Parse(fieldVal);
+                    obs.Visibility = ParserHelpers.ParseFloat(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.wind_dir_degrees)
                 {
-                    obs.Wind.Direction = int.Parse(fieldVal);                    
+                    obs.Wind.Direction = ParserHelpers.ParseInt(fieldVal);                    
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.wind_gust_kt)
                 {
-                    obs.Wind.Gust = int.Parse(fieldVal);
+                    obs.Wind.Gust = ParserHelpers.ParseInt(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.wind_speed_kt)
                 {
-                    obs.Wind.Speed = int.Parse(fieldVal);
+                    obs.Wind.Speed = ParserHelpers.ParseInt(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.wx_string)

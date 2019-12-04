@@ -1,4 +1,5 @@
-﻿using BNolan.AviationWx.NET.Models.DTOs;
+﻿using BNolan.AviationWx.NET.Models.Constants;
+using BNolan.AviationWx.NET.Models.DTOs;
 using BNolan.AviationWx.NET.Models.Enums;
 using System;
 using System.Collections.Generic;
@@ -77,7 +78,7 @@ namespace BNolan.AviationWx.NET.Parsers
             }
 
             var fields = line.Split(ParserConstants.CSVSplitCharacter);
-            return fields.Select(f => String.IsNullOrWhiteSpace(f)? TAFCSVField.Unknown: TAFCSVField.ByName(f.Trim())).ToList();
+            return fields.Select(f => String.IsNullOrWhiteSpace(f) ? TAFCSVField.Unknown : TAFCSVField.ByName(f.Trim())).ToList();
         }
 
 
@@ -97,249 +98,269 @@ namespace BNolan.AviationWx.NET.Parsers
             var fields = line.Split(ParserConstants.CSVSplitCharacter);
             for (var idx = 0; idx < fieldOrder.Count && idx < fields.Length; idx++)
             {
-                if (fieldOrder[idx] == TAFCSVField.fcst_time_from
-                    && String.IsNullOrWhiteSpace(fields[idx]))
+                try
                 {
-                    // We've read all fields associated with this forecast so bail out early
-                    break;
-                }
-
-                // Skip all unknown and empty fields
-                if (fieldOrder[idx] == TAFCSVField.Unknown
-                    || String.IsNullOrWhiteSpace(fields[idx]))
-                {
-                    continue;
-                }
-
-                var fieldVal = fields[idx].Trim();
-
-                if (fieldOrder[idx] == TAFCSVField.raw_text)
-                {
-                    taf.RawTAF = fieldVal;
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.altim_in_hg)
-                {
-                    tafLine.Altimeter = float.Parse(fieldVal);
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.bulletin_time)
-                {
-                    taf.BulletinTime = ParserHelpers.ParseDateTime(fieldVal);
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.change_indicator)
-                {
-                    tafLine.ChangeIndicator = ChangeIndicatorType.GetByName(fieldVal);
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.cloud_base_ft_agl)
-                {
-                    tafLine.SkyCondition[tafLine.SkyCondition.Count - 1].CloudBase = int.Parse(fieldVal);
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.sky_cover)
-                {
-                    tafLine.SkyCondition.Add(new SkyConditionDto()
+                    if (fieldOrder[idx] == TAFCSVField.fcst_time_from
+                        && String.IsNullOrWhiteSpace(fields[idx]))
                     {
-                        SkyCondition = SkyConditionType.ByName(fieldVal)
-                    });
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.fcst_time_from)
-                {
-                    // This should be made safe, we are assuming all new DateTime objects
-                    // have the same date
-                    if (tafLine.ForecastTimeStart > ParserConstants.DefaultDateTime)
-                    {
-                        taf.TAFLine.Add(tafLine);
-                        tafLine = new TAFLineDto();
+                        // We've read all fields associated with this forecast so bail out early
+                        break;
                     }
-                    tafLine.ForecastTimeStart = ParserHelpers.ParseDateTime(fieldVal);
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.fcst_time_to)
-                {
-                    tafLine.ForecastTimeEnd = ParserHelpers.ParseDateTime(fieldVal);
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.icing_intensity)
-                {
-                    tafLine.IcingHazards.Add(new HazardDto()
+
+                    // Skip all unknown and empty fields
+                    if (fieldOrder[idx] == TAFCSVField.Unknown
+                        || String.IsNullOrWhiteSpace(fields[idx]))
                     {
-                        Intensity = fieldVal
-                    });
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.icing_max_alt_ft_agl)
-                {
-                    tafLine.IcingHazards[tafLine.IcingHazards.Count - 1].MaxAltitude = int.Parse(fieldVal);
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.icing_min_alt_ft_agl)
-                {
-                    tafLine.IcingHazards[tafLine.IcingHazards.Count - 1].MinAltitude = int.Parse(fieldVal);
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.issue_time)
-                {
-                    taf.IssuedTime = ParserHelpers.ParseDateTime(fieldVal);
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.max_or_min_temp_c)
-                {
-                    var tempC = float.Parse(fieldVal);
-                    if (tafLine.TemperatureRange == null)
-                    {
-                        tafLine.TemperatureRange = new TemperatureRangeDto()
-                        {
-                            MaxTemperature = tempC
-                        };
+                        continue;
                     }
-                    else
+
+                    var fieldVal = fields[idx].Trim();
+
+                    if (fieldOrder[idx] == TAFCSVField.raw_text)
                     {
-                        if (tempC > tafLine.TemperatureRange.MaxTemperature)
+                        taf.RawTAF = fieldVal;
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.altim_in_hg)
+                    {
+                        tafLine.Altimeter = ParserHelpers.ParseFloat(fieldVal);
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.bulletin_time)
+                    {
+                        taf.BulletinTime = ParserHelpers.ParseDateTime(fieldVal);
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.change_indicator)
+                    {
+                        tafLine.ChangeIndicator = ChangeIndicatorType.GetByName(fieldVal);
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.cloud_base_ft_agl)
+                    {
+                        tafLine.SkyCondition[tafLine.SkyCondition.Count - 1].CloudBase = ParserHelpers.ParseInt(fieldVal)?? DefaultValue.Height;
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.sky_cover)
+                    {
+                        tafLine.SkyCondition.Add(new SkyConditionDto()
                         {
-                            tafLine.TemperatureRange.MinTemperature = tafLine.TemperatureRange.MaxTemperature;
-                            tafLine.TemperatureRange.MaxTemperature = tempC;
+                            SkyCondition = SkyConditionType.ByName(fieldVal)
+                        });
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.fcst_time_from)
+                    {
+                        // This should be made safe, we are assuming all new DateTime objects
+                        // have the same date
+                        if (tafLine.ForecastTimeStart > ParserConstants.DefaultDateTime)
+                        {
+                            taf.TAFLine.Add(tafLine);
+                            tafLine = new TAFLineDto();
                         }
-                        else
-                        {
-                            tafLine.TemperatureRange.MinTemperature = tempC;
-                        }
+                        tafLine.ForecastTimeStart = ParserHelpers.ParseDateTime(fieldVal);
+                        continue;
                     }
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.not_decoded)
-                {
-                    tafLine.NotDecoded = fieldVal;
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.probability)
-                {
-                    tafLine.Probability = int.Parse(fieldVal);
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.remarks)
-                {
-                    taf.Remarks = fieldVal;
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.sfc_temp_c)
-                {
-                    tafLine.Temperature = float.Parse(fieldVal);
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.station_id)
-                {
-                    dto.ICAO = fieldVal;
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.time_becoming)
-                {
-                    tafLine.TimeBecoming = ParserHelpers.ParseDateTime(fieldVal);
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.turbulence_intensity)
-                {
-                    tafLine.TurbulenceHazards.Add(new HazardDto()
+                    if (fieldOrder[idx] == TAFCSVField.fcst_time_to)
                     {
-                        Intensity = fieldVal
-                    });
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.turbulence_max_alt_ft_agl)
-                {
-                    tafLine.TurbulenceHazards[tafLine.TurbulenceHazards.Count - 1].MaxAltitude = int.Parse(fieldVal);
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.turbulence_min_alt_ft_agl)
-                {
-                    tafLine.TurbulenceHazards[tafLine.TurbulenceHazards.Count - 1].MinAltitude = int.Parse(fieldVal);
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.valid_time)
-                {
-                    ///TODO: Temperature valid time, need to determine how this should be handled
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.valid_time_from)
-                {
-                    taf.ValidTimeStart = ParserHelpers.ParseDateTime(fieldVal);
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.valid_time_to)
-                {
-                    taf.ValidTimeEnd = ParserHelpers.ParseDateTime(fieldVal);
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.vert_vis_ft)
-                {
-                    tafLine.VerticalVisibility = int.Parse(fieldVal);
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.visibility_statute_mi)
-                {
-                    tafLine.Visibility = float.Parse(fieldVal);
-                    continue;
-                }
+                        tafLine.ForecastTimeEnd = ParserHelpers.ParseDateTime(fieldVal);
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.icing_intensity)
+                    {
+                        tafLine.IcingHazards.Add(new HazardDto()
+                        {
+                            Intensity = fieldVal
+                        });
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.icing_max_alt_ft_agl)
+                    {
+                            tafLine.IcingHazards[tafLine.IcingHazards.Count - 1].MaxAltitude = 
+                            ParserHelpers.ParseInt(fieldVal) ?? DefaultValue.Height;
+                        
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.icing_min_alt_ft_agl)
+                    {
+                            tafLine.IcingHazards[tafLine.IcingHazards.Count - 1].MinAltitude = 
+                            ParserHelpers.ParseInt(fieldVal) ?? DefaultValue.Height;
+                        
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.issue_time)
+                    {
+                        taf.IssuedTime = ParserHelpers.ParseDateTime(fieldVal);
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.max_or_min_temp_c)
+                    {
+                        var tempFloat = ParserHelpers.ParseFloat(fieldVal);
+                        if (tempFloat.HasValue)
+                        {
+                            if (tafLine.TemperatureRange == null)
+                            {
+                                tafLine.TemperatureRange = new TemperatureRangeDto()
+                                {
+                                    MaxTemperature = tempFloat
+                                };
+                            }
+                            else
+                            {
+                                if (tempFloat > tafLine.TemperatureRange.MaxTemperature)
+                                {
+                                    tafLine.TemperatureRange.MinTemperature = tafLine.TemperatureRange.MaxTemperature;
+                                    tafLine.TemperatureRange.MaxTemperature = tempFloat;
+                                }
+                                else
+                                {
+                                    tafLine.TemperatureRange.MinTemperature = tempFloat;
+                                }
+                            }
+                        }
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.not_decoded)
+                    {
+                        tafLine.NotDecoded = fieldVal;
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.probability)
+                    {
+                            tafLine.Probability = ParserHelpers.ParseInt(fieldVal);
+                        
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.remarks)
+                    {
+                        taf.Remarks = fieldVal;
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.sfc_temp_c)
+                    {
+                        tafLine.Temperature = ParserHelpers.ParseFloat(fieldVal);
 
-                if (fieldOrder[idx] == TAFCSVField.elevation_m)
-                {
-                    dto.GeographicData.Elevation = float.Parse(fieldVal);
-                    continue;
-                }
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.station_id)
+                    {
+                        dto.ICAO = fieldVal;
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.time_becoming)
+                    {
+                        tafLine.TimeBecoming = ParserHelpers.ParseDateTime(fieldVal);
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.turbulence_intensity)
+                    {
+                        tafLine.TurbulenceHazards.Add(new HazardDto()
+                        {
+                            Intensity = fieldVal
+                        });
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.turbulence_max_alt_ft_agl)
+                    {
+                            tafLine.TurbulenceHazards[tafLine.TurbulenceHazards.Count - 1].MaxAltitude = 
+                            ParserHelpers.ParseInt(fieldVal) ?? DefaultValue.Height;
 
-                if (fieldOrder[idx] == TAFCSVField.latitude)
-                {
-                    dto.GeographicData.Latitude = float.Parse(fieldVal);
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.longitude)
-                {
-                    dto.GeographicData.Longitude = float.Parse(fieldVal);
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.wind_dir_degrees)
-                {
-                    tafLine.Wind = new WindDto()
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.turbulence_min_alt_ft_agl)
                     {
-                        Direction = int.Parse(fieldVal)
-                    };
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.wind_gust_kt)
-                {
-                    tafLine.Wind.Gust = int.Parse(fieldVal);
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.wind_speed_kt)
-                {
-                    tafLine.Wind.Speed = int.Parse(fieldVal);
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.wx_string)
-                {
-                    tafLine.Weather = fieldVal;
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.wind_shear_hgt_ft_agl)
-                {
-                    tafLine.WindShear = new WindShearDto()
+                            tafLine.TurbulenceHazards[tafLine.TurbulenceHazards.Count - 1].MinAltitude = 
+                            ParserHelpers.ParseInt(fieldVal) ?? DefaultValue.Height;
+                        
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.valid_time)
                     {
-                        Height = int.Parse(fieldVal)
+                        ///TODO: Temperature valid time, need to determine how this should be handled
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.valid_time_from)
+                    {
+                        taf.ValidTimeStart = ParserHelpers.ParseDateTime(fieldVal);
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.valid_time_to)
+                    {
+                        taf.ValidTimeEnd = ParserHelpers.ParseDateTime(fieldVal);
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.vert_vis_ft)
+                    {
+                        tafLine.VerticalVisibility = ParserHelpers.ParseInt(fieldVal);
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.visibility_statute_mi)
+                    {
+                        tafLine.Visibility = ParserHelpers.ParseFloat(fieldVal);
+                        continue;
+                    }
+
+                    if (fieldOrder[idx] == TAFCSVField.elevation_m)
+                    {
+                        dto.GeographicData.Elevation = ParserHelpers.ParseFloat(fieldVal);
+                        continue;
+                    }
+
+                    if (fieldOrder[idx] == TAFCSVField.latitude)
+                    {
+                        dto.GeographicData.Latitude = ParserHelpers.ParseFloat(fieldVal);
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.longitude)
+                    {
+                        dto.GeographicData.Longitude = ParserHelpers.ParseFloat(fieldVal);
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.wind_dir_degrees)
+                    {
+                        tafLine.Wind = new WindDto()
+                        {
+                            Direction = ParserHelpers.ParseInt(fieldVal)
                     };
-                    continue;
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.wind_gust_kt)
+                    {
+                        tafLine.Wind.Gust = ParserHelpers.ParseInt(fieldVal);
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.wind_speed_kt)
+                    {
+                        tafLine.Wind.Speed = ParserHelpers.ParseInt(fieldVal);
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.wx_string)
+                    {
+                        tafLine.Weather = fieldVal;
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.wind_shear_hgt_ft_agl)
+                    {
+                        tafLine.WindShear = new WindShearDto()
+                        {
+                            Height = ParserHelpers.ParseInt(fieldVal)
+                    };
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.wind_shear_dir_degrees)
+                    {
+                        tafLine.WindShear.Direction = ParserHelpers.ParseInt(fieldVal);
+                        continue;
+                    }
+                    if (fieldOrder[idx] == TAFCSVField.wind_shear_speed_kt)
+                    {
+                        tafLine.WindShear.Speed = ParserHelpers.ParseInt(fieldVal);
+                        continue;
+                    }
                 }
-                if (fieldOrder[idx] == TAFCSVField.wind_shear_dir_degrees)
+                catch (Exception ex)
                 {
-                    tafLine.WindShear.Direction = int.Parse(fieldVal);
-                    continue;
-                }
-                if (fieldOrder[idx] == TAFCSVField.wind_shear_speed_kt)
-                {
-                    tafLine.WindShear.Speed = int.Parse(fieldVal);
-                    continue;
+                    Console.WriteLine($"Index: {idx}, Message: {ex.Message}");
                 }
             }
 

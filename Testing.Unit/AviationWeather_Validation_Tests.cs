@@ -1,5 +1,5 @@
 ﻿using BNolan.AviationWx.NET;
-using BNolan.AviationWx.NET.Models.Constants;
+using BNolan.AviationWx.NET.Models.Enums;
 using FluentAssertions;
 using NUnit.Framework;
 using System;

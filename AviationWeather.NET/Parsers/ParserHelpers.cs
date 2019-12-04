@@ -42,13 +42,36 @@ namespace BNolan.AviationWx.NET.Parsers
             return null;
         }
 
+        public static int? ParseInt(string fieldVal)
+        {
+            int tempInt;
+            if (int.TryParse(fieldVal, out tempInt))
+            {
+                return tempInt;
+            }
+
+            return null;
+        }
+
+        public static float? ParseFloat(string fieldVal)
+        {
+            float tempFloat;
+            if (float.TryParse(fieldVal, out tempFloat))
+            {
+                return tempFloat;
+            }
+
+            return null;
+        }
+
         public static DateTimeOffset ParseDateTime(string dateTimeString)
         {
             var dateTimeOffset = ParserConstants.DefaultDateTime;
             CultureInfo enUS = new CultureInfo("en-US");
             if (String.IsNullOrEmpty(dateTimeString)
                 || !DateTimeOffset.TryParseExact(dateTimeString, ParserConstants.DateTimeFormat, enUS,
-                DateTimeStyles.AssumeUniversal, out dateTimeOffset)){
+                DateTimeStyles.AssumeUniversal, out dateTimeOffset))
+            {
                 dateTimeOffset = ParserConstants.DefaultDateTime;
             }
 
