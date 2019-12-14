@@ -2,7 +2,7 @@
 using BNolan.AviationWx.NET.Parsers;
 using FluentAssertions;
 using NUnit.Framework;
-using Testing.Unit.Data;
+
 
 namespace Testing.Unit
 {
@@ -13,7 +13,7 @@ namespace Testing.Unit
         public void Parse_MultipleStations()
         {
             var parser = new ParseStationInfoCSV();
-            var stations = parser.Parse(StationInfoCSV.MULTIPLE_STATION_INFO_KDEN_KSEA_PHNL, new[] { "KDEN", "KSEA", "PHNL" });
+            var stations = parser.Parse(Resource.KDEN_KSEA_PHNL_StationInfo_CSV, new[] { "KDEN", "KSEA", "PHNL" });
             stations.Count.Should().Be(3);
             stations[0].ICAO.Should().Be("KDEN");
             stations[1].ICAO.Should().Be("KSEA");

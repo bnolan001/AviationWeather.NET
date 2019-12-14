@@ -3,7 +3,7 @@ using BNolan.AviationWx.NET.Parsers;
 using FluentAssertions;
 using NUnit.Framework;
 using System.Linq;
-using Testing.Unit.Data;
+
 
 namespace Testing.Unit
 {
@@ -16,7 +16,7 @@ namespace Testing.Unit
         public void Parse_SingleStation_MultipleObs()
         {
             var parser = new ParseMETARXML();
-            var obs = parser.Parse(METARXML.SINGLE_STATION_METAR_KIAD, new[] { "KIAD" });
+            var obs = parser.Parse(Resource.KIAD_METAR_XML, new[] { "KIAD" });
             obs.Count.Should().Be(1);
             obs[0].ICAO.Should().Be("KIAD");
             obs[0].GeographicData.Should().NotBeNull();
@@ -63,7 +63,7 @@ namespace Testing.Unit
         public void Parse_SingleStation_NoObs()
         {
             var parser = new ParseMETARXML();
-            var obs = parser.Parse(METARXML.SINGLE_STATION_METAR_KIAD, new[] { "NOOB" });
+            var obs = parser.Parse(Resource.KIAD_METAR_XML, new[] { "NOOB" });
             obs.Count.Should().Be(2);
             obs.Where(o => o.ICAO == "NOOB").First().METAR.Count.Should().Be(0);
         }
@@ -75,7 +75,7 @@ namespace Testing.Unit
         public void Parse_SingleStation_SpeciObs()
         {
             var parser = new ParseMETARXML();
-            var obs = parser.Parse(METARXML.SINGLE_STATION_METAR_SPECI, new[] { "KATL" });
+            var obs = parser.Parse(Resource.KATL_SPECI_METARs_XML, new[] { "KATL" });
             obs.Count.Should().Be(1);
             obs[0].ICAO.Should().Be("KATL");
             obs[0].GeographicData.Should().NotBeNull();

@@ -4,7 +4,7 @@ using FluentAssertions;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
-using Testing.Unit.Data;
+
 
 namespace Testing.Unit
 {
@@ -17,7 +17,7 @@ namespace Testing.Unit
         public void Parse_SingleStation_General()
         {
             var parser = new ParseTAFXML();
-            var forecasts = parser.Parse(TAFXML.SINGLE_STATION_CIVILIAN, new List<string>() { "KPHL" });
+            var forecasts = parser.Parse(Resource.KPHL_TAF_XML, new List<string>() { "KPHL" });
             forecasts.Count().Should().Be(1);
             var fcst = forecasts[0];
             fcst.GeographicData.Should().NotBeNull();
@@ -83,7 +83,7 @@ namespace Testing.Unit
         public void Parse_SingleStation_SecondTAF_AMD()
         {
             var parser = new ParseTAFXML();
-            var forecasts = parser.Parse(TAFXML.SINGLE_STATION_CIVILIAN, new List<string>() { "KPHL" });
+            var forecasts = parser.Parse(Resource.KPHL_TAF_XML, new List<string>() { "KPHL" });
             forecasts[0].TAF[1].Remarks.Should().Be("AMD");
         }
 
@@ -91,7 +91,7 @@ namespace Testing.Unit
         public void Parse_SingleStation_NoData()
         {
             var parser = new ParseTAFXML();
-            var forecasts = parser.Parse(TAFXML.SINGLE_STATION_CIVILIAN, new List<string>() { "XXXX" });
+            var forecasts = parser.Parse(Resource.KPHL_TAF_XML, new List<string>() { "XXXX" });
             forecasts.Count().Should().Be(2);
             forecasts[1].ICAO.Should().Be("XXXX");
             forecasts[1].TAF.Count().Should().Be(0);
@@ -101,7 +101,7 @@ namespace Testing.Unit
         public void Parse_SingleStation_Miliatry()
         {
             var parser = new ParseTAFXML();
-            var forecasts = parser.Parse(TAFXML.SINGLE_STATION_MILITARY, new List<string>() { "KMUI"});
+            var forecasts = parser.Parse(Resource.KMUI_TAF_XML, new List<string>() { "KMUI"});
             forecasts.Count().Should().Be(1);
             forecasts[0].ICAO.Should().Be("KMUI");
             forecasts[0].TAF.Count().Should().Be(4);
@@ -110,14 +110,45 @@ namespace Testing.Unit
             taf.TAFLine.Count().Should().Be(4);
             taf.TAFLine[1].ChangeIndicator.Should().Be(ChangeIndicatorType.BECMG);
             taf.TAFLine[1].TurbulenceHazards.Count().Should().Be(1);
-            taf.TAFLine[1].TurbulenceHazards[0].Intensity.Should().Be("1");
+            taf.TAFLine[1].TurbulenceHazards[0].Intensity.Should().Be(TurbulenceIntensity.Light);
             taf.TAFLine[1].TurbulenceHazards[0].MinAltitude.Should().Be(500);
             taf.TAFLine[1].TurbulenceHazards[0].MaxAltitude.Should().Be(2500);
 
             taf.TAFLine[3].IcingHazards.Count().Should().Be(1);
-            taf.TAFLine[3].IcingHazards[0].Intensity.Should().Be("2");
+            taf.TAFLine[3].IcingHazards[0].Intensity.Should().Be(IcingIntensity.LightIcingInCloud);
             taf.TAFLine[3].IcingHazards[0].MinAltitude.Should().Be(8000);
             taf.TAFLine[3].IcingHazards[0].MaxAltitude.Should().Be(16000);
+        }
+
+        
+        [Test]
+        public void ParseTurbulence()
+        {
+            var parser = new ParseTAFXML();
+            var forecasts = parser.Parse(Resource.PASY_Icing_Turbulence_TAF_XML, new List<string>() { "PASY" });
+            forecasts.Count().Should().Be(1);
+            forecasts[0].TAF.Should().NotBeNullOrEmpty();
+            forecasts[0].TAF[0].TAFLine.Should().NotBeNullOrEmpty();
+            var taf = forecasts[0].TAF[0];
+            taf.TAFLine[0].TurbulenceHazards.Should().NotBeNullOrEmpty();
+            taf.TAFLine[0].TurbulenceHazards[0].MinAltitude.Should().Be(0);
+            taf.TAFLine[0].TurbulenceHazards[0].MaxAltitude.Should().Be(3000);
+            taf.TAFLine[0].TurbulenceHazards[0].Intensity.Should().Be(TurbulenceIntensity.Light);
+        }
+
+        [Test]
+        public void ParseIcing()
+        {
+            var parser = new ParseTAFXML();
+            var forecasts = parser.Parse(Resource.PASY_Icing_Turbulence_TAF_XML, new List<string>() { "PASY" });
+            forecasts.Count().Should().Be(1);
+            forecasts[0].TAF.Should().NotBeNullOrEmpty();
+            forecasts[0].TAF[0].TAFLine.Should().NotBeNullOrEmpty();
+            var taf = forecasts[0].TAF[0];
+            taf.TAFLine[0].IcingHazards.Should().NotBeNullOrEmpty();
+            taf.TAFLine[0].IcingHazards[0].MinAltitude.Should().Be(3000);
+            taf.TAFLine[0].IcingHazards[0].MaxAltitude.Should().Be(7000);
+            taf.TAFLine[0].IcingHazards[0].Intensity.Should().Be(IcingIntensity.LightIcing);
         }
     }
 }

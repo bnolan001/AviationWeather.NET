@@ -1,0 +1,702 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XML-Schema-instance" version="1.2" xsi:noNamespaceSchemaLocation="http://aviationweather.gov/adds/schema/taf1_2.xsd">
+  <request_index>28165578</request_index>
+  <data_source name="tafs" />
+  <request type="retrieve" />
+  <errors />
+  <warnings />
+  <time_taken_ms>24</time_taken_ms>
+  <data num_results="9">
+    <TAF>
+      <raw_text>TAF AMD PASY 132330Z 1323/1504 35025G35KT 9999 SCT020 BKN030 610304 510003 QNH2906INS BECMG 1418/1419 33018G25KT 9999 SCT015 BKN025 QNH2925INS TX04/1406Z TNM01/1418Z</raw_text>
+      <station_id>PASY</station_id>
+      <issue_time>2019-12-13T23:30:00Z</issue_time>
+      <bulletin_time>2019-12-13T23:34:00Z</bulletin_time>
+      <valid_time_from>2019-12-13T23:00:00Z</valid_time_from>
+      <valid_time_to>2019-12-15T04:00:00Z</valid_time_to>
+      <latitude>52.72</latitude>
+      <longitude>174.12</longitude>
+      <elevation_m>31.0</elevation_m>
+      <forecast>
+        <fcst_time_from>2019-12-13T23:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T18:00:00Z</fcst_time_to>
+        <wind_dir_degrees>350</wind_dir_degrees>
+        <wind_speed_kt>25</wind_speed_kt>
+        <wind_gust_kt>35</wind_gust_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <altim_in_hg>29.05512</altim_in_hg>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="2000" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="3000" />
+        <turbulence_condition turbulence_intensity="1" turbulence_max_alt_ft_agl="3000" />
+        <icing_condition icing_intensity="1" icing_min_alt_ft_agl="3000" icing_max_alt_ft_agl="7000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T18:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-15T04:00:00Z</fcst_time_to>
+        <change_indicator>BECMG</change_indicator>
+        <time_becoming>2019-12-14T19:00:00Z</time_becoming>
+        <wind_dir_degrees>330</wind_dir_degrees>
+        <wind_speed_kt>18</wind_speed_kt>
+        <wind_gust_kt>25</wind_gust_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <altim_in_hg>29.26181</altim_in_hg>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="1500" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="2500" />
+      </forecast>
+    </TAF>
+    <TAF>
+      <raw_text>TAF PASY 132200Z 1322/1504 02030G40KT 4800 BR SCT007 BKN015 BKN025 610159 520003 QNH2895INS TEMPO 1322/1401 1600 SHSN BR BKN007 620079 BECMG 1402/1403 35020G30KT 9999 NSW SCT020 BKN030 610304 510003 QNH2910INS BECMG 1418/1419 33018G25KT 9999 SCT015 BKN025 QNH2925INS TX04/1406Z TNM01/1418Z</raw_text>
+      <station_id>PASY</station_id>
+      <issue_time>2019-12-13T22:00:00Z</issue_time>
+      <bulletin_time>2019-12-13T22:05:00Z</bulletin_time>
+      <valid_time_from>2019-12-13T22:00:00Z</valid_time_from>
+      <valid_time_to>2019-12-15T04:00:00Z</valid_time_to>
+      <latitude>52.72</latitude>
+      <longitude>174.12</longitude>
+      <elevation_m>31.0</elevation_m>
+      <forecast>
+        <fcst_time_from>2019-12-13T22:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T02:00:00Z</fcst_time_to>
+        <wind_dir_degrees>20</wind_dir_degrees>
+        <wind_speed_kt>30</wind_speed_kt>
+        <wind_gust_kt>40</wind_gust_kt>
+        <visibility_statute_mi>2.98</visibility_statute_mi>
+        <altim_in_hg>28.93701</altim_in_hg>
+        <wx_string>BR</wx_string>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="700" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="1500" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="2500" />
+        <turbulence_condition turbulence_intensity="2" turbulence_max_alt_ft_agl="3000" />
+        <icing_condition icing_intensity="1" icing_min_alt_ft_agl="1500" icing_max_alt_ft_agl="10500" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-13T22:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T01:00:00Z</fcst_time_to>
+        <change_indicator>TEMPO</change_indicator>
+        <wind_dir_degrees>200</wind_dir_degrees>
+        <wind_speed_kt>79</wind_speed_kt>
+        <visibility_statute_mi>0.99</visibility_statute_mi>
+        <wx_string>SHSN BR</wx_string>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="700" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T02:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T18:00:00Z</fcst_time_to>
+        <change_indicator>BECMG</change_indicator>
+        <time_becoming>2019-12-14T03:00:00Z</time_becoming>
+        <wind_dir_degrees>350</wind_dir_degrees>
+        <wind_speed_kt>20</wind_speed_kt>
+        <wind_gust_kt>30</wind_gust_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <altim_in_hg>29.11417</altim_in_hg>
+        <wx_string>NSW</wx_string>
+        <not_decoded>6</not_decoded>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="2000" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="3000" />
+        <turbulence_condition turbulence_intensity="1" turbulence_max_alt_ft_agl="3000" />
+        <icing_condition icing_intensity="1" icing_min_alt_ft_agl="3000" icing_max_alt_ft_agl="7000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T18:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-15T04:00:00Z</fcst_time_to>
+        <change_indicator>BECMG</change_indicator>
+        <time_becoming>2019-12-14T19:00:00Z</time_becoming>
+        <wind_dir_degrees>330</wind_dir_degrees>
+        <wind_speed_kt>18</wind_speed_kt>
+        <wind_gust_kt>25</wind_gust_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <altim_in_hg>29.26181</altim_in_hg>
+        <wx_string>NSW</wx_string>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="1500" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="2500" />
+      </forecast>
+    </TAF>
+    <TAF>
+      <raw_text>TAF AMD PASY 132040Z 1320/1420 03030G40KT 4800 -SHSN BR SCT007 BKN012 BKN025 610129 520002 QNH2893INS TEMPO 1320/1401 1600 SN BKN007 620079 BECMG 1402/1403 03020G30KT 9999 NSW SCT025 BKN045 610453 510002 QNH2917INS BECMG 1409/1411 33015G25KT 9999 SCT020 BKN035 610353 QNH2952INS TX04/1406Z TNM06/1412Z</raw_text>
+      <station_id>PASY</station_id>
+      <issue_time>2019-12-13T20:40:00Z</issue_time>
+      <bulletin_time>2019-12-13T20:41:00Z</bulletin_time>
+      <valid_time_from>2019-12-13T20:00:00Z</valid_time_from>
+      <valid_time_to>2019-12-14T20:00:00Z</valid_time_to>
+      <latitude>52.72</latitude>
+      <longitude>174.12</longitude>
+      <elevation_m>31.0</elevation_m>
+      <forecast>
+        <fcst_time_from>2019-12-13T20:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T02:00:00Z</fcst_time_to>
+        <wind_dir_degrees>30</wind_dir_degrees>
+        <wind_speed_kt>30</wind_speed_kt>
+        <wind_gust_kt>40</wind_gust_kt>
+        <visibility_statute_mi>2.98</visibility_statute_mi>
+        <altim_in_hg>28.93701</altim_in_hg>
+        <wx_string>-SHSN BR</wx_string>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="700" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="1200" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="2500" />
+        <turbulence_condition turbulence_intensity="2" turbulence_max_alt_ft_agl="2000" />
+        <icing_condition icing_intensity="1" icing_min_alt_ft_agl="1200" icing_max_alt_ft_agl="10200" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-13T20:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T01:00:00Z</fcst_time_to>
+        <change_indicator>TEMPO</change_indicator>
+        <wind_dir_degrees>200</wind_dir_degrees>
+        <wind_speed_kt>79</wind_speed_kt>
+        <visibility_statute_mi>0.99</visibility_statute_mi>
+        <wx_string>SN</wx_string>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="700" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T02:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T09:00:00Z</fcst_time_to>
+        <change_indicator>BECMG</change_indicator>
+        <time_becoming>2019-12-14T03:00:00Z</time_becoming>
+        <wind_dir_degrees>30</wind_dir_degrees>
+        <wind_speed_kt>20</wind_speed_kt>
+        <wind_gust_kt>30</wind_gust_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <altim_in_hg>29.17323</altim_in_hg>
+        <wx_string>NSW</wx_string>
+        <not_decoded>6</not_decoded>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="2500" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="4500" />
+        <turbulence_condition turbulence_intensity="1" turbulence_max_alt_ft_agl="2000" />
+        <icing_condition icing_intensity="1" icing_min_alt_ft_agl="4500" icing_max_alt_ft_agl="7500" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T09:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T20:00:00Z</fcst_time_to>
+        <change_indicator>BECMG</change_indicator>
+        <time_becoming>2019-12-14T11:00:00Z</time_becoming>
+        <wind_dir_degrees>330</wind_dir_degrees>
+        <wind_speed_kt>15</wind_speed_kt>
+        <wind_gust_kt>25</wind_gust_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <altim_in_hg>29.52756</altim_in_hg>
+        <wx_string>NSW</wx_string>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="2000" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="3500" />
+        <icing_condition icing_intensity="1" icing_min_alt_ft_agl="3500" icing_max_alt_ft_agl="6500" />
+      </forecast>
+    </TAF>
+    <TAF>
+      <raw_text>TAF PASY 131400Z 1314/1420 07025G35KT 4800 -RASN BKN007 BKN017 OVC030 620079 510002 QNH2885INS BECMG 1318/1319 03030G40KT 4800 -SHSN BR BKN007 BKN020 610079 520002 QNH2893INS TEMPO 1319/1323 0800 SN BKN005 620059 BECMG 1402/1403 03020G30KT 9999 NSW SCT025 BKN045 610453 510002 QNH2917INS BECMG 1409/1411 33015G25KT 9999 SCT020 BKN035 610353 QNH2952INS TX04/1406Z TNM06/1412Z</raw_text>
+      <station_id>PASY</station_id>
+      <issue_time>2019-12-13T14:00:00Z</issue_time>
+      <bulletin_time>2019-12-13T14:06:00Z</bulletin_time>
+      <valid_time_from>2019-12-13T14:00:00Z</valid_time_from>
+      <valid_time_to>2019-12-14T20:00:00Z</valid_time_to>
+      <latitude>52.72</latitude>
+      <longitude>174.12</longitude>
+      <elevation_m>31.0</elevation_m>
+      <forecast>
+        <fcst_time_from>2019-12-13T14:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-13T18:00:00Z</fcst_time_to>
+        <wind_dir_degrees>70</wind_dir_degrees>
+        <wind_speed_kt>25</wind_speed_kt>
+        <wind_gust_kt>35</wind_gust_kt>
+        <visibility_statute_mi>2.98</visibility_statute_mi>
+        <altim_in_hg>28.84843</altim_in_hg>
+        <wx_string>-RA -SN</wx_string>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="700" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="1700" />
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="3000" />
+        <turbulence_condition turbulence_intensity="1" turbulence_max_alt_ft_agl="2000" />
+        <icing_condition icing_intensity="2" icing_min_alt_ft_agl="700" icing_max_alt_ft_agl="9700" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-13T18:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T02:00:00Z</fcst_time_to>
+        <change_indicator>BECMG</change_indicator>
+        <time_becoming>2019-12-13T19:00:00Z</time_becoming>
+        <wind_dir_degrees>30</wind_dir_degrees>
+        <wind_speed_kt>30</wind_speed_kt>
+        <wind_gust_kt>40</wind_gust_kt>
+        <visibility_statute_mi>2.98</visibility_statute_mi>
+        <altim_in_hg>28.93701</altim_in_hg>
+        <wx_string>-SHSN BR</wx_string>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="700" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="2000" />
+        <turbulence_condition turbulence_intensity="2" turbulence_max_alt_ft_agl="2000" />
+        <icing_condition icing_intensity="1" icing_min_alt_ft_agl="700" icing_max_alt_ft_agl="9700" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-13T19:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-13T23:00:00Z</fcst_time_to>
+        <change_indicator>TEMPO</change_indicator>
+        <wind_dir_degrees>200</wind_dir_degrees>
+        <wind_speed_kt>59</wind_speed_kt>
+        <visibility_statute_mi>0.5</visibility_statute_mi>
+        <wx_string>SN</wx_string>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="500" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T02:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T09:00:00Z</fcst_time_to>
+        <change_indicator>BECMG</change_indicator>
+        <time_becoming>2019-12-14T03:00:00Z</time_becoming>
+        <wind_dir_degrees>30</wind_dir_degrees>
+        <wind_speed_kt>20</wind_speed_kt>
+        <wind_gust_kt>30</wind_gust_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <altim_in_hg>29.17323</altim_in_hg>
+        <wx_string>NSW</wx_string>
+        <not_decoded>6</not_decoded>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="2500" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="4500" />
+        <turbulence_condition turbulence_intensity="1" turbulence_max_alt_ft_agl="2000" />
+        <icing_condition icing_intensity="1" icing_min_alt_ft_agl="4500" icing_max_alt_ft_agl="7500" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T09:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T20:00:00Z</fcst_time_to>
+        <change_indicator>BECMG</change_indicator>
+        <time_becoming>2019-12-14T11:00:00Z</time_becoming>
+        <wind_dir_degrees>330</wind_dir_degrees>
+        <wind_speed_kt>15</wind_speed_kt>
+        <wind_gust_kt>25</wind_gust_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <altim_in_hg>29.52756</altim_in_hg>
+        <wx_string>NSW</wx_string>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="2000" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="3500" />
+        <icing_condition icing_intensity="1" icing_min_alt_ft_agl="3500" icing_max_alt_ft_agl="6500" />
+      </forecast>
+    </TAF>
+    <TAF>
+      <raw_text>TAF AMD PASY 131114Z 1311/1412 07035G40KT 6000 -RASN BKN007 BKN017 OVC030 610079 520002 QNH2885INS TEMPO 1311/1315 0800 SN BKN005 620059 BECMG 1318/1319 03035G45KT 4800 -SHSN BR BKN007 BKN020 610079 520002 QNH2893INS BECMG 1402/1403 03025G35KT 9999 NSW BKN025 BKN035 610253 510002 QNH2917INS BECMG 1409/1410 33015G25KT 9999 SCT020 BKN035 610353 QNH2952INS TX04/1406Z TNM03/1312Z</raw_text>
+      <station_id>PASY</station_id>
+      <issue_time>2019-12-13T11:14:00Z</issue_time>
+      <bulletin_time>2019-12-13T11:24:00Z</bulletin_time>
+      <valid_time_from>2019-12-13T11:00:00Z</valid_time_from>
+      <valid_time_to>2019-12-14T12:00:00Z</valid_time_to>
+      <latitude>52.72</latitude>
+      <longitude>174.12</longitude>
+      <elevation_m>31.0</elevation_m>
+      <forecast>
+        <fcst_time_from>2019-12-13T11:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-13T18:00:00Z</fcst_time_to>
+        <wind_dir_degrees>70</wind_dir_degrees>
+        <wind_speed_kt>35</wind_speed_kt>
+        <wind_gust_kt>40</wind_gust_kt>
+        <visibility_statute_mi>3.73</visibility_statute_mi>
+        <altim_in_hg>28.84843</altim_in_hg>
+        <wx_string>-RA -SN</wx_string>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="700" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="1700" />
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="3000" />
+        <turbulence_condition turbulence_intensity="2" turbulence_max_alt_ft_agl="2000" />
+        <icing_condition icing_intensity="1" icing_min_alt_ft_agl="700" icing_max_alt_ft_agl="9700" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-13T11:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-13T15:00:00Z</fcst_time_to>
+        <change_indicator>TEMPO</change_indicator>
+        <wind_dir_degrees>200</wind_dir_degrees>
+        <wind_speed_kt>59</wind_speed_kt>
+        <visibility_statute_mi>0.5</visibility_statute_mi>
+        <wx_string>SN</wx_string>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="500" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-13T18:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T02:00:00Z</fcst_time_to>
+        <change_indicator>BECMG</change_indicator>
+        <time_becoming>2019-12-13T19:00:00Z</time_becoming>
+        <wind_dir_degrees>30</wind_dir_degrees>
+        <wind_speed_kt>35</wind_speed_kt>
+        <wind_gust_kt>45</wind_gust_kt>
+        <visibility_statute_mi>2.98</visibility_statute_mi>
+        <altim_in_hg>28.93701</altim_in_hg>
+        <wx_string>-SHSN BR</wx_string>
+        <not_decoded>6</not_decoded>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="700" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="2000" />
+        <turbulence_condition turbulence_intensity="2" turbulence_max_alt_ft_agl="2000" />
+        <icing_condition icing_intensity="1" icing_min_alt_ft_agl="700" icing_max_alt_ft_agl="9700" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T02:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T09:00:00Z</fcst_time_to>
+        <change_indicator>BECMG</change_indicator>
+        <time_becoming>2019-12-14T03:00:00Z</time_becoming>
+        <wind_dir_degrees>30</wind_dir_degrees>
+        <wind_speed_kt>25</wind_speed_kt>
+        <wind_gust_kt>35</wind_gust_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <altim_in_hg>29.17323</altim_in_hg>
+        <wx_string>NSW</wx_string>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="2500" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="3500" />
+        <turbulence_condition turbulence_intensity="1" turbulence_max_alt_ft_agl="2000" />
+        <icing_condition icing_intensity="1" icing_min_alt_ft_agl="2500" icing_max_alt_ft_agl="5500" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T09:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T12:00:00Z</fcst_time_to>
+        <change_indicator>BECMG</change_indicator>
+        <time_becoming>2019-12-14T10:00:00Z</time_becoming>
+        <wind_dir_degrees>330</wind_dir_degrees>
+        <wind_speed_kt>15</wind_speed_kt>
+        <wind_gust_kt>25</wind_gust_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <altim_in_hg>29.52756</altim_in_hg>
+        <wx_string>NSW</wx_string>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="2000" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="3500" />
+        <icing_condition icing_intensity="1" icing_min_alt_ft_agl="3500" icing_max_alt_ft_agl="6500" />
+      </forecast>
+    </TAF>
+    <TAF>
+      <raw_text>TAF AMD PASY 131005Z 1310/1412 07035G40KT 6000 -SHSN BKN017 OVC030 610179 520002 QNH2885INS TEMPO 1310/1315 0800 SN BKN005 620059 BECMG 1318/1319 03035G45KT 4800 -SHSN BR BKN007 BKN020 610079 520002 QNH2893INS BECMG 1402/1403 03025G35KT 9999 NSW BKN025 BKN035 610253 510002 QNH2917INS BECMG 1409/1410 33015G25KT 9999 SCT020 BKN035 610353 QNH2952INS TX04/1406Z TNM03/1312Z</raw_text>
+      <station_id>PASY</station_id>
+      <issue_time>2019-12-13T10:05:00Z</issue_time>
+      <bulletin_time>2019-12-13T10:08:00Z</bulletin_time>
+      <valid_time_from>2019-12-13T10:00:00Z</valid_time_from>
+      <valid_time_to>2019-12-14T12:00:00Z</valid_time_to>
+      <latitude>52.72</latitude>
+      <longitude>174.12</longitude>
+      <elevation_m>31.0</elevation_m>
+      <forecast>
+        <fcst_time_from>2019-12-13T10:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-13T18:00:00Z</fcst_time_to>
+        <wind_dir_degrees>70</wind_dir_degrees>
+        <wind_speed_kt>35</wind_speed_kt>
+        <wind_gust_kt>40</wind_gust_kt>
+        <visibility_statute_mi>3.73</visibility_statute_mi>
+        <altim_in_hg>28.84843</altim_in_hg>
+        <wx_string>-SHSN</wx_string>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="1700" />
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="3000" />
+        <turbulence_condition turbulence_intensity="2" turbulence_max_alt_ft_agl="2000" />
+        <icing_condition icing_intensity="1" icing_min_alt_ft_agl="1700" icing_max_alt_ft_agl="10700" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-13T10:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-13T15:00:00Z</fcst_time_to>
+        <change_indicator>TEMPO</change_indicator>
+        <wind_dir_degrees>200</wind_dir_degrees>
+        <wind_speed_kt>59</wind_speed_kt>
+        <visibility_statute_mi>0.5</visibility_statute_mi>
+        <wx_string>SN</wx_string>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="500" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-13T18:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T02:00:00Z</fcst_time_to>
+        <change_indicator>BECMG</change_indicator>
+        <time_becoming>2019-12-13T19:00:00Z</time_becoming>
+        <wind_dir_degrees>30</wind_dir_degrees>
+        <wind_speed_kt>35</wind_speed_kt>
+        <wind_gust_kt>45</wind_gust_kt>
+        <visibility_statute_mi>2.98</visibility_statute_mi>
+        <altim_in_hg>28.93701</altim_in_hg>
+        <wx_string>-SHSN BR</wx_string>
+        <not_decoded>6</not_decoded>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="700" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="2000" />
+        <turbulence_condition turbulence_intensity="2" turbulence_max_alt_ft_agl="2000" />
+        <icing_condition icing_intensity="1" icing_min_alt_ft_agl="700" icing_max_alt_ft_agl="9700" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T02:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T09:00:00Z</fcst_time_to>
+        <change_indicator>BECMG</change_indicator>
+        <time_becoming>2019-12-14T03:00:00Z</time_becoming>
+        <wind_dir_degrees>30</wind_dir_degrees>
+        <wind_speed_kt>25</wind_speed_kt>
+        <wind_gust_kt>35</wind_gust_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <altim_in_hg>29.17323</altim_in_hg>
+        <wx_string>NSW</wx_string>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="2500" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="3500" />
+        <turbulence_condition turbulence_intensity="1" turbulence_max_alt_ft_agl="2000" />
+        <icing_condition icing_intensity="1" icing_min_alt_ft_agl="2500" icing_max_alt_ft_agl="5500" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T09:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T12:00:00Z</fcst_time_to>
+        <change_indicator>BECMG</change_indicator>
+        <time_becoming>2019-12-14T10:00:00Z</time_becoming>
+        <wind_dir_degrees>330</wind_dir_degrees>
+        <wind_speed_kt>15</wind_speed_kt>
+        <wind_gust_kt>25</wind_gust_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <altim_in_hg>29.52756</altim_in_hg>
+        <wx_string>NSW</wx_string>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="2000" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="3500" />
+        <icing_condition icing_intensity="1" icing_min_alt_ft_agl="3500" icing_max_alt_ft_agl="6500" />
+      </forecast>
+    </TAF>
+    <TAF>
+      <raw_text>TAF AMD PASY 130815Z 1308/1412 07035G40KT 6000 -SHSN BKN025 610259 520002 QNH2885INS TEMPO 1308/1315 0800 SN BKN005 620059 BECMG 1318/1319 03035G45KT 4800 -SHSN BR BKN007 BKN020 610079 520002 QNH2893INS BECMG 1402/1403 03025G35KT 9999 NSW BKN025 BKN035 610253 510002 QNH2917INS BECMG 1409/1410 33015G25KT 9999 SCT020 BKN035 610353 QNH2952INS TX04/1406Z TNM03/1312Z</raw_text>
+      <station_id>PASY</station_id>
+      <issue_time>2019-12-13T08:15:00Z</issue_time>
+      <bulletin_time>2019-12-13T08:17:00Z</bulletin_time>
+      <valid_time_from>2019-12-13T08:00:00Z</valid_time_from>
+      <valid_time_to>2019-12-14T12:00:00Z</valid_time_to>
+      <latitude>52.72</latitude>
+      <longitude>174.12</longitude>
+      <elevation_m>31.0</elevation_m>
+      <forecast>
+        <fcst_time_from>2019-12-13T08:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-13T18:00:00Z</fcst_time_to>
+        <wind_dir_degrees>70</wind_dir_degrees>
+        <wind_speed_kt>35</wind_speed_kt>
+        <wind_gust_kt>40</wind_gust_kt>
+        <visibility_statute_mi>3.73</visibility_statute_mi>
+        <altim_in_hg>28.84843</altim_in_hg>
+        <wx_string>-SHSN</wx_string>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="2500" />
+        <turbulence_condition turbulence_intensity="2" turbulence_max_alt_ft_agl="2000" />
+        <icing_condition icing_intensity="1" icing_min_alt_ft_agl="2500" icing_max_alt_ft_agl="11500" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-13T08:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-13T15:00:00Z</fcst_time_to>
+        <change_indicator>TEMPO</change_indicator>
+        <wind_dir_degrees>200</wind_dir_degrees>
+        <wind_speed_kt>59</wind_speed_kt>
+        <visibility_statute_mi>0.5</visibility_statute_mi>
+        <wx_string>SN</wx_string>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="500" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-13T18:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T02:00:00Z</fcst_time_to>
+        <change_indicator>BECMG</change_indicator>
+        <time_becoming>2019-12-13T19:00:00Z</time_becoming>
+        <wind_dir_degrees>30</wind_dir_degrees>
+        <wind_speed_kt>35</wind_speed_kt>
+        <wind_gust_kt>45</wind_gust_kt>
+        <visibility_statute_mi>2.98</visibility_statute_mi>
+        <altim_in_hg>28.93701</altim_in_hg>
+        <wx_string>-SHSN BR</wx_string>
+        <not_decoded>6</not_decoded>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="700" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="2000" />
+        <turbulence_condition turbulence_intensity="2" turbulence_max_alt_ft_agl="2000" />
+        <icing_condition icing_intensity="1" icing_min_alt_ft_agl="700" icing_max_alt_ft_agl="9700" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T02:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T09:00:00Z</fcst_time_to>
+        <change_indicator>BECMG</change_indicator>
+        <time_becoming>2019-12-14T03:00:00Z</time_becoming>
+        <wind_dir_degrees>30</wind_dir_degrees>
+        <wind_speed_kt>25</wind_speed_kt>
+        <wind_gust_kt>35</wind_gust_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <altim_in_hg>29.17323</altim_in_hg>
+        <wx_string>NSW</wx_string>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="2500" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="3500" />
+        <turbulence_condition turbulence_intensity="1" turbulence_max_alt_ft_agl="2000" />
+        <icing_condition icing_intensity="1" icing_min_alt_ft_agl="2500" icing_max_alt_ft_agl="5500" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T09:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T12:00:00Z</fcst_time_to>
+        <change_indicator>BECMG</change_indicator>
+        <time_becoming>2019-12-14T10:00:00Z</time_becoming>
+        <wind_dir_degrees>330</wind_dir_degrees>
+        <wind_speed_kt>15</wind_speed_kt>
+        <wind_gust_kt>25</wind_gust_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <altim_in_hg>29.52756</altim_in_hg>
+        <wx_string>NSW</wx_string>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="2000" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="3500" />
+        <icing_condition icing_intensity="1" icing_min_alt_ft_agl="3500" icing_max_alt_ft_agl="6500" />
+      </forecast>
+    </TAF>
+    <TAF>
+      <raw_text>TAF PASY 130600Z 1306/1412 08025G30KT 9999 BKN025 BKN035 620254 510002 QNH2905INS BECMG 1307/1308 07035G45KT 6000 -SHSN BKN005 BKN015 610059 520002 QNH2885INS TEMPO 1308/1315 0800 SN BECMG 1318/1319 03035G45KT 4800 -SHSN BR BKN007 BKN020 610079 520002 QNH2893INS BECMG 1402/1403 03025G35KT 9999 NSW BKN025 BKN035 610253 510002 QNH2917INS BECMG 1409/1410 33015G25KT 9999 SCT020 BKN035 610353 QNH2952INS TX04/1406Z TNM03/1312Z</raw_text>
+      <station_id>PASY</station_id>
+      <issue_time>2019-12-13T06:00:00Z</issue_time>
+      <bulletin_time>2019-12-13T06:08:00Z</bulletin_time>
+      <valid_time_from>2019-12-13T06:00:00Z</valid_time_from>
+      <valid_time_to>2019-12-14T12:00:00Z</valid_time_to>
+      <latitude>52.72</latitude>
+      <longitude>174.12</longitude>
+      <elevation_m>31.0</elevation_m>
+      <forecast>
+        <fcst_time_from>2019-12-13T06:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-13T07:00:00Z</fcst_time_to>
+        <wind_dir_degrees>80</wind_dir_degrees>
+        <wind_speed_kt>25</wind_speed_kt>
+        <wind_gust_kt>30</wind_gust_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <altim_in_hg>29.05512</altim_in_hg>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="2500" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="3500" />
+        <turbulence_condition turbulence_intensity="1" turbulence_max_alt_ft_agl="2000" />
+        <icing_condition icing_intensity="2" icing_min_alt_ft_agl="2500" icing_max_alt_ft_agl="6500" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-13T07:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-13T18:00:00Z</fcst_time_to>
+        <change_indicator>BECMG</change_indicator>
+        <time_becoming>2019-12-13T08:00:00Z</time_becoming>
+        <wind_dir_degrees>70</wind_dir_degrees>
+        <wind_speed_kt>35</wind_speed_kt>
+        <wind_gust_kt>45</wind_gust_kt>
+        <visibility_statute_mi>3.73</visibility_statute_mi>
+        <altim_in_hg>28.84843</altim_in_hg>
+        <wx_string>-SHSN</wx_string>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="500" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="1500" />
+        <turbulence_condition turbulence_intensity="2" turbulence_max_alt_ft_agl="2000" />
+        <icing_condition icing_intensity="1" icing_min_alt_ft_agl="500" icing_max_alt_ft_agl="9500" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-13T08:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-13T15:00:00Z</fcst_time_to>
+        <change_indicator>TEMPO</change_indicator>
+        <visibility_statute_mi>0.5</visibility_statute_mi>
+        <wx_string>SN</wx_string>
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-13T18:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T02:00:00Z</fcst_time_to>
+        <change_indicator>BECMG</change_indicator>
+        <time_becoming>2019-12-13T19:00:00Z</time_becoming>
+        <wind_dir_degrees>30</wind_dir_degrees>
+        <wind_speed_kt>35</wind_speed_kt>
+        <wind_gust_kt>45</wind_gust_kt>
+        <visibility_statute_mi>2.98</visibility_statute_mi>
+        <altim_in_hg>28.93701</altim_in_hg>
+        <wx_string>-SHSN BR</wx_string>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="700" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="2000" />
+        <turbulence_condition turbulence_intensity="2" turbulence_max_alt_ft_agl="2000" />
+        <icing_condition icing_intensity="1" icing_min_alt_ft_agl="700" icing_max_alt_ft_agl="9700" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T02:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T09:00:00Z</fcst_time_to>
+        <change_indicator>BECMG</change_indicator>
+        <time_becoming>2019-12-14T03:00:00Z</time_becoming>
+        <wind_dir_degrees>30</wind_dir_degrees>
+        <wind_speed_kt>25</wind_speed_kt>
+        <wind_gust_kt>35</wind_gust_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <altim_in_hg>29.17323</altim_in_hg>
+        <wx_string>NSW</wx_string>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="2500" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="3500" />
+        <turbulence_condition turbulence_intensity="1" turbulence_max_alt_ft_agl="2000" />
+        <icing_condition icing_intensity="1" icing_min_alt_ft_agl="2500" icing_max_alt_ft_agl="5500" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T09:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T12:00:00Z</fcst_time_to>
+        <change_indicator>BECMG</change_indicator>
+        <time_becoming>2019-12-14T10:00:00Z</time_becoming>
+        <wind_dir_degrees>330</wind_dir_degrees>
+        <wind_speed_kt>15</wind_speed_kt>
+        <wind_gust_kt>25</wind_gust_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <altim_in_hg>29.52756</altim_in_hg>
+        <wx_string>NSW</wx_string>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="2000" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="3500" />
+        <icing_condition icing_intensity="1" icing_min_alt_ft_agl="3500" icing_max_alt_ft_agl="6500" />
+      </forecast>
+    </TAF>
+    <TAF>
+      <raw_text>TAF PASY 122200Z 1222/1404 09015G20KT 9999 BKN030 620303 QNH2932INS BECMG 1302/1303 08025G35KT 9999 BKN030 BKN140 620303 510002 QNH2914INS BECMG 1305/1306 08035G45KT 9999 BKN040 BKN140 620403 520002 QNH2902INS BECMG 1308/1309 08035G45KT 6000 BLSN BKN005 OVC015 620059 520002 QNH2879INS TEMPO 1310/1314 0800 BLSN BECMG 1400/1401 03025G35KT 9999 NSW BKN025 BKN035 620253 510002 QNH2908INS TX04/1306Z TNM02/1312Z</raw_text>
+      <station_id>PASY</station_id>
+      <issue_time>2019-12-12T22:00:00Z</issue_time>
+      <bulletin_time>2019-12-12T22:10:00Z</bulletin_time>
+      <valid_time_from>2019-12-12T22:00:00Z</valid_time_from>
+      <valid_time_to>2019-12-14T04:00:00Z</valid_time_to>
+      <latitude>52.72</latitude>
+      <longitude>174.12</longitude>
+      <elevation_m>31.0</elevation_m>
+      <forecast>
+        <fcst_time_from>2019-12-12T22:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-13T02:00:00Z</fcst_time_to>
+        <wind_dir_degrees>90</wind_dir_degrees>
+        <wind_speed_kt>15</wind_speed_kt>
+        <wind_gust_kt>20</wind_gust_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <altim_in_hg>29.32087</altim_in_hg>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="3000" />
+        <icing_condition icing_intensity="2" icing_min_alt_ft_agl="3000" icing_max_alt_ft_agl="6000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-13T02:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-13T05:00:00Z</fcst_time_to>
+        <change_indicator>BECMG</change_indicator>
+        <time_becoming>2019-12-13T03:00:00Z</time_becoming>
+        <wind_dir_degrees>80</wind_dir_degrees>
+        <wind_speed_kt>25</wind_speed_kt>
+        <wind_gust_kt>35</wind_gust_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <altim_in_hg>29.1437</altim_in_hg>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="3000" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="14000" />
+        <turbulence_condition turbulence_intensity="1" turbulence_max_alt_ft_agl="2000" />
+        <icing_condition icing_intensity="2" icing_min_alt_ft_agl="3000" icing_max_alt_ft_agl="6000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-13T05:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-13T08:00:00Z</fcst_time_to>
+        <change_indicator>BECMG</change_indicator>
+        <time_becoming>2019-12-13T06:00:00Z</time_becoming>
+        <wind_dir_degrees>80</wind_dir_degrees>
+        <wind_speed_kt>35</wind_speed_kt>
+        <wind_gust_kt>45</wind_gust_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <altim_in_hg>29.02559</altim_in_hg>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="4000" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="14000" />
+        <turbulence_condition turbulence_intensity="2" turbulence_max_alt_ft_agl="2000" />
+        <icing_condition icing_intensity="2" icing_min_alt_ft_agl="4000" icing_max_alt_ft_agl="7000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-13T08:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T00:00:00Z</fcst_time_to>
+        <change_indicator>BECMG</change_indicator>
+        <time_becoming>2019-12-13T09:00:00Z</time_becoming>
+        <wind_dir_degrees>80</wind_dir_degrees>
+        <wind_speed_kt>35</wind_speed_kt>
+        <wind_gust_kt>45</wind_gust_kt>
+        <visibility_statute_mi>3.73</visibility_statute_mi>
+        <altim_in_hg>28.78937</altim_in_hg>
+        <wx_string>BLSN</wx_string>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="500" />
+        <sky_condition sky_cover="OVC" cloud_base_ft_agl="1500" />
+        <turbulence_condition turbulence_intensity="2" turbulence_max_alt_ft_agl="2000" />
+        <icing_condition icing_intensity="2" icing_min_alt_ft_agl="500" icing_max_alt_ft_agl="9500" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-13T10:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-13T14:00:00Z</fcst_time_to>
+        <change_indicator>TEMPO</change_indicator>
+        <visibility_statute_mi>0.5</visibility_statute_mi>
+        <wx_string>BLSN</wx_string>
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T00:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T04:00:00Z</fcst_time_to>
+        <change_indicator>BECMG</change_indicator>
+        <time_becoming>2019-12-14T01:00:00Z</time_becoming>
+        <wind_dir_degrees>30</wind_dir_degrees>
+        <wind_speed_kt>25</wind_speed_kt>
+        <wind_gust_kt>35</wind_gust_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <altim_in_hg>29.08465</altim_in_hg>
+        <wx_string>NSW</wx_string>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="2500" />
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="3500" />
+        <turbulence_condition turbulence_intensity="1" turbulence_max_alt_ft_agl="2000" />
+        <icing_condition icing_intensity="2" icing_min_alt_ft_agl="2500" icing_max_alt_ft_agl="5500" />
+      </forecast>
+    </TAF>
+  </data>
+</response>
+

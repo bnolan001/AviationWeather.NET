@@ -3,7 +3,6 @@ using BNolan.AviationWx.NET.Parsers;
 using FluentAssertions;
 using NUnit.Framework;
 using System.Linq;
-using Testing.Unit.Data;
 
 namespace Testing.Unit
 {
@@ -16,7 +15,7 @@ namespace Testing.Unit
         public void Parse_SingleStation_MultipleObs()
         {
             var parser = new ParseMETARCSV();
-            var obs = parser.Parse(METARCSV.SINGLE_STATION_METAR_KPHL, new[] { "KDEN" });
+            var obs = parser.Parse(Resource.KDEN_METAR_CSV, new[] { "KDEN" });
             obs.Count.Should().Be(1);
             obs[0].ICAO.Should().Be("KDEN");
             obs[0].GeographicData.Should().NotBeNull();

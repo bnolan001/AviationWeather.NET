@@ -4,7 +4,7 @@ using FluentAssertions;
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
-using Testing.Unit.Data;
+
 
 namespace Testing.Unit
 {
@@ -14,7 +14,7 @@ namespace Testing.Unit
         public void ParseMultipleStations()
         {
             var parser = new ParseTAFCSV();
-            var forecasts = parser.Parse(TAFCSV.MULTIPLE_STATION_PHNL_KSEA_KDEN, new List<string>() { "PHNL", "KSEA", "KDEN" });
+            var forecasts = parser.Parse(Resource.PHNL_KSEA_KDEN_TAF_CSV, new List<string>() { "PHNL", "KSEA", "KDEN" });
             forecasts.Count().Should().Be(3);
             forecasts[0].ICAO.Should().Be("PHNL");
             forecasts[0].TAF.Count().Should().Be(9);
@@ -65,6 +65,36 @@ namespace Testing.Unit
             forecasts[2].GeographicData.Latitude.Should().Be(39.85f);
             forecasts[2].GeographicData.Longitude.Should().Be(-104.65f);
             forecasts[2].GeographicData.Elevation.Should().Be(1640);
+        }
+
+        [Test]
+        public void ParseTurbulence()
+        {
+            var parser = new ParseTAFCSV();
+            var forecasts = parser.Parse(Resource.PASY_Icing_Turbulence_TAF_CSV, new List<string>() { "PASY" });
+            forecasts.Count().Should().Be(1);
+            forecasts[0].TAF.Should().NotBeNullOrEmpty();
+            forecasts[0].TAF[0].TAFLine.Should().NotBeNullOrEmpty();
+            var taf = forecasts[0].TAF[0];
+            taf.TAFLine[0].TurbulenceHazards.Should().NotBeNullOrEmpty();
+            taf.TAFLine[0].TurbulenceHazards[0].MinAltitude.Should().Be(0);
+            taf.TAFLine[0].TurbulenceHazards[0].MaxAltitude.Should().Be(3000);
+            taf.TAFLine[0].TurbulenceHazards[0].Intensity.Should().Be(TurbulenceIntensity.Light);
+        }
+
+        [Test]
+        public void ParseIcing()
+        {
+            var parser = new ParseTAFCSV();
+            var forecasts = parser.Parse(Resource.PASY_Icing_Turbulence_TAF_CSV, new List<string>() { "PASY" });
+            forecasts.Count().Should().Be(1);
+            forecasts[0].TAF.Should().NotBeNullOrEmpty();
+            forecasts[0].TAF[0].TAFLine.Should().NotBeNullOrEmpty();
+            var taf = forecasts[0].TAF[0];
+            taf.TAFLine[0].IcingHazards.Should().NotBeNullOrEmpty();
+            taf.TAFLine[0].IcingHazards[0].MinAltitude.Should().Be(3000);
+            taf.TAFLine[0].IcingHazards[0].MaxAltitude.Should().Be(7000);
+            taf.TAFLine[0].IcingHazards[0].Intensity.Should().Be(IcingIntensity.LightIcing);
         }
     }
 }

@@ -114,12 +114,14 @@ namespace BNolan.AviationWx.NET.Parsers
                 if (line.icing_condition != null)
                 {
                     lineDto.IcingHazards.AddRange(line.icing_condition
+                        .Where(ic => !String.IsNullOrWhiteSpace(ic.icing_intensity))
                         .Select(ic => GetHazard(ic)));
                 }
 
                 if (line.turbulence_condition != null)
                 {
                     lineDto.TurbulenceHazards.AddRange(line.turbulence_condition
+                        .Where(tb => !String.IsNullOrWhiteSpace(tb.turbulence_intensity))
                         .Select(tb => GetHazard(tb)));
                 }
 
@@ -182,9 +184,12 @@ namespace BNolan.AviationWx.NET.Parsers
 
         public HazardDto GetHazard(icing_condition xml)
         {
+            var intensity = ParserHelpers.ParseInt(xml.icing_intensity) ?? -1;            
+            var icingIntensity = IcingIntensity.ByValue(intensity);
+            
             return new HazardDto()
             {
-                Intensity = xml.icing_intensity,
+                Intensity = icingIntensity,
                 MaxAltitude = xml.icing_max_alt_ft_agl,
                 MinAltitude = xml.icing_min_alt_ft_agl
             };
@@ -192,9 +197,12 @@ namespace BNolan.AviationWx.NET.Parsers
 
         public HazardDto GetHazard(turbulence_condition xml)
         {
+            var intensity = ParserHelpers.ParseInt(xml.turbulence_intensity) ?? -1;
+            var turbIntensity = TurbulenceIntensity.ByValue(intensity);
+
             return new HazardDto()
             {
-                Intensity = xml.turbulence_intensity,
+                Intensity = turbIntensity,
                 MaxAltitude = xml.turbulence_max_alt_ft_agl,
                 MinAltitude = xml.turbulence_min_alt_ft_agl
             };

@@ -1,0 +1,9 @@
+No errors
+No warnings
+4 ms
+data source=stations
+3 results
+station_id, wmo_id, latitude, longitude, elevation_m, site, state, country, site_type
+KDEN,72565,39.85,-104.65,1640.0,DENVER(DIA)    ,CO,US,METAR TAF
+KSEA,72793,47.45,-122.32,136.0,SEATTLE/METRO   ,WA,US,METAR TAF
+PHNL,91182,21.33,-157.92,4.0,HONOLULU        ,HI,US,METAR TAF;

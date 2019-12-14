@@ -1,0 +1,50 @@
+<response xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XML-Schema-instance" version="1.0" xsi:noNamespaceSchemaLocation="http://weather.aero/schema/station1_0.xsd">
+	<request_index>7850904</request_index>
+	<data_source name="stations"/>
+	<request type="retrieve"/>
+	<errors/>
+	<warnings/>
+	<time_taken_ms>4</time_taken_ms>
+	<data num_results="3">
+		<Station>
+			<station_id>KIAD</station_id>
+			<wmo_id>72403</wmo_id>
+			<latitude>38.93</latitude>
+			<longitude>-77.45</longitude>
+			<elevation_m>93.0</elevation_m>
+			<site>WASH DC/DULLES</site>
+			<state>VA</state>
+			<country>US</country>
+			<site_type>
+				<METAR/>
+				<rawinsonde/>
+				<TAF/>
+			</site_type>
+		</Station>
+		<Station>
+			<station_id>ORBB</station_id>
+			<wmo_id>40650</wmo_id>
+			<latitude>33.22</latitude>
+			<longitude>44.22</longitude>
+			<elevation_m>34.0</elevation_m>
+			<site>BAGHDAD-SIRSENK</site>
+			<country>IQ</country>
+			<site_type>
+				<METAR/>
+			</site_type>
+		</Station>
+		<Station>
+			<station_id>ZBAA</station_id>
+			<wmo_id>54511</wmo_id>
+			<latitude>40.07</latitude>
+			<longitude>116.58</longitude>
+			<elevation_m>30.0</elevation_m>
+			<site>BEIJING/PEKING</site>
+			<country>CN</country>
+			<site_type>
+				<METAR/>
+				<TAF/>
+			</site_type>
+		</Station>
+	</data>
+</response>

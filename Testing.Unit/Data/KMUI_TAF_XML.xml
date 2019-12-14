@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XML-Schema-instance" version="1.2" xsi:noNamespaceSchemaLocation="http://aviationweather.gov/adds/schema/taf1_2.xsd">
+	<request_index>45901764</request_index>
+	<data_source name="tafs" />
+	<request type="retrieve" />
+	<errors />
+	<warnings />
+	<time_taken_ms>11</time_taken_ms>
+	<data num_results="4">
+		<TAF>
+			<raw_text>TAF AMD KMUI 042359Z 0423/0601 18012KT 9999 FEW140 QNH3022INS BECMG 0503/0504 VRB06KT 9999 FEW180 510052 QNH3018INS BECMG 0510/0511 VRB06KT 9999 FEW085 QNH3016INS BECMG 0519/0520 27008KT 9999 SCT035 BKN080 620808 QNH3016INS TX14/0519Z TN03/0512Z LAST NO AMDS AFT 0500 NEXT 0511</raw_text>
+			<station_id>KMUI</station_id>
+			<issue_time>2019-11-04T23:59:00Z</issue_time>
+			<bulletin_time>2019-11-05T00:00:00Z</bulletin_time>
+			<valid_time_from>2019-11-04T23:00:00Z</valid_time_from>
+			<valid_time_to>2019-11-06T01:00:00Z</valid_time_to>
+			<latitude>40.42</latitude>
+			<longitude>-76.57</longitude>
+			<elevation_m>149.0</elevation_m>
+			<forecast>
+				<fcst_time_from>2019-11-04T23:00:00Z</fcst_time_from>
+				<fcst_time_to>2019-11-05T03:00:00Z</fcst_time_to>
+				<wind_dir_degrees>180</wind_dir_degrees>
+				<wind_speed_kt>12</wind_speed_kt>
+				<visibility_statute_mi>6.21</visibility_statute_mi>
+				<altim_in_hg>30.20669</altim_in_hg>
+				<sky_condition sky_cover="FEW" cloud_base_ft_agl="14000" />
+			</forecast>
+			<forecast>
+				<fcst_time_from>2019-11-05T03:00:00Z</fcst_time_from>
+				<fcst_time_to>2019-11-05T10:00:00Z</fcst_time_to>
+				<change_indicator>BECMG</change_indicator>
+				<time_becoming>2019-11-05T04:00:00Z</time_becoming>
+				<wind_dir_degrees>0</wind_dir_degrees>
+				<wind_speed_kt>6</wind_speed_kt>
+				<visibility_statute_mi>6.21</visibility_statute_mi>
+				<altim_in_hg>30.17717</altim_in_hg>
+				<sky_condition sky_cover="FEW" cloud_base_ft_agl="18000" />
+				<turbulence_condition turbulence_intensity="1" turbulence_min_alt_ft_agl="500" turbulence_max_alt_ft_agl="2500" />
+			</forecast>
+			<forecast>
+				<fcst_time_from>2019-11-05T10:00:00Z</fcst_time_from>
+				<fcst_time_to>2019-11-05T19:00:00Z</fcst_time_to>
+				<change_indicator>BECMG</change_indicator>
+				<time_becoming>2019-11-05T11:00:00Z</time_becoming>
+				<wind_dir_degrees>0</wind_dir_degrees>
+				<wind_speed_kt>6</wind_speed_kt>
+				<visibility_statute_mi>6.21</visibility_statute_mi>
+				<altim_in_hg>30.14764</altim_in_hg>
+				<sky_condition sky_cover="FEW" cloud_base_ft_agl="8500" />
+			</forecast>
+			<forecast>
+				<fcst_time_from>2019-11-05T19:00:00Z</fcst_time_from>
+				<fcst_time_to>2019-11-06T01:00:00Z</fcst_time_to>
+				<change_indicator>BECMG</change_indicator>
+				<time_becoming>2019-11-05T20:00:00Z</time_becoming>
+				<wind_dir_degrees>270</wind_dir_degrees>
+				<wind_speed_kt>8</wind_speed_kt>
+				<visibility_statute_mi>6.21</visibility_statute_mi>
+				<altim_in_hg>30.14764</altim_in_hg>
+				<sky_condition sky_cover="SCT" cloud_base_ft_agl="3500" />
+				<sky_condition sky_cover="BKN" cloud_base_ft_agl="8000" />
+				<icing_condition icing_intensity="2" icing_min_alt_ft_agl="8000" icing_max_alt_ft_agl="16000" />
+			</forecast>
+		</TAF>
+		<TAF>
+			<raw_text>TAF AMD KMUI 042045Z 0420/0601 18012KT 9999 FEW140 QNH3022INS BECMG 0503/0504 VRB06KT 9999 FEW180 510052 QNH3018INS BECMG 0510/0511 VRB06KT 9999 FEW085 QNH3016INS BECMG 0519/0520 27008KT 9999 SCT035 BKN080 620808 QNH3016INS TX14/0519Z TN03/0512Z LAST NO AMDS AFT 0505 NEXT 0511</raw_text>
+			<station_id>KMUI</station_id>
+			<issue_time>2019-11-04T20:45:00Z</issue_time>
+			<bulletin_time>2019-11-04T20:52:00Z</bulletin_time>
+			<valid_time_from>2019-11-04T20:00:00Z</valid_time_from>
+			<valid_time_to>2019-11-06T01:00:00Z</valid_time_to>
+			<latitude>40.42</latitude>
+			<longitude>-76.57</longitude>
+			<elevation_m>149.0</elevation_m>
+			<forecast>
+				<fcst_time_from>2019-11-04T20:00:00Z</fcst_time_from>
+				<fcst_time_to>2019-11-05T03:00:00Z</fcst_time_to>
+				<wind_dir_degrees>180</wind_dir_degrees>
+				<wind_speed_kt>12</wind_speed_kt>
+				<visibility_statute_mi>6.21</visibility_statute_mi>
+				<altim_in_hg>30.20669</altim_in_hg>
+				<sky_condition sky_cover="FEW" cloud_base_ft_agl="14000" />
+			</forecast>
+			<forecast>
+				<fcst_time_from>2019-11-05T03:00:00Z</fcst_time_from>
+				<fcst_time_to>2019-11-05T10:00:00Z</fcst_time_to>
+				<change_indicator>BECMG</change_indicator>
+				<time_becoming>2019-11-05T04:00:00Z</time_becoming>
+				<wind_dir_degrees>0</wind_dir_degrees>
+				<wind_speed_kt>6</wind_speed_kt>
+				<visibility_statute_mi>6.21</visibility_statute_mi>
+				<altim_in_hg>30.17717</altim_in_hg>
+				<sky_condition sky_cover="FEW" cloud_base_ft_agl="18000" />
+				<turbulence_condition turbulence_intensity="1" turbulence_min_alt_ft_agl="500" turbulence_max_alt_ft_agl="2500" />
+			</forecast>
+			<forecast>
+				<fcst_time_from>2019-11-05T10:00:00Z</fcst_time_from>
+				<fcst_time_to>2019-11-05T19:00:00Z</fcst_time_to>
+				<change_indicator>BECMG</change_indicator>
+				<time_becoming>2019-11-05T11:00:00Z</time_becoming>
+				<wind_dir_degrees>0</wind_dir_degrees>
+				<wind_speed_kt>6</wind_speed_kt>
+				<visibility_statute_mi>6.21</visibility_statute_mi>
+				<altim_in_hg>30.14764</altim_in_hg>
+				<sky_condition sky_cover="FEW" cloud_base_ft_agl="8500" />
+			</forecast>
+			<forecast>
+				<fcst_time_from>2019-11-05T19:00:00Z</fcst_time_from>
+				<fcst_time_to>2019-11-06T01:00:00Z</fcst_time_to>
+				<change_indicator>BECMG</change_indicator>
+				<time_becoming>2019-11-05T20:00:00Z</time_becoming>
+				<wind_dir_degrees>270</wind_dir_degrees>
+				<wind_speed_kt>8</wind_speed_kt>
+				<visibility_statute_mi>6.21</visibility_statute_mi>
+				<altim_in_hg>30.14764</altim_in_hg>
+				<sky_condition sky_cover="SCT" cloud_base_ft_agl="3500" />
+				<sky_condition sky_cover="BKN" cloud_base_ft_agl="8000" />
+				<icing_condition icing_intensity="2" icing_min_alt_ft_agl="8000" icing_max_alt_ft_agl="16000" />
+			</forecast>
+		</TAF>
+		<TAF>
+			<raw_text>TAF KMUI 041900Z 0419/0601 18012G18KT 9999 FEW110 QNH3022INS BECMG 0421/0422 18006KT 9999 FEW140 QNH3022INS BECMG 0503/0504 VRB06KT 9999 FEW180 510052 QNH3018INS BECMG 0510/0511 VRB06KT 9999 FEW085 QNH3016INS BECMG 0519/0520 27008KT 9999 SCT035 BKN080 620808 QNH3016INS TX14/0519Z TN03/0512Z LAST NO AMDS AFT 0505 NEXT 0511</raw_text>
+			<station_id>KMUI</station_id>
+			<issue_time>2019-11-04T19:00:00Z</issue_time>
+			<bulletin_time>2019-11-04T19:00:00Z</bulletin_time>
+			<valid_time_from>2019-11-04T19:00:00Z</valid_time_from>
+			<valid_time_to>2019-11-06T01:00:00Z</valid_time_to>
+			<latitude>40.42</latitude>
+			<longitude>-76.57</longitude>
+			<elevation_m>149.0</elevation_m>
+			<forecast>
+				<fcst_time_from>2019-11-04T19:00:00Z</fcst_time_from>
+				<fcst_time_to>2019-11-04T21:00:00Z</fcst_time_to>
+				<wind_dir_degrees>180</wind_dir_degrees>
+				<wind_speed_kt>12</wind_speed_kt>
+				<wind_gust_kt>18</wind_gust_kt>
+				<visibility_statute_mi>6.21</visibility_statute_mi>
+				<altim_in_hg>30.20669</altim_in_hg>
+				<sky_condition sky_cover="FEW" cloud_base_ft_agl="11000" />
+			</forecast>
+			<forecast>
+				<fcst_time_from>2019-11-04T21:00:00Z</fcst_time_from>
+				<fcst_time_to>2019-11-05T03:00:00Z</fcst_time_to>
+				<change_indicator>BECMG</change_indicator>
+				<time_becoming>2019-11-04T22:00:00Z</time_becoming>
+				<wind_dir_degrees>180</wind_dir_degrees>
+				<wind_speed_kt>6</wind_speed_kt>
+				<visibility_statute_mi>6.21</visibility_statute_mi>
+				<altim_in_hg>30.20669</altim_in_hg>
+				<sky_condition sky_cover="FEW" cloud_base_ft_agl="14000" />
+			</forecast>
+			<forecast>
+				<fcst_time_from>2019-11-05T03:00:00Z</fcst_time_from>
+				<fcst_time_to>2019-11-05T10:00:00Z</fcst_time_to>
+				<change_indicator>BECMG</change_indicator>
+				<time_becoming>2019-11-05T04:00:00Z</time_becoming>
+				<wind_dir_degrees>0</wind_dir_degrees>
+				<wind_speed_kt>6</wind_speed_kt>
+				<visibility_statute_mi>6.21</visibility_statute_mi>
+				<altim_in_hg>30.17717</altim_in_hg>
+				<sky_condition sky_cover="FEW" cloud_base_ft_agl="18000" />
+				<turbulence_condition turbulence_intensity="1" turbulence_min_alt_ft_agl="500" turbulence_max_alt_ft_agl="2500" />
+			</forecast>
+			<forecast>
+				<fcst_time_from>2019-11-05T10:00:00Z</fcst_time_from>
+				<fcst_time_to>2019-11-05T19:00:00Z</fcst_time_to>
+				<change_indicator>BECMG</change_indicator>
+				<time_becoming>2019-11-05T11:00:00Z</time_becoming>
+				<wind_dir_degrees>0</wind_dir_degrees>
+				<wind_speed_kt>6</wind_speed_kt>
+				<visibility_statute_mi>6.21</visibility_statute_mi>
+				<altim_in_hg>30.14764</altim_in_hg>
+				<sky_condition sky_cover="FEW" cloud_base_ft_agl="8500" />
+			</forecast>
+			<forecast>
+				<fcst_time_from>2019-11-05T19:00:00Z</fcst_time_from>
+				<fcst_time_to>2019-11-06T01:00:00Z</fcst_time_to>
+				<change_indicator>BECMG</change_indicator>
+				<time_becoming>2019-11-05T20:00:00Z</time_becoming>
+				<wind_dir_degrees>270</wind_dir_degrees>
+				<wind_speed_kt>8</wind_speed_kt>
+				<visibility_statute_mi>6.21</visibility_statute_mi>
+				<altim_in_hg>30.14764</altim_in_hg>
+				<sky_condition sky_cover="SCT" cloud_base_ft_agl="3500" />
+				<sky_condition sky_cover="BKN" cloud_base_ft_agl="8000" />
+				<icing_condition icing_intensity="2" icing_min_alt_ft_agl="8000" icing_max_alt_ft_agl="16000" />
+			</forecast>
+		</TAF>
+		<TAF>
+			<raw_text>TAF KMUI 041100Z 0411/0517 VRB06KT 9999 FEW100 QNH3029INS BECMG 0416/0417 18012G18KT 9999 FEW110 QNH3021INS BECMG 0421/0422 18006KT 9999 FEW140 QNH3020INS BECMG 0503/0504 VRB06KT 9999 FEW180 WS020/20030KT QNH3019INS BECMG 0510/0511 VRB06KT 9999 FEW085 QNH3017INS TX11/0419Z TNM02/0412Z</raw_text>
+			<station_id>KMUI</station_id>
+			<issue_time>2019-11-04T11:00:00Z</issue_time>
+			<bulletin_time>2019-11-04T11:01:00Z</bulletin_time>
+			<valid_time_from>2019-11-04T11:00:00Z</valid_time_from>
+			<valid_time_to>2019-11-05T17:00:00Z</valid_time_to>
+			<latitude>40.42</latitude>
+			<longitude>-76.57</longitude>
+			<elevation_m>149.0</elevation_m>
+			<forecast>
+				<fcst_time_from>2019-11-04T11:00:00Z</fcst_time_from>
+				<fcst_time_to>2019-11-04T16:00:00Z</fcst_time_to>
+				<wind_dir_degrees>0</wind_dir_degrees>
+				<wind_speed_kt>6</wind_speed_kt>
+				<visibility_statute_mi>6.21</visibility_statute_mi>
+				<altim_in_hg>30.29528</altim_in_hg>
+				<sky_condition sky_cover="FEW" cloud_base_ft_agl="10000" />
+			</forecast>
+			<forecast>
+				<fcst_time_from>2019-11-04T16:00:00Z</fcst_time_from>
+				<fcst_time_to>2019-11-04T21:00:00Z</fcst_time_to>
+				<change_indicator>BECMG</change_indicator>
+				<time_becoming>2019-11-04T17:00:00Z</time_becoming>
+				<wind_dir_degrees>180</wind_dir_degrees>
+				<wind_speed_kt>12</wind_speed_kt>
+				<wind_gust_kt>18</wind_gust_kt>
+				<visibility_statute_mi>6.21</visibility_statute_mi>
+				<altim_in_hg>30.20669</altim_in_hg>
+				<sky_condition sky_cover="FEW" cloud_base_ft_agl="11000" />
+			</forecast>
+			<forecast>
+				<fcst_time_from>2019-11-04T21:00:00Z</fcst_time_from>
+				<fcst_time_to>2019-11-05T03:00:00Z</fcst_time_to>
+				<change_indicator>BECMG</change_indicator>
+				<time_becoming>2019-11-04T22:00:00Z</time_becoming>
+				<wind_dir_degrees>180</wind_dir_degrees>
+				<wind_speed_kt>6</wind_speed_kt>
+				<visibility_statute_mi>6.21</visibility_statute_mi>
+				<altim_in_hg>30.20669</altim_in_hg>
+				<sky_condition sky_cover="FEW" cloud_base_ft_agl="14000" />
+			</forecast>
+			<forecast>
+				<fcst_time_from>2019-11-05T03:00:00Z</fcst_time_from>
+				<fcst_time_to>2019-11-05T10:00:00Z</fcst_time_to>
+				<change_indicator>BECMG</change_indicator>
+				<time_becoming>2019-11-05T04:00:00Z</time_becoming>
+				<wind_dir_degrees>0</wind_dir_degrees>
+				<wind_speed_kt>6</wind_speed_kt>
+				<wind_shear_hgt_ft_agl>2000</wind_shear_hgt_ft_agl>
+				<wind_shear_dir_degrees>200</wind_shear_dir_degrees>
+				<wind_shear_speed_kt>30</wind_shear_speed_kt>
+				<visibility_statute_mi>6.21</visibility_statute_mi>
+				<altim_in_hg>30.17717</altim_in_hg>
+				<sky_condition sky_cover="FEW" cloud_base_ft_agl="18000" />
+			</forecast>
+			<forecast>
+				<fcst_time_from>2019-11-05T10:00:00Z</fcst_time_from>
+				<fcst_time_to>2019-11-05T17:00:00Z</fcst_time_to>
+				<change_indicator>BECMG</change_indicator>
+				<time_becoming>2019-11-05T11:00:00Z</time_becoming>
+				<wind_dir_degrees>0</wind_dir_degrees>
+				<wind_speed_kt>6</wind_speed_kt>
+				<visibility_statute_mi>6.21</visibility_statute_mi>
+				<altim_in_hg>30.17717</altim_in_hg>
+				<sky_condition sky_cover="FEW" cloud_base_ft_agl="8500" />
+			</forecast>
+		</TAF>
+	</data>
+</response>

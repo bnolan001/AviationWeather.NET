@@ -138,7 +138,7 @@ namespace BNolan.AviationWx.NET.Parsers
                     }
                     if (fieldOrder[idx] == TAFCSVField.cloud_base_ft_agl)
                     {
-                        tafLine.SkyCondition[tafLine.SkyCondition.Count - 1].CloudBase = ParserHelpers.ParseInt(fieldVal)?? DefaultValue.Height;
+                        tafLine.SkyCondition[tafLine.SkyCondition.Count - 1].CloudBase = ParserHelpers.ParseInt(fieldVal) ?? DefaultValue.Height;
                         continue;
                     }
                     if (fieldOrder[idx] == TAFCSVField.sky_cover)
@@ -168,24 +168,27 @@ namespace BNolan.AviationWx.NET.Parsers
                     }
                     if (fieldOrder[idx] == TAFCSVField.icing_intensity)
                     {
+                        var intensity = ParserHelpers.ParseInt(fieldVal) ?? -1;
+
                         tafLine.IcingHazards.Add(new HazardDto()
                         {
-                            Intensity = fieldVal
+                            Intensity = IcingIntensity.ByValue(intensity)
                         });
+
                         continue;
                     }
                     if (fieldOrder[idx] == TAFCSVField.icing_max_alt_ft_agl)
                     {
-                            tafLine.IcingHazards[tafLine.IcingHazards.Count - 1].MaxAltitude = 
-                            ParserHelpers.ParseInt(fieldVal) ?? DefaultValue.Height;
-                        
+                        tafLine.IcingHazards[tafLine.IcingHazards.Count - 1].MaxAltitude =
+                        ParserHelpers.ParseInt(fieldVal) ?? DefaultValue.Height;
+
                         continue;
                     }
                     if (fieldOrder[idx] == TAFCSVField.icing_min_alt_ft_agl)
                     {
-                            tafLine.IcingHazards[tafLine.IcingHazards.Count - 1].MinAltitude = 
-                            ParserHelpers.ParseInt(fieldVal) ?? DefaultValue.Height;
-                        
+                        tafLine.IcingHazards[tafLine.IcingHazards.Count - 1].MinAltitude =
+                        ParserHelpers.ParseInt(fieldVal) ?? DefaultValue.Height;
+
                         continue;
                     }
                     if (fieldOrder[idx] == TAFCSVField.issue_time)
@@ -227,8 +230,8 @@ namespace BNolan.AviationWx.NET.Parsers
                     }
                     if (fieldOrder[idx] == TAFCSVField.probability)
                     {
-                            tafLine.Probability = ParserHelpers.ParseInt(fieldVal);
-                        
+                        tafLine.Probability = ParserHelpers.ParseInt(fieldVal);
+
                         continue;
                     }
                     if (fieldOrder[idx] == TAFCSVField.remarks)
@@ -254,24 +257,27 @@ namespace BNolan.AviationWx.NET.Parsers
                     }
                     if (fieldOrder[idx] == TAFCSVField.turbulence_intensity)
                     {
+                        var intensity = ParserHelpers.ParseInt(fieldVal) ?? -1;
+
                         tafLine.TurbulenceHazards.Add(new HazardDto()
                         {
-                            Intensity = fieldVal
+                            Intensity = TurbulenceIntensity.ByValue(intensity)
                         });
+
                         continue;
                     }
                     if (fieldOrder[idx] == TAFCSVField.turbulence_max_alt_ft_agl)
                     {
-                            tafLine.TurbulenceHazards[tafLine.TurbulenceHazards.Count - 1].MaxAltitude = 
-                            ParserHelpers.ParseInt(fieldVal) ?? DefaultValue.Height;
+                        tafLine.TurbulenceHazards[tafLine.TurbulenceHazards.Count - 1].MaxAltitude =
+                        ParserHelpers.ParseInt(fieldVal) ?? DefaultValue.Height;
 
                         continue;
                     }
                     if (fieldOrder[idx] == TAFCSVField.turbulence_min_alt_ft_agl)
                     {
-                            tafLine.TurbulenceHazards[tafLine.TurbulenceHazards.Count - 1].MinAltitude = 
-                            ParserHelpers.ParseInt(fieldVal) ?? DefaultValue.Height;
-                        
+                        tafLine.TurbulenceHazards[tafLine.TurbulenceHazards.Count - 1].MinAltitude =
+                        ParserHelpers.ParseInt(fieldVal) ?? DefaultValue.Height;
+
                         continue;
                     }
                     if (fieldOrder[idx] == TAFCSVField.valid_time)
@@ -321,7 +327,7 @@ namespace BNolan.AviationWx.NET.Parsers
                         tafLine.Wind = new WindDto()
                         {
                             Direction = ParserHelpers.ParseInt(fieldVal)
-                    };
+                        };
                         continue;
                     }
                     if (fieldOrder[idx] == TAFCSVField.wind_gust_kt)
@@ -344,7 +350,7 @@ namespace BNolan.AviationWx.NET.Parsers
                         tafLine.WindShear = new WindShearDto()
                         {
                             Height = ParserHelpers.ParseInt(fieldVal)
-                    };
+                        };
                         continue;
                     }
                     if (fieldOrder[idx] == TAFCSVField.wind_shear_dir_degrees)

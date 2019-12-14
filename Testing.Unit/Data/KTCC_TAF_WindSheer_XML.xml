@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XML-Schema-instance" version="1.2" xsi:noNamespaceSchemaLocation="http://aviationweather.gov/adds/schema/taf1_2.xsd">
+  <request_index>640369</request_index>
+  <data_source name="tafs" />
+  <request type="retrieve" />
+  <errors />
+  <warnings />
+  <time_taken_ms>19</time_taken_ms>
+  <data num_results="7">
+    <TAF>
+      <raw_text>KTCC 140005Z 1400/1424 33012KT P6SM SKC WS012/33030KT FM140400 VRB06KT P6SM SKC WS015/34030KT FM140600 VRB06KT P6SM SKC FM141800 21013KT P6SM SKC FM142000 24017G25KT P6SM SKC</raw_text>
+      <station_id>KTCC</station_id>
+      <issue_time>2019-12-14T00:05:00Z</issue_time>
+      <bulletin_time>2019-12-14T00:05:00Z</bulletin_time>
+      <valid_time_from>2019-12-14T00:00:00Z</valid_time_from>
+      <valid_time_to>2019-12-15T00:00:00Z</valid_time_to>
+      <remarks>AMD</remarks>
+      <latitude>35.18</latitude>
+      <longitude>-103.6</longitude>
+      <elevation_m>1235.0</elevation_m>
+      <forecast>
+        <fcst_time_from>2019-12-14T00:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T04:00:00Z</fcst_time_to>
+        <wind_dir_degrees>330</wind_dir_degrees>
+        <wind_speed_kt>12</wind_speed_kt>
+        <wind_shear_hgt_ft_agl>1200</wind_shear_hgt_ft_agl>
+        <wind_shear_dir_degrees>330</wind_shear_dir_degrees>
+        <wind_shear_speed_kt>30</wind_shear_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="SKC" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T04:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T06:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>0</wind_dir_degrees>
+        <wind_speed_kt>6</wind_speed_kt>
+        <wind_shear_hgt_ft_agl>1500</wind_shear_hgt_ft_agl>
+        <wind_shear_dir_degrees>340</wind_shear_dir_degrees>
+        <wind_shear_speed_kt>30</wind_shear_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="SKC" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T06:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T18:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>0</wind_dir_degrees>
+        <wind_speed_kt>6</wind_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="SKC" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T18:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T20:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>210</wind_dir_degrees>
+        <wind_speed_kt>13</wind_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="SKC" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T20:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-15T00:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>240</wind_dir_degrees>
+        <wind_speed_kt>17</wind_speed_kt>
+        <wind_gust_kt>25</wind_gust_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="SKC" />
+      </forecast>
+    </TAF>
+    <TAF>
+      <raw_text>KTCC 132325Z 1400/1424 30015G25KT P6SM SKC FM140200 31012KT P6SM SKC WS012/33030KT FM140400 VRB06KT P6SM SKC WS015/34030KT FM140600 VRB06KT P6SM SKC FM141800 21013KT P6SM SKC FM142000 24017G25KT P6SM SKC</raw_text>
+      <station_id>KTCC</station_id>
+      <issue_time>2019-12-13T23:25:00Z</issue_time>
+      <bulletin_time>2019-12-13T23:25:00Z</bulletin_time>
+      <valid_time_from>2019-12-14T00:00:00Z</valid_time_from>
+      <valid_time_to>2019-12-15T00:00:00Z</valid_time_to>
+      <latitude>35.18</latitude>
+      <longitude>-103.6</longitude>
+      <elevation_m>1235.0</elevation_m>
+      <forecast>
+        <fcst_time_from>2019-12-14T00:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T02:00:00Z</fcst_time_to>
+        <wind_dir_degrees>300</wind_dir_degrees>
+        <wind_speed_kt>15</wind_speed_kt>
+        <wind_gust_kt>25</wind_gust_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="SKC" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T02:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T04:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>310</wind_dir_degrees>
+        <wind_speed_kt>12</wind_speed_kt>
+        <wind_shear_hgt_ft_agl>1200</wind_shear_hgt_ft_agl>
+        <wind_shear_dir_degrees>330</wind_shear_dir_degrees>
+        <wind_shear_speed_kt>30</wind_shear_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="SKC" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T04:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T06:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>0</wind_dir_degrees>
+        <wind_speed_kt>6</wind_speed_kt>
+        <wind_shear_hgt_ft_agl>1500</wind_shear_hgt_ft_agl>
+        <wind_shear_dir_degrees>340</wind_shear_dir_degrees>
+        <wind_shear_speed_kt>30</wind_shear_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="SKC" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T06:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T18:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>0</wind_dir_degrees>
+        <wind_speed_kt>6</wind_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="SKC" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T18:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T20:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>210</wind_dir_degrees>
+        <wind_speed_kt>13</wind_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="SKC" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T20:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-15T00:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>240</wind_dir_degrees>
+        <wind_speed_kt>17</wind_speed_kt>
+        <wind_gust_kt>25</wind_gust_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="SKC" />
+      </forecast>
+    </TAF>
+    <TAF>
+      <raw_text>KTCC 131745Z 1318/1418 30019G29KT P6SM SCT250 FM140000 31012KT P6SM BKN250 FM140500 VRB05KT P6SM BKN250 FM141400 16008KT P6SM BKN250 WS020/24030KT FM141700 21013KT P6SM BKN200</raw_text>
+      <station_id>KTCC</station_id>
+      <issue_time>2019-12-13T17:45:00Z</issue_time>
+      <bulletin_time>2019-12-13T17:45:00Z</bulletin_time>
+      <valid_time_from>2019-12-13T18:00:00Z</valid_time_from>
+      <valid_time_to>2019-12-14T18:00:00Z</valid_time_to>
+      <latitude>35.18</latitude>
+      <longitude>-103.6</longitude>
+      <elevation_m>1235.0</elevation_m>
+      <forecast>
+        <fcst_time_from>2019-12-13T18:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T00:00:00Z</fcst_time_to>
+        <wind_dir_degrees>300</wind_dir_degrees>
+        <wind_speed_kt>19</wind_speed_kt>
+        <wind_gust_kt>29</wind_gust_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="25000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T00:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T05:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>310</wind_dir_degrees>
+        <wind_speed_kt>12</wind_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="25000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T05:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T14:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>0</wind_dir_degrees>
+        <wind_speed_kt>5</wind_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="25000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T14:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T17:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>160</wind_dir_degrees>
+        <wind_speed_kt>8</wind_speed_kt>
+        <wind_shear_hgt_ft_agl>2000</wind_shear_hgt_ft_agl>
+        <wind_shear_dir_degrees>240</wind_shear_dir_degrees>
+        <wind_shear_speed_kt>30</wind_shear_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="25000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T17:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T18:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>210</wind_dir_degrees>
+        <wind_speed_kt>13</wind_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="20000" />
+      </forecast>
+    </TAF>
+    <TAF>
+      <raw_text>KTCC 131735Z 1318/1418 30019G29KT P6SM SCT250 FM140000 31012KT P6SM BKN250 FM140500 VRB05KT P6SM BKN250 FM141400 16008KT P6SM BKN250 WS020/24030KT FM141700 21013KT P6SM BKN200</raw_text>
+      <station_id>KTCC</station_id>
+      <issue_time>2019-12-13T17:35:00Z</issue_time>
+      <bulletin_time>2019-12-13T17:35:00Z</bulletin_time>
+      <valid_time_from>2019-12-13T18:00:00Z</valid_time_from>
+      <valid_time_to>2019-12-14T18:00:00Z</valid_time_to>
+      <latitude>35.18</latitude>
+      <longitude>-103.6</longitude>
+      <elevation_m>1235.0</elevation_m>
+      <forecast>
+        <fcst_time_from>2019-12-13T18:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T00:00:00Z</fcst_time_to>
+        <wind_dir_degrees>300</wind_dir_degrees>
+        <wind_speed_kt>19</wind_speed_kt>
+        <wind_gust_kt>29</wind_gust_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="25000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T00:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T05:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>310</wind_dir_degrees>
+        <wind_speed_kt>12</wind_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="25000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T05:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T14:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>0</wind_dir_degrees>
+        <wind_speed_kt>5</wind_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="25000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T14:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T17:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>160</wind_dir_degrees>
+        <wind_speed_kt>8</wind_speed_kt>
+        <wind_shear_hgt_ft_agl>2000</wind_shear_hgt_ft_agl>
+        <wind_shear_dir_degrees>240</wind_shear_dir_degrees>
+        <wind_shear_speed_kt>30</wind_shear_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="25000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T17:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T18:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>210</wind_dir_degrees>
+        <wind_speed_kt>13</wind_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="BKN" cloud_base_ft_agl="20000" />
+      </forecast>
+    </TAF>
+    <TAF>
+      <raw_text>KTCC 131132Z 1312/1412 29013KT P6SM SCT250 FM131700 29022G32KT P6SM SCT250 FM140100 26010KT P6SM SCT250 FM140600 VRB06KT P6SM SCT100</raw_text>
+      <station_id>KTCC</station_id>
+      <issue_time>2019-12-13T11:32:00Z</issue_time>
+      <bulletin_time>2019-12-13T11:32:00Z</bulletin_time>
+      <valid_time_from>2019-12-13T12:00:00Z</valid_time_from>
+      <valid_time_to>2019-12-14T12:00:00Z</valid_time_to>
+      <latitude>35.18</latitude>
+      <longitude>-103.6</longitude>
+      <elevation_m>1235.0</elevation_m>
+      <forecast>
+        <fcst_time_from>2019-12-13T12:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-13T17:00:00Z</fcst_time_to>
+        <wind_dir_degrees>290</wind_dir_degrees>
+        <wind_speed_kt>13</wind_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="25000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-13T17:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T01:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>290</wind_dir_degrees>
+        <wind_speed_kt>22</wind_speed_kt>
+        <wind_gust_kt>32</wind_gust_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="25000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T01:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T06:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>260</wind_dir_degrees>
+        <wind_speed_kt>10</wind_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="25000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-14T06:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T12:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>0</wind_dir_degrees>
+        <wind_speed_kt>6</wind_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="10000" />
+      </forecast>
+    </TAF>
+    <TAF>
+      <raw_text>KTCC 130533Z 1306/1406 29012KT P6SM SCT250 FM131600 29015G25KT P6SM SCT250 FM131900 30022G32KT P6SM SCT250</raw_text>
+      <station_id>KTCC</station_id>
+      <issue_time>2019-12-13T05:33:00Z</issue_time>
+      <bulletin_time>2019-12-13T05:33:00Z</bulletin_time>
+      <valid_time_from>2019-12-13T06:00:00Z</valid_time_from>
+      <valid_time_to>2019-12-14T06:00:00Z</valid_time_to>
+      <latitude>35.18</latitude>
+      <longitude>-103.6</longitude>
+      <elevation_m>1235.0</elevation_m>
+      <forecast>
+        <fcst_time_from>2019-12-13T06:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-13T16:00:00Z</fcst_time_to>
+        <wind_dir_degrees>290</wind_dir_degrees>
+        <wind_speed_kt>12</wind_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="25000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-13T16:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-13T19:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>290</wind_dir_degrees>
+        <wind_speed_kt>15</wind_speed_kt>
+        <wind_gust_kt>25</wind_gust_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="25000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-13T19:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T06:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>300</wind_dir_degrees>
+        <wind_speed_kt>22</wind_speed_kt>
+        <wind_gust_kt>32</wind_gust_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="25000" />
+      </forecast>
+    </TAF>
+    <TAF>
+      <raw_text>KTCC 122324Z 1300/1324 20006KT P6SM SKC FM130700 28012KT P6SM SCT250 FM131600 29015G25KT P6SM SCT250 FM131900 30020G30KT P6SM SCT250</raw_text>
+      <station_id>KTCC</station_id>
+      <issue_time>2019-12-12T23:24:00Z</issue_time>
+      <bulletin_time>2019-12-12T23:24:00Z</bulletin_time>
+      <valid_time_from>2019-12-13T00:00:00Z</valid_time_from>
+      <valid_time_to>2019-12-14T00:00:00Z</valid_time_to>
+      <latitude>35.18</latitude>
+      <longitude>-103.6</longitude>
+      <elevation_m>1235.0</elevation_m>
+      <forecast>
+        <fcst_time_from>2019-12-13T00:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-13T07:00:00Z</fcst_time_to>
+        <wind_dir_degrees>200</wind_dir_degrees>
+        <wind_speed_kt>6</wind_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="SKC" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-13T07:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-13T16:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>280</wind_dir_degrees>
+        <wind_speed_kt>12</wind_speed_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="25000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-13T16:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-13T19:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>290</wind_dir_degrees>
+        <wind_speed_kt>15</wind_speed_kt>
+        <wind_gust_kt>25</wind_gust_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="25000" />
+      </forecast>
+      <forecast>
+        <fcst_time_from>2019-12-13T19:00:00Z</fcst_time_from>
+        <fcst_time_to>2019-12-14T00:00:00Z</fcst_time_to>
+        <change_indicator>FM</change_indicator>
+        <wind_dir_degrees>300</wind_dir_degrees>
+        <wind_speed_kt>20</wind_speed_kt>
+        <wind_gust_kt>30</wind_gust_kt>
+        <visibility_statute_mi>6.21</visibility_statute_mi>
+        <sky_condition sky_cover="SCT" cloud_base_ft_agl="25000" />
+      </forecast>
+    </TAF>
+  </data>
+</response>
+

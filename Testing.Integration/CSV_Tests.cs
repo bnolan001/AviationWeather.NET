@@ -65,16 +65,18 @@ namespace Testing.Integration
         [Test]
         public void GetPreviousMETAR_Observation_Multiple_Valid()
         {
-            var request = _aviationWeather.GetPreviousObservationsAsync(new List<string>() { "KIAD", "KPHL" }, 4);
+            var icaos = new List<string>() { "KIAD", "KPHL", "OKBK", "SBSN", "KADK", "WALL", "KPWM", "FVRG" };
+            var request = _aviationWeather.GetPreviousObservationsAsync(
+                icaos, 4);
             request.Wait();
             var obs = request.Result;
             obs.Should().NotBeNull();
-            obs.Count.Should().Be(2);
-            obs[0].METAR.Count.Should().BeGreaterOrEqualTo(4);
+            obs.Count.Should().Be(icaos.Count);
+            obs[0].METAR.Count.Should().BeGreaterOrEqualTo(1);
             obs[0].METAR[0].RawMETAR.Should().NotBeNullOrWhiteSpace();
             obs[0].ICAO.Should().NotBeNullOrWhiteSpace();
 
-            obs[1].METAR.Count.Should().BeGreaterOrEqualTo(4);
+            obs[1].METAR.Count.Should().BeGreaterOrEqualTo(1);
             obs[1].METAR[0].RawMETAR.Should().NotBeNullOrWhiteSpace();
             obs[1].ICAO.Should().NotBeNullOrWhiteSpace();
         }
@@ -104,11 +106,12 @@ namespace Testing.Integration
         [Test]
         public void GetLatestForecastsAsync_Multiple_Valid()
         {
-            var request = _aviationWeather.GetLatestForecastsAsync(new List<string>() { "WALL", "ZBAA", "EGLL", "HECA" });
+            var icaos = new List<string>() { "WALL", "ZBAA", "EGLL", "HECA", "KPWM", "SBSN", "FVRG"};
+            var request = _aviationWeather.GetLatestForecastsAsync(icaos);
             request.Wait();
             var forecasts = request.Result;
             forecasts.Should().NotBeNull();
-            forecasts.Count.Should().Be(4);
+            forecasts.Count.Should().Be(icaos.Count);
             foreach (var fcst in forecasts)
             {
                 fcst.TAF.Count.Should().BeGreaterOrEqualTo(1);

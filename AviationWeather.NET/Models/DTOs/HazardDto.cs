@@ -1,8 +1,13 @@
-﻿namespace BNolan.AviationWx.NET.Models.DTOs
+﻿using BNolan.AviationWx.NET.Models.Enums.Interfaces;
+
+namespace BNolan.AviationWx.NET.Models.DTOs
 {
     public class HazardDto
     {
-        public string Intensity { get; set; }
+        /// <summary>
+        /// Intensity of the reported hazard
+        /// </summary>
+        public IHazardIntensity Intensity { get; set; }
 
         /// <summary>
         /// Lowest altitude where icing can be expected.  Measured in feet.
