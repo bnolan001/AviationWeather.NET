@@ -73,7 +73,7 @@ namespace Testing.Unit
         {
             var parser = new ParseMETARXML();
             var obs = parser.Parse(Resource.WALL_NoQualityControlFlags_METAR, new[] { "WALL" });
-            obs.Count.Should().Be(2);
+            obs.Count.Should().Be(1);
             obs.Where(o => o.ICAO == "WALL").First().METAR.Count.Should().Be(1);
             obs[0].METAR[0].QualityControlFlags.Count.Should().Be(0);
         }
