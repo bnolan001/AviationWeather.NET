@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XML-Schema-instance" version="1.2" xsi:noNamespaceSchemaLocation="http://aviationweather.gov/adds/schema/metar1_2.xsd">
+  <request_index>83098098</request_index>
+  <data_source name="metars" />
+  <request type="retrieve" />
+  <errors />
+  <warnings />
+  <time_taken_ms>7</time_taken_ms>
+  <data num_results="1">
+    <METAR>
+      <raw_text>WALL 092200Z 31004KT 9000 FEW018 25/24 Q1007</raw_text>
+      <station_id>WALL</station_id>
+      <observation_time>2020-01-09T22:00:00Z</observation_time>
+      <latitude>-1.27</latitude>
+      <longitude>116.9</longitude>
+      <temp_c>25.0</temp_c>
+      <dewpoint_c>24.0</dewpoint_c>
+      <wind_dir_degrees>310</wind_dir_degrees>
+      <wind_speed_kt>4</wind_speed_kt>
+      <visibility_statute_mi>5.59</visibility_statute_mi>
+      <altim_in_hg>29.734253</altim_in_hg>
+      <sky_condition sky_cover="FEW" cloud_base_ft_agl="1800" />
+      <flight_category>VFR</flight_category>
+      <metar_type>METAR</metar_type>
+      <elevation_m>3.0</elevation_m>
+    </METAR>
+  </data>
+</response>
+

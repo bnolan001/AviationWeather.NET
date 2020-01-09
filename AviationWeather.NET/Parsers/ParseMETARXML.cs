@@ -175,49 +175,49 @@ namespace BNolan.AviationWx.NET.Parsers
 
         private void ParseQualityControlFlags(METARDto dto, METAR xml)
         {
-            if (xml.quality_control_flags.auto != null
+            if (xml.quality_control_flags?.auto != null
                 && bool.Parse(xml.quality_control_flags.auto))
             {
                 dto.QualityControlFlags.Add(QualityControlFlagType.Auto);
             }
 
-            if (xml.quality_control_flags.auto_station != null
+            if (xml.quality_control_flags?.auto_station != null
                 && bool.Parse(xml.quality_control_flags.auto_station))
             {
                 dto.QualityControlFlags.Add(QualityControlFlagType.AutoStation);
             }
 
-            if (xml.quality_control_flags.corrected != null
+            if (xml.quality_control_flags?.corrected != null
                 && bool.Parse(xml.quality_control_flags.corrected))
             {
                 dto.QualityControlFlags.Add(QualityControlFlagType.Corrected);
             }
 
-            if (xml.quality_control_flags.freezing_rain_sensor_off != null
+            if (xml.quality_control_flags?.freezing_rain_sensor_off != null
                 && bool.Parse(xml.quality_control_flags.freezing_rain_sensor_off))
             {
                 dto.QualityControlFlags.Add(QualityControlFlagType.FreezingRainSensorOff);
             }
 
-            if (xml.quality_control_flags.lightning_sensor_off != null
+            if (xml.quality_control_flags?.lightning_sensor_off != null
                 && bool.Parse(xml.quality_control_flags.lightning_sensor_off))
             {
                 dto.QualityControlFlags.Add(QualityControlFlagType.LightningSensorOff);
             }
 
-            if (xml.quality_control_flags.maintenance_indicator_on != null
+            if (xml.quality_control_flags?.maintenance_indicator_on != null
                 && bool.Parse(xml.quality_control_flags.maintenance_indicator_on))
             {
                 dto.QualityControlFlags.Add(QualityControlFlagType.MaintenanceIndicator);
             }
 
-            if (xml.quality_control_flags.no_signal != null
+            if (xml.quality_control_flags?.no_signal != null
                 && bool.Parse(xml.quality_control_flags.no_signal))
             {
                 dto.QualityControlFlags.Add(QualityControlFlagType.NoSignal);
             }
 
-            if (xml.quality_control_flags.present_weather_sensor_off != null
+            if (xml.quality_control_flags?.present_weather_sensor_off != null
                 && bool.Parse(xml.quality_control_flags.present_weather_sensor_off))
             {
                 dto.QualityControlFlags.Add(QualityControlFlagType.PresentWeatherSensorOff);

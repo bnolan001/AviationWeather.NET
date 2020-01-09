@@ -266,5 +266,24 @@ namespace Testing.Unit {
                 return ResourceManager.GetString("PHNL_KSEA_KDEN_TAF_CSV", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+        ///&lt;response xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XML-Schema-instance&quot; version=&quot;1.2&quot; xsi:noNamespaceSchemaLocation=&quot;http://aviationweather.gov/adds/schema/metar1_2.xsd&quot;&gt;
+        ///  &lt;request_index&gt;83098098&lt;/request_index&gt;
+        ///  &lt;data_source name=&quot;metars&quot; /&gt;
+        ///  &lt;request type=&quot;retrieve&quot; /&gt;
+        ///  &lt;errors /&gt;
+        ///  &lt;warnings /&gt;
+        ///  &lt;time_taken_ms&gt;7&lt;/time_taken_ms&gt;
+        ///  &lt;data num_results=&quot;1&quot;&gt;
+        ///    &lt;METAR&gt;
+        ///      &lt;raw_text&gt;WALL 092200Z 31004KT 9000 FEW018 2 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string WALL_NoQualityControlFlags_METAR {
+            get {
+                return ResourceManager.GetString("WALL_NoQualityControlFlags_METAR", resourceCulture);
+            }
+        }
     }
 }

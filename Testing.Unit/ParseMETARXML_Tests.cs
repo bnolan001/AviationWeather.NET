@@ -68,6 +68,16 @@ namespace Testing.Unit
             obs.Where(o => o.ICAO == "NOOB").First().METAR.Count.Should().Be(0);
         }
 
+        [Test]
+        public void Parse_SingleStation_NoQualityControlIndicators()
+        {
+            var parser = new ParseMETARXML();
+            var obs = parser.Parse(Resource.WALL_NoQualityControlFlags_METAR, new[] { "WALL" });
+            obs.Count.Should().Be(2);
+            obs.Where(o => o.ICAO == "WALL").First().METAR.Count.Should().Be(1);
+            obs[0].METAR[0].QualityControlFlags.Count.Should().Be(0);
+        }
+
         /// <summary>
         /// Validate ability to properly parse SPECI
         /// </summary>
