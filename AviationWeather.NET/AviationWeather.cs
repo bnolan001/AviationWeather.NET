@@ -2,6 +2,7 @@
 using BNolan.AviationWx.NET.Connectors;
 using BNolan.AviationWx.NET.Models.DTOs;
 using BNolan.AviationWx.NET.Models.Enums;
+using BNolan.AviationWx.NET.Validators;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -208,8 +209,8 @@ namespace BNolan.AviationWx.NET
         /// Retrieves the station information for all ICAOs located in the country.  
         /// The abbreviation is expected to be the two letter abbreviation for the country.
         /// </summary>
-        /// <param name="abbreviations"></param>
-        /// <returns></returns>
+        /// <param name="abbreviations">List of two letter abbreviations for countries</param>
+        /// <returns>Empty list if the abbreviation is not recognized</returns>
         public async Task<List<StationInfoDto>> GetStationInfoByCountryAsync(IList<string> abbreviations)
         {
             if (abbreviations == null
@@ -219,6 +220,47 @@ namespace BNolan.AviationWx.NET
             }
 
             return await _stationDataAccessor.GetStationsByCountryAsync(abbreviations);
+        }
+
+        /// <summary>
+        /// Retrieves all stations that are located within the circle defined by the latitude and longitude
+        /// for the center and distance defining the radius to search.
+        /// </summary>
+        /// <param name="latitude">-90.0 to 90.0</param>
+        /// <param name="longitude">-180.0 to 180.0</param>
+        /// <param name="distance">Statute miles</param>
+        /// <returns>Empty list if no stations are found in the area defined</returns>
+        public async Task<List<StationInfoDto>> GetStationsNearAsync(double latitude, double longitude, 
+            int distance)
+        {
+            GeographicValidator.ValidateLatitude(latitude);
+            GeographicValidator.ValidateLongitude(longitude);
+            if (distance < 1)
+            {
+                throw new ArgumentException("Distance must be a value greater than 0", nameof(distance));
+            }
+
+            return await _stationDataAccessor.GetStationsNearAsync(latitude, longitude, distance);
+        }
+
+
+
+        /// <summary>
+        /// Retrieves all stations that are located within the box defined by the two corners
+        /// </summary>
+        /// <param name="cornerOneLatitude">-90.0 to 90.0</param>
+        /// <param name="cornerOneLongitude">-180.0 to 180.0</param>
+        /// <param name="cornerTwoLatitude">-90.0 to 90.0</param>
+        /// <param name="cornerTwoLongitude">-180.0 to 180.0</param>
+        /// <returns>Empty list if no stations are found in the area defined</returns>
+        public async Task<List<StationInfoDto>> GetStationsInBoxAsync(double cornerOneLatitude, double cornerOneLongitude,
+            double cornerTwoLatitude, double cornerTwoLongitude)
+        {
+            GeographicValidator.ValidateLatitude(cornerOneLatitude);
+            GeographicValidator.ValidateLongitude(cornerOneLongitude);
+            
+            return await _stationDataAccessor.GetStationsInBoxAsync(cornerOneLatitude, cornerOneLongitude,
+                cornerTwoLatitude, cornerTwoLongitude);
         }
 
         #endregion Station Info

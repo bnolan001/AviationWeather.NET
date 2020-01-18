@@ -28,6 +28,10 @@
 
         public const string StationInfo = "dataSource=stations&requestType=retrieve&format={format}&stationString={icao}";
 
+        public const string RadialSearch = "dataSource=stations&requestType=retrieve&format={format}&radialDistance={distance};{longitude},{latitude}";
+
+        public const string BoxSearch = "dataSource=stations&requestType=retrieve&format={format}&minLat={minLat}&minLon={minLon}&maxLat={maxLat}&maxLon={maxLon}";
+
         #endregion Station Info
     }
 }

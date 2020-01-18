@@ -237,6 +237,27 @@ namespace Testing.Integration
             stations.Should().BeEmpty();
         }
 
+
+        [Test]
+        public void GetStationsNear_Valid()
+        {
+            var request = _aviationWeather.GetStationsNearAsync(39.83, -104.65, 20);
+            request.Wait();
+            var stations = request.Result;
+            stations.Should().NotBeEmpty();
+            stations.Count.Should().BeGreaterOrEqualTo(2);
+        }
+
+        [Test]
+        public void GetStationsInBox_Valid()
+        {
+            var request = _aviationWeather.GetStationsInBoxAsync(25, -130, 65, -40);
+            request.Wait();
+            var stations = request.Result;
+            stations.Should().NotBeEmpty();
+            stations.Count.Should().BeGreaterOrEqualTo(2);
+        }
+
         #endregion Station Info
     }
 }

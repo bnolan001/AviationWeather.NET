@@ -3,6 +3,7 @@ using BNolan.AviationWx.NET.Models.Constants;
 using BNolan.AviationWx.NET.Models.DTOs;
 using BNolan.AviationWx.NET.Models.Enums;
 using BNolan.AviationWx.NET.Parsers;
+using BNolan.AviationWx.NET.Validators;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -82,14 +83,14 @@ namespace BNolan.AviationWx.NET.Accessors
                .Replace("{icao}", stations);
             var response = await _connector.GetAsync(url);
 
-            return ConvertToDTO(response, new List<string>());
+            return ConvertToDTO(response);
         }
 
         /// <summary>
         /// Retrieves Station Information for all of the ICAOs located within the given list
         /// of countries
         /// </summary>
-        /// <param name="abbreviations">List of two letter abbreviations for states and provinces</param>
+        /// <param name="abbreviations">List of two letter abbreviations for countries</param>
         /// <returns>Empty list if the abbreviation is not recognized</returns>
         public async Task<List<StationInfoDto>> GetStationsByCountryAsync(IList<string> abbreviations)
         {
@@ -101,7 +102,63 @@ namespace BNolan.AviationWx.NET.Accessors
                .Replace("{icao}", stations);
             var response = await _connector.GetAsync(url);
 
-            return ConvertToDTO(response, new List<string>());
+            return ConvertToDTO(response);
+        }
+
+        /// <summary>
+        /// Retrieves all stations that are located within the circle defined by the latitude and longitude
+        /// for the center and distance defining the radius to search.
+        /// </summary>
+        /// <param name="latitude">-90.0 to 90.0</param>
+        /// <param name="longitude">-180.0 to 180.0</param>
+        /// <param name="distance">Statute miles</param>
+        /// <returns>Empty list if no stations are found in the area defined</returns>
+        public async Task<List<StationInfoDto>> GetStationsNearAsync(double latitude, double longitude, int distance)
+        {
+            var url = URLConstants.BaseURL + URLConstants.BasePath +
+              URLConstants.RadialSearch.Replace("{format}", _parserType.Name)
+                .Replace("{latitude}", latitude.ToString())
+                .Replace("{longitude}", longitude.ToString())
+                .Replace("{distance}", distance.ToString());
+            var response = await _connector.GetAsync(url);
+
+            return ConvertToDTO(response);
+        }
+
+        /// <summary>
+        /// Retrieves all stations that are located within the box defined by the two corners
+        /// </summary>
+        /// <param name="cornerOneLatitude">-90.0 to 90.0</param>
+        /// <param name="cornerOneLongitude">-180.0 to 180.0</param>
+        /// <param name="cornerTwoLatitude">-90.0 to 90.0</param>
+        /// <param name="cornerTwoLongitude">-180.0 to 180.0</param>
+        /// <returns>Empty list if no stations are found in the area defined</returns>
+        public async Task<List<StationInfoDto>> GetStationsInBoxAsync(double cornerOneLatitude, double cornerOneLongitude,
+            double cornerTwoLatitude, double cornerTwoLongitude)
+        {
+            double minLat = cornerTwoLatitude;
+            double minLon = cornerTwoLongitude;
+            double maxLat = cornerOneLatitude;
+            double maxLon = cornerOneLongitude;
+            if (cornerOneLatitude < cornerTwoLatitude)
+            {
+                minLat = cornerOneLatitude;
+                maxLat = cornerTwoLatitude;
+            }
+            if (cornerOneLongitude < cornerTwoLongitude)
+            {
+                minLon = cornerOneLongitude;
+                maxLon = cornerTwoLongitude;
+            }
+            var url = URLConstants.BaseURL + URLConstants.BasePath +
+              URLConstants.BoxSearch.Replace("{format}", _parserType.Name)
+                .Replace("{minLat}", minLat.ToString())
+                .Replace("{minLon}", minLon.ToString())
+                .Replace("{maxLat}", maxLat.ToString())
+                .Replace("{maxLon}", maxLon.ToString());
+            var response = await _connector.GetAsync(url);
+
+            return ConvertToDTO(response);
         }
 
         /// <summary>
@@ -112,8 +169,13 @@ namespace BNolan.AviationWx.NET.Accessors
         /// <param name="icaos"></param>
         /// <returns></returns>
         private List<StationInfoDto> ConvertToDTO(string data,
-            IList<string> icaos)
+            IList<string> icaos = null)
         {
+            if (icaos == null)
+            {
+                icaos = new List<string>();
+            }
+
             IParser<StationInfoDto> parser = null;
             if (_parserType == ParserType.XML)
             {
