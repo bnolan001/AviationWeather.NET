@@ -9,17 +9,17 @@ namespace BNolan.AviationWx.NET.Validators
         /// </summary>
         /// <param name="latitude"></param>
         public static void ValidateLatitude(double latitude){
-            if (latitude > 90.0 && latitude < -90.0)
+            if (latitude > 90.0 || latitude < -90.0)
             {
-                throw new ArgumentException("Latitude must be a value between -90.0 and 90.0", nameof(latitude));
+                throw new ArgumentOutOfRangeException("Latitude must be a value between -90.0 and 90.0", nameof(latitude));
             }
         }
 
         public static void ValidateLongitude(double longitude)
         {
-            if(longitude > 180.0 && longitude < -180.0)
+            if(longitude > 180.0 || longitude < -180.0)
             {
-                throw new ArgumentException("Longitude must be a value between -180.0 and 180.0", nameof(longitude));
+                throw new ArgumentOutOfRangeException("Longitude must be a value between -180.0 and 180.0", nameof(longitude));
             }
         }
     }

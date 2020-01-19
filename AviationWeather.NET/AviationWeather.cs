@@ -11,11 +11,15 @@ namespace BNolan.AviationWx.NET
 {
     public class AviationWeather
     {
+        /*
+         * ConfigureAwait(false) is being utilized on Async calls based on the write-up from Microsoft
+         * in https://devblogs.microsoft.com/dotnet/configureawait-faq/ 
+         */
         private readonly IConnector _connector;
         private readonly ParserType _parserType;
-        private METARAccessor _metarAccessor;
-        private TAFAccessor _tafAccessor;
-        private StationDataAccessor _stationDataAccessor;
+        private readonly METARAccessor _metarAccessor;
+        private readonly TAFAccessor _tafAccessor;
+        private readonly StationDataAccessor _stationDataAccessor;
 
         /// <summary>
         /// Constructor utilizing the default HTTP connector
@@ -24,7 +28,7 @@ namespace BNolan.AviationWx.NET
         public AviationWeather(ParserType parser)
         {
             _parserType = parser;
-            _connector = new Http();
+            _connector = new HttpConnector();
             _metarAccessor = new METARAccessor(_parserType, _connector);
             _tafAccessor = new TAFAccessor(_parserType, _connector);
             _stationDataAccessor = new StationDataAccessor(_parserType, _connector);
@@ -57,7 +61,8 @@ namespace BNolan.AviationWx.NET
             {
                 throw new ArgumentException($"{nameof(icaos)} cannot be null or empty.");
             }
-            return await _metarAccessor.GetLatestObservationAsync(icaos);
+            return await _metarAccessor.GetLatestObservationAsync(icaos)
+                .ConfigureAwait(false);
         }
 
         /// <summary>
@@ -79,7 +84,8 @@ namespace BNolan.AviationWx.NET
             {
                 throw new ArgumentException($"{nameof(numHours)} must be greater than 0.");
             }
-            return await _metarAccessor.GetPreviousHoursObservationsAsync(icaos, numHours);
+            return await _metarAccessor.GetPreviousHoursObservationsAsync(icaos, numHours)
+                .ConfigureAwait(false);
         }
 
         #endregion Observations
@@ -98,7 +104,8 @@ namespace BNolan.AviationWx.NET
             {
                 throw new ArgumentException($"{nameof(icaos)} cannot be null or empty.");
             }
-            return await _tafAccessor.GetLatestForecastsAsync(icaos);
+            return await _tafAccessor.GetLatestForecastsAsync(icaos)
+                .ConfigureAwait(false);
         }
 
         /// <summary>
@@ -117,24 +124,13 @@ namespace BNolan.AviationWx.NET
             int minLatitude,
             int hoursBeforeNow = 4)
         {
-            if (!InputValidator.ValidateLatitude(minLatitude))
-            {
-                throw new ArgumentOutOfRangeException($"'{nameof(minLatitude)}' is outside the permitted range of 90 to -90");
-            }
-            if (!InputValidator.ValidateLatitude(maxLatitude))
-            {
-                throw new ArgumentOutOfRangeException($"'{nameof(maxLatitude)}' is outside the permitted range of 90 to -90");
-            }
-            if (!InputValidator.ValidateLongitude(minLongitude))
-            {
-                throw new ArgumentOutOfRangeException($"'{nameof(minLongitude)}' is outside the permitted range of 180 to -180");
-            }
-            if (!InputValidator.ValidateLongitude(maxLongitude))
-            {
-                throw new ArgumentOutOfRangeException($"'{nameof(maxLongitude)}' is outside the permitted range of 180 to -180");
-            }
+            GeographicValidator.ValidateLatitude(minLatitude);
+            GeographicValidator.ValidateLatitude(maxLatitude);
+            GeographicValidator.ValidateLongitude(minLongitude);
+            GeographicValidator.ValidateLongitude(maxLongitude);
 
-            return await _tafAccessor.GetForecastsInBoxAsync(maxLongitude, minLongitude, maxLatitude, minLatitude, hoursBeforeNow);
+            return await _tafAccessor.GetForecastsInBoxAsync(maxLongitude, minLongitude, 
+                maxLatitude, minLatitude, hoursBeforeNow).ConfigureAwait(false);
 
         }
 
@@ -156,16 +152,11 @@ namespace BNolan.AviationWx.NET
             {
                 throw new ArgumentOutOfRangeException($"'{nameof(radial)}' must be greater than 0 but less than 500");
             }
-            if (!InputValidator.ValidateLatitude(latitude))
-            {
-                throw new ArgumentOutOfRangeException($"'{nameof(latitude)}' is outside the permitted range of 90 to -90");
-            }
-            if (!InputValidator.ValidateLongitude(longitude))
-            {
-                throw new ArgumentOutOfRangeException($"'{nameof(longitude)}' is outside the permitted range of 180 to -180");
-            }
+            GeographicValidator.ValidateLatitude(latitude);
+            GeographicValidator.ValidateLongitude(longitude);
 
-            return await _tafAccessor.GetForecastsInRadialAsync(longitude, latitude, radial, hoursBeforeNow);
+            return await _tafAccessor.GetForecastsInRadialAsync(longitude, latitude, 
+                radial, hoursBeforeNow).ConfigureAwait(false);
 
         }
         #endregion Forecasts
@@ -185,7 +176,8 @@ namespace BNolan.AviationWx.NET
                 throw new ArgumentException($"{nameof(icaos)} cannot be null or empty.");
             }
 
-            return await _stationDataAccessor.GetStationInformationAsync(icaos);
+            return await _stationDataAccessor.GetStationInformationAsync(icaos)
+                .ConfigureAwait(false);
         }
 
         // <summary>
@@ -202,7 +194,8 @@ namespace BNolan.AviationWx.NET
                 throw new ArgumentException($"{nameof(abbreviations)} cannot be null or empty.");
             }
 
-            return await _stationDataAccessor.GetStationsByStateOrProvinceAsync(abbreviations);
+            return await _stationDataAccessor.GetStationsByStateOrProvinceAsync(abbreviations)
+                .ConfigureAwait(false);
         }
 
         /// <summary>
@@ -219,7 +212,8 @@ namespace BNolan.AviationWx.NET
                 throw new ArgumentException($"{nameof(abbreviations)} cannot be null or empty.");
             }
 
-            return await _stationDataAccessor.GetStationsByCountryAsync(abbreviations);
+            return await _stationDataAccessor.GetStationsByCountryAsync(abbreviations)
+                .ConfigureAwait(false);
         }
 
         /// <summary>
@@ -240,7 +234,8 @@ namespace BNolan.AviationWx.NET
                 throw new ArgumentException("Distance must be a value greater than 0", nameof(distance));
             }
 
-            return await _stationDataAccessor.GetStationsNearAsync(latitude, longitude, distance);
+            return await _stationDataAccessor.GetStationsNearAsync(latitude, longitude, distance)
+                .ConfigureAwait(false);
         }
 
 
@@ -258,9 +253,11 @@ namespace BNolan.AviationWx.NET
         {
             GeographicValidator.ValidateLatitude(cornerOneLatitude);
             GeographicValidator.ValidateLongitude(cornerOneLongitude);
-            
+            GeographicValidator.ValidateLatitude(cornerTwoLatitude);
+            GeographicValidator.ValidateLongitude(cornerTwoLongitude);
+
             return await _stationDataAccessor.GetStationsInBoxAsync(cornerOneLatitude, cornerOneLongitude,
-                cornerTwoLatitude, cornerTwoLongitude);
+                cornerTwoLatitude, cornerTwoLongitude).ConfigureAwait(false);
         }
 
         #endregion Station Info

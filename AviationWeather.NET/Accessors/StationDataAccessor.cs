@@ -3,7 +3,6 @@ using BNolan.AviationWx.NET.Models.Constants;
 using BNolan.AviationWx.NET.Models.DTOs;
 using BNolan.AviationWx.NET.Models.Enums;
 using BNolan.AviationWx.NET.Parsers;
-using BNolan.AviationWx.NET.Validators;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -14,6 +13,11 @@ namespace BNolan.AviationWx.NET.Accessors
 {
     public class StationDataAccessor
     {
+        /*
+         * ConfigureAwait(false) is being utilized on Async calls based on the write-up from Microsoft
+         * in https://devblogs.microsoft.com/dotnet/configureawait-faq/ 
+         */
+
         private readonly IConnector _connector;
         private readonly ParserType _parserType;
         private readonly IFormatProvider _formatProvider = new CultureInfo(ParserConstants.StringCulture);
@@ -24,7 +28,7 @@ namespace BNolan.AviationWx.NET.Accessors
         public StationDataAccessor()
         {
             _parserType = ParserType.XML;
-            _connector = new Http();
+            _connector = new HttpConnector();
         }
 
         /// <summary>
@@ -60,7 +64,7 @@ namespace BNolan.AviationWx.NET.Accessors
             var url = URLConstants.BaseURL + URLConstants.BasePath +
                 URLConstants.StationInfo.Replace("{format}", _parserType.Name)
                 .Replace("{icao}", formattedICAOs);
-            var result = await _connector.GetAsync(url);
+            var result = await _connector.GetAsync(url).ConfigureAwait(false);
 
             var obsDTOs = ConvertToDTO(result, icaos);
 
@@ -156,7 +160,7 @@ namespace BNolan.AviationWx.NET.Accessors
                 .Replace("{minLon}", minLon.ToString())
                 .Replace("{maxLat}", maxLat.ToString())
                 .Replace("{maxLon}", maxLon.ToString());
-            var response = await _connector.GetAsync(url);
+            var response = await _connector.GetAsync(url).ConfigureAwait(false);
 
             return ConvertToDTO(response);
         }

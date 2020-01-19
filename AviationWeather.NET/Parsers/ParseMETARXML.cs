@@ -11,7 +11,7 @@ namespace BNolan.AviationWx.NET.Parsers
 {
     public class ParseMETARXML : IParser<ObservationDto>
     {
-        private CultureInfo _cultureInfo = CultureInfo.GetCultureInfo(ParserConstants.StringCulture);
+        private readonly CultureInfo _cultureInfo = CultureInfo.GetCultureInfo(ParserConstants.StringCulture);
 
         #region Public
 
@@ -62,7 +62,7 @@ namespace BNolan.AviationWx.NET.Parsers
             return dtos;
         }
 
-               
+
 
         /// <summary>
         /// Transfers the ICAO
@@ -118,9 +118,11 @@ namespace BNolan.AviationWx.NET.Parsers
             dto.ObsType = METARType.ByName(xml.metar_type);
             if (xml.maxT_cSpecified || xml.minT_cSpecified)
             {
-                dto.TemperatureRange = new TemperatureRangeDto();
-                dto.TemperatureRange.MaxTemperature = ParserHelpers.GetValue(xml.maxT_cSpecified, xml.maxT_c);
-                dto.TemperatureRange.MinTemperature = ParserHelpers.GetValue(xml.minT_cSpecified, xml.minT_c);
+                dto.TemperatureRange = new TemperatureRangeDto()
+                {
+                    MaxTemperature = ParserHelpers.GetValue(xml.maxT_cSpecified, xml.maxT_c),
+                    MinTemperature = ParserHelpers.GetValue(xml.minT_cSpecified, xml.minT_c)
+                };
             }
         }
 
@@ -133,9 +135,11 @@ namespace BNolan.AviationWx.NET.Parsers
         {
             if (xml.pcp3hr_inSpecified || xml.three_hr_pressure_tendency_mbSpecified)
             {
-                dto.ThreeHourObsData = new ThreeHourObsData();
-                dto.ThreeHourObsData.Precipitation = ParserHelpers.GetValue(xml.pcp3hr_inSpecified, xml.pcp3hr_in);
-                dto.ThreeHourObsData.PressureTendency = ParserHelpers.GetValue(xml.three_hr_pressure_tendency_mbSpecified, xml.three_hr_pressure_tendency_mb);
+                dto.ThreeHourObsData = new ThreeHourObsData()
+                {
+                    Precipitation = ParserHelpers.GetValue(xml.pcp3hr_inSpecified, xml.pcp3hr_in),
+                    PressureTendency = ParserHelpers.GetValue(xml.three_hr_pressure_tendency_mbSpecified, xml.three_hr_pressure_tendency_mb)
+                };
             }
         }
 
@@ -166,10 +170,12 @@ namespace BNolan.AviationWx.NET.Parsers
                 || xml.maxT24hr_cSpecified
                 || xml.minT24hr_cSpecified)
             {
-                dto.TwentyFourHourData = new TwentyFourHourObsDataDto();
-                dto.TwentyFourHourData.Precipitation = ParserHelpers.GetValue(xml.pcp24hr_inSpecified, xml.pcp24hr_in);
-                dto.TwentyFourHourData.MaxTemperature = ParserHelpers.GetValue(xml.maxT24hr_cSpecified, xml.maxT24hr_c);
-                dto.TwentyFourHourData.MinTemperature = ParserHelpers.GetValue(xml.minT24hr_cSpecified, xml.minT24hr_c);
+                dto.TwentyFourHourData = new TwentyFourHourObsDataDto()
+                {
+                    Precipitation = ParserHelpers.GetValue(xml.pcp24hr_inSpecified, xml.pcp24hr_in),
+                    MaxTemperature = ParserHelpers.GetValue(xml.maxT24hr_cSpecified, xml.maxT24hr_c),
+                    MinTemperature = ParserHelpers.GetValue(xml.minT24hr_cSpecified, xml.minT24hr_c)
+                };
             }
         }
 

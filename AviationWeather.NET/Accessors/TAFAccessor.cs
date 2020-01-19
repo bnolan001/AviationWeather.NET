@@ -12,6 +12,10 @@ namespace BNolan.AviationWx.NET.Accessors
 {
     public class TAFAccessor
     {
+        /*
+         * ConfigureAwait(false) is being utilized on Async calls based on the write-up from Microsoft
+         * in https://devblogs.microsoft.com/dotnet/configureawait-faq/ 
+         */
         private readonly IConnector _connector;
         private readonly ParserType _parserType;
         private readonly IFormatProvider _formatProvider = new CultureInfo(ParserConstants.StringCulture);
@@ -22,7 +26,7 @@ namespace BNolan.AviationWx.NET.Accessors
         public TAFAccessor()
         {
             _parserType = ParserType.XML;
-            _connector = new Http();
+            _connector = new HttpConnector();
         }
 
         /// <summary>
@@ -59,7 +63,7 @@ namespace BNolan.AviationWx.NET.Accessors
                 URLConstants.LatestTAF.Replace("{format}", _parserType.Name)
                 .Replace("{icaos}", stations)
                 .Replace("{hours}", hoursBeforeNow.ToString(_formatProvider));
-            var response = await _connector.GetAsync(url);
+            var response = await _connector.GetAsync(url).ConfigureAwait(false);
             return ConvertToDTO(response, icaos);
         }
 
@@ -87,7 +91,7 @@ namespace BNolan.AviationWx.NET.Accessors
                 .Replace("{maxLat}", maxLatitude.ToString(_formatProvider))
                 .Replace("{maxLon}", maxLongitude.ToString(_formatProvider));
 
-            var response = await _connector.GetAsync(url);
+            var response = await _connector.GetAsync(url).ConfigureAwait(false);
             return ConvertToDTO(response, new List<string>());
         }
 
@@ -112,7 +116,7 @@ namespace BNolan.AviationWx.NET.Accessors
                 .Replace("{radial}", radial.ToString(_formatProvider))
                 .Replace("{longitude}", longitude.ToString(_formatProvider));
 
-            var response = await _connector.GetAsync(url);
+            var response = await _connector.GetAsync(url).ConfigureAwait(false);
             return ConvertToDTO(response, new List<string>());
         }
 

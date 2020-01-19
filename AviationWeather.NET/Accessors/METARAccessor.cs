@@ -13,6 +13,10 @@ namespace BNolan.AviationWx.NET.Accessors
 {
     public class METARAccessor
     {
+        /*
+         * ConfigureAwait(false) is being utilized on Async calls based on the write-up from Microsoft
+         * in https://devblogs.microsoft.com/dotnet/configureawait-faq/ 
+         */
         private readonly IConnector _connector;
         private readonly ParserType _parserType;
         private readonly IFormatProvider _formatProvider = new CultureInfo(ParserConstants.StringCulture);
@@ -23,7 +27,7 @@ namespace BNolan.AviationWx.NET.Accessors
         public METARAccessor()
         {
             _parserType = ParserType.XML;
-            _connector = new Http();
+            _connector = new HttpConnector();
         }
 
         /// <summary>
@@ -64,9 +68,9 @@ namespace BNolan.AviationWx.NET.Accessors
                     .Replace("{icao}", icao);
                 requests.Add(_connector.GetAsync(url));
             }
-            var results = await Task.WhenAll(requests.ToArray());
+            var results = await Task.WhenAll(requests.ToArray()).ConfigureAwait(false);
             var obsDTOs = new List<ObservationDto>();
-            for(var idx = 0; idx < icaos.Count(); idx++)
+            for(var idx = 0; idx < icaos.Count; idx++)
             {
                 obsDTOs.Add(ConvertToDTO(results[idx], new List<string> { icaos[idx] }).First());
             }
@@ -87,7 +91,7 @@ namespace BNolan.AviationWx.NET.Accessors
                URLConstants.PreviousHoursMETARs.Replace("{format}", _parserType.Name)
                .Replace("{icaos}", stations)
                .Replace("{hours}", numHours.ToString(_formatProvider));
-            var response = await _connector.GetAsync(url);
+            var response = await _connector.GetAsync(url).ConfigureAwait(false);
 
             return ConvertToDTO(response, icaos);
         }
@@ -102,7 +106,7 @@ namespace BNolan.AviationWx.NET.Accessors
         private List<ObservationDto> ConvertToDTO(string data,
             IList<string> icaos)
         {
-            IParser<ObservationDto> parser = null;
+            IParser<ObservationDto> parser;
             if (_parserType == ParserType.XML)
             {
                 parser = new ParseMETARXML();
