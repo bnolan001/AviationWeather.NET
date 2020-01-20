@@ -6,7 +6,7 @@
     <Version>0.7.0-alpha</Version>
     <Authors>Brian Nolan</Authors>
     <Company>BNolan.org</Company>
-    <Copyright>BNolan.org 2019</Copyright>
+    <Copyright>BNolan.org 2020</Copyright>
     <PackageProjectUrl>https://github.com/bnolan001/AviationWeather.NET</PackageProjectUrl>
     <RepositoryType>Git</RepositoryType>
     <RepositoryUrl>https://github.com/bnolan001/AviationWeather.NET.git</RepositoryUrl>
