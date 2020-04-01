@@ -39,11 +39,6 @@ namespace BNolan.AviationWx.NET.Models.Enums
 
         public static FlightCategoryType ByName(string name)
         {
-            if (String.IsNullOrWhiteSpace(name))
-            {
-                throw new ArgumentNullException($"'{nameof(name)} 'must have a value.");
-            }
-
             var field = List().Where(m => String.Equals(m.Name, name, StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
 
             if (field == null)

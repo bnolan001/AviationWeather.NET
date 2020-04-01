@@ -103,7 +103,14 @@ namespace BNolan.AviationWx.NET.Parsers
             dto.Snow = ParserHelpers.GetValue(xml.snow_inSpecified, xml.snow_in);
             dto.RawMETAR = xml.raw_text;
             dto.SeaLevelPressure = xml.sea_level_pressure_mb;
-            dto.SkyCondition.AddRange(xml.sky_condition.Select(sc => new SkyConditionDto() { SkyCondition = SkyConditionType.ByName(sc.sky_cover), CloudBase = sc.cloud_base_ft_agl }));
+            if (xml.sky_condition != null)
+            {
+                dto.SkyCondition.AddRange(xml.sky_condition.Select(sc => new SkyConditionDto()
+                {
+                    SkyCondition = SkyConditionType.ByName(sc.sky_cover),
+                    CloudBase = sc.cloud_base_ft_agl
+                }));
+            }
             dto.Temperature = xml.temp_c;
             dto.VerticalVisibility = ParserHelpers.GetValue(xml.vert_vis_ftSpecified, xml.vert_vis_ft);
             dto.Visibility = xml.visibility_statute_mi;

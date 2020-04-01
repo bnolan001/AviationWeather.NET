@@ -1,0 +1,576 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<response xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XML-Schema-instance" version="1.2" xsi:noNamespaceSchemaLocation="http://aviationweather.gov/adds/schema/metar1_2.xsd">
+  <request_index>93584933</request_index>
+  <data_source name="metars" />
+  <request type="retrieve" />
+  <errors />
+  <warnings />
+  <time_taken_ms>20</time_taken_ms>
+  <data num_results="25">
+    <METAR>
+      <raw_text>KIAD 010107Z 08009KT 8SM18 OVC043 07/05 A2987 RMK AO2 P0000 T00670050</raw_text>
+      <station_id>KIAD</station_id>
+      <observation_time>2020-04-01T01:07:00Z</observation_time>
+      <latitude>38.93</latitude>
+      <longitude>-77.45</longitude>
+      <temp_c>6.7</temp_c>
+      <dewpoint_c>5.0</dewpoint_c>
+      <wind_dir_degrees>80</wind_dir_degrees>
+      <wind_speed_kt>9</wind_speed_kt>
+      <altim_in_hg>29.870079</altim_in_hg>
+      <quality_control_flags>
+        <auto_station>TRUE</auto_station>
+      </quality_control_flags>
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="4300" />
+      <precip_in>0.005</precip_in>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>93.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>KIAD 010052Z 08010KT 6SM -RA BR BKN008 BKN015 OVC030 07/05 A2987 RMK AO2 SLP113 P0006 T00720050</raw_text>
+      <station_id>KIAD</station_id>
+      <observation_time>2020-04-01T00:52:00Z</observation_time>
+      <latitude>38.93</latitude>
+      <longitude>-77.45</longitude>
+      <temp_c>7.2</temp_c>
+      <dewpoint_c>5.0</dewpoint_c>
+      <wind_dir_degrees>80</wind_dir_degrees>
+      <wind_speed_kt>10</wind_speed_kt>
+      <visibility_statute_mi>6.0</visibility_statute_mi>
+      <altim_in_hg>29.870079</altim_in_hg>
+      <sea_level_pressure_mb>1011.3</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto_station>TRUE</auto_station>
+      </quality_control_flags>
+      <wx_string>-RA BR</wx_string>
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="800" />
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="1500" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="3000" />
+      <flight_category>IFR</flight_category>
+      <precip_in>0.06</precip_in>
+      <metar_type>METAR</metar_type>
+      <elevation_m>93.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>KIAD 312352Z 09012KT 6SM -RA BR BKN009 OVC015 08/06 A2987 RMK AO2 SLP115 P0005 60005 T00780056 10122 20078 53010</raw_text>
+      <station_id>KIAD</station_id>
+      <observation_time>2020-03-31T23:52:00Z</observation_time>
+      <latitude>38.93</latitude>
+      <longitude>-77.45</longitude>
+      <temp_c>7.8</temp_c>
+      <dewpoint_c>5.6</dewpoint_c>
+      <wind_dir_degrees>90</wind_dir_degrees>
+      <wind_speed_kt>12</wind_speed_kt>
+      <visibility_statute_mi>6.0</visibility_statute_mi>
+      <altim_in_hg>29.870079</altim_in_hg>
+      <sea_level_pressure_mb>1011.5</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto_station>TRUE</auto_station>
+      </quality_control_flags>
+      <wx_string>-RA BR</wx_string>
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="900" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="1500" />
+      <flight_category>IFR</flight_category>
+      <three_hr_pressure_tendency_mb>1.0</three_hr_pressure_tendency_mb>
+      <maxT_c>12.2</maxT_c>
+      <minT_c>7.8</minT_c>
+      <precip_in>0.05</precip_in>
+      <pcp6hr_in>0.05</pcp6hr_in>
+      <metar_type>METAR</metar_type>
+      <elevation_m>93.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>KIAD 312252Z 09012KT 10SM -RA BKN015 BKN022CB OVC044 08/06 A2985 RMK AO2 SLP107 CB ALQDS P0000 T00830056</raw_text>
+      <station_id>KIAD</station_id>
+      <observation_time>2020-03-31T22:52:00Z</observation_time>
+      <latitude>38.93</latitude>
+      <longitude>-77.45</longitude>
+      <temp_c>8.3</temp_c>
+      <dewpoint_c>5.6</dewpoint_c>
+      <wind_dir_degrees>90</wind_dir_degrees>
+      <wind_speed_kt>12</wind_speed_kt>
+      <visibility_statute_mi>10.0</visibility_statute_mi>
+      <altim_in_hg>29.84941</altim_in_hg>
+      <sea_level_pressure_mb>1010.7</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto_station>TRUE</auto_station>
+      </quality_control_flags>
+      <wx_string>-RA</wx_string>
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="1500" />
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="2200" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="4400" />
+      <flight_category>MVFR</flight_category>
+      <precip_in>0.005</precip_in>
+      <metar_type>METAR</metar_type>
+      <elevation_m>93.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>KIAD 312152Z 09011KTVC042 09/05 A2985 RMK AO2 RAB49 SLP108 CB ALQDS MOV E P0000 T00940050</raw_text>
+      <station_id>KIAD</station_id>
+      <observation_time>2020-03-31T21:52:00Z</observation_time>
+      <latitude>38.93</latitude>
+      <longitude>-77.45</longitude>
+      <temp_c>9.4</temp_c>
+      <dewpoint_c>5.0</dewpoint_c>
+      <altim_in_hg>29.84941</altim_in_hg>
+      <sea_level_pressure_mb>1010.8</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto_station>TRUE</auto_station>
+      </quality_control_flags>
+      <precip_in>0.005</precip_in>
+      <metar_type>METAR</metar_type>
+      <elevation_m>93.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>KIAD 312052Z 10008KT 10SM BKN046 OVC090 11/03 A2984 RMK AO2 SLP105 T01110028 56026</raw_text>
+      <station_id>KIAD</station_id>
+      <observation_time>2020-03-31T20:52:00Z</observation_time>
+      <latitude>38.93</latitude>
+      <longitude>-77.45</longitude>
+      <temp_c>11.1</temp_c>
+      <dewpoint_c>2.8</dewpoint_c>
+      <wind_dir_degrees>100</wind_dir_degrees>
+      <wind_speed_kt>8</wind_speed_kt>
+      <visibility_statute_mi>10.0</visibility_statute_mi>
+      <altim_in_hg>29.840551</altim_in_hg>
+      <sea_level_pressure_mb>1010.5</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto_station>TRUE</auto_station>
+      </quality_control_flags>
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="4600" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="9000" />
+      <flight_category>VFR</flight_category>
+      <three_hr_pressure_tendency_mb>-2.6</three_hr_pressure_tendency_mb>
+      <metar_type>METAR</metar_type>
+      <elevation_m>93.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>KIAD 311952Z 10008KT 10SM OVC045 12/02 A2986 RMK AO2 SLP112 T01170022</raw_text>
+      <station_id>KIAD</station_id>
+      <observation_time>2020-03-31T19:52:00Z</observation_time>
+      <latitude>38.93</latitude>
+      <longitude>-77.45</longitude>
+      <temp_c>11.7</temp_c>
+      <dewpoint_c>2.2</dewpoint_c>
+      <wind_dir_degrees>100</wind_dir_degrees>
+      <wind_speed_kt>8</wind_speed_kt>
+      <visibility_statute_mi>10.0</visibility_statute_mi>
+      <altim_in_hg>29.861221</altim_in_hg>
+      <sea_level_pressure_mb>1011.2</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto_station>TRUE</auto_station>
+      </quality_control_flags>
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="4500" />
+      <flight_category>VFR</flight_category>
+      <metar_type>METAR</metar_type>
+      <elevation_m>93.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>KIAD 311852Z 09007KT 10SM BKN042 OVC100 12/02 A2989 RMK AO2 SLP121 T01170017</raw_text>
+      <station_id>KIAD</station_id>
+      <observation_time>2020-03-31T18:52:00Z</observation_time>
+      <latitude>38.93</latitude>
+      <longitude>-77.45</longitude>
+      <temp_c>11.7</temp_c>
+      <dewpoint_c>1.7</dewpoint_c>
+      <wind_dir_degrees>90</wind_dir_degrees>
+      <wind_speed_kt>7</wind_speed_kt>
+      <visibility_statute_mi>10.0</visibility_statute_mi>
+      <altim_in_hg>29.890747</altim_in_hg>
+      <sea_level_pressure_mb>1012.1</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto_station>TRUE</auto_station>
+      </quality_control_flags>
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="4200" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="10000" />
+      <flight_category>VFR</flight_category>
+      <metar_type>METAR</metar_type>
+      <elevation_m>93.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>KIAD 311752Z 12005KT 10SM BKN042 BKN050 OVC160 12/02 A2992 RMK AO2 SLP130 T01170022 10117 20094 56022</raw_text>
+      <station_id>KIAD</station_id>
+      <observation_time>2020-03-31T17:52:00Z</observation_time>
+      <latitude>38.93</latitude>
+      <longitude>-77.45</longitude>
+      <temp_c>11.7</temp_c>
+      <dewpoint_c>2.2</dewpoint_c>
+      <wind_dir_degrees>120</wind_dir_degrees>
+      <wind_speed_kt>5</wind_speed_kt>
+      <visibility_statute_mi>10.0</visibility_statute_mi>
+      <altim_in_hg>29.920275</altim_in_hg>
+      <sea_level_pressure_mb>1013.0</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto_station>TRUE</auto_station>
+      </quality_control_flags>
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="4200" />
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="5000" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="16000" />
+      <flight_category>VFR</flight_category>
+      <three_hr_pressure_tendency_mb>-2.2</three_hr_pressure_tendency_mb>
+      <maxT_c>11.7</maxT_c>
+      <minT_c>9.4</minT_c>
+      <metar_type>METAR</metar_type>
+      <elevation_m>93.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>KIAD 311652Z VRB03KT 10SM BKN042 BKN065 BKN100 OVC200 12/02 A2993 RMK AO2 SLP134 T01170017</raw_text>
+      <station_id>KIAD</station_id>
+      <observation_time>2020-03-31T16:52:00Z</observation_time>
+      <latitude>38.93</latitude>
+      <longitude>-77.45</longitude>
+      <temp_c>11.7</temp_c>
+      <dewpoint_c>1.7</dewpoint_c>
+      <wind_dir_degrees>0</wind_dir_degrees>
+      <wind_speed_kt>3</wind_speed_kt>
+      <visibility_statute_mi>10.0</visibility_statute_mi>
+      <altim_in_hg>29.929134</altim_in_hg>
+      <sea_level_pressure_mb>1013.4</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto_station>TRUE</auto_station>
+      </quality_control_flags>
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="4200" />
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="6500" />
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="10000" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="20000" />
+      <flight_category>VFR</flight_category>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>93.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>KIAD 311552Z 05003KT 10SM SCT036 BKN065 BKN100 OVC200 11/02 A2996 RMK AO2 SLP144 T01110017</raw_text>
+      <station_id>KIAD</station_id>
+      <observation_time>2020-03-31T15:52:00Z</observation_time>
+      <latitude>38.93</latitude>
+      <longitude>-77.45</longitude>
+      <temp_c>11.1</temp_c>
+      <dewpoint_c>1.7</dewpoint_c>
+      <wind_dir_degrees>50</wind_dir_degrees>
+      <wind_speed_kt>3</wind_speed_kt>
+      <visibility_statute_mi>10.0</visibility_statute_mi>
+      <altim_in_hg>29.958662</altim_in_hg>
+      <sea_level_pressure_mb>1014.4</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto_station>TRUE</auto_station>
+      </quality_control_flags>
+      <sky_condition sky_cover="SCT" cloud_base_ft_agl="3600" />
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="6500" />
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="10000" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="20000" />
+      <flight_category>VFR</flight_category>
+      <metar_type>METAR</metar_type>
+      <elevation_m>93.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>KIAD 311452Z 05006KT 10SM SCT036 BKN060 OVC090 11/02 A2998 RMK AO2 SLP152 T01060022 58008</raw_text>
+      <station_id>KIAD</station_id>
+      <observation_time>2020-03-31T14:52:00Z</observation_time>
+      <latitude>38.93</latitude>
+      <longitude>-77.45</longitude>
+      <temp_c>10.6</temp_c>
+      <dewpoint_c>2.2</dewpoint_c>
+      <wind_dir_degrees>50</wind_dir_degrees>
+      <wind_speed_kt>6</wind_speed_kt>
+      <visibility_statute_mi>10.0</visibility_statute_mi>
+      <altim_in_hg>29.97933</altim_in_hg>
+      <sea_level_pressure_mb>1015.2</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto_station>TRUE</auto_station>
+      </quality_control_flags>
+      <sky_condition sky_cover="SCT" cloud_base_ft_agl="3600" />
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="6000" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="9000" />
+      <flight_category>VFR</flight_category>
+      <three_hr_pressure_tendency_mb>-0.8</three_hr_pressure_tendency_mb>
+      <metar_type>METAR</metar_type>
+      <elevation_m>93.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>KIAD 311352Z 01004KTA3000 RMK AO2 SLP159 T01060017</raw_text>
+      <station_id>KIAD</station_id>
+      <observation_time>2020-03-31T13:52:00Z</observation_time>
+      <latitude>38.93</latitude>
+      <longitude>-77.45</longitude>
+      <altim_in_hg>30.0</altim_in_hg>
+      <sea_level_pressure_mb>1015.9</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto_station>TRUE</auto_station>
+      </quality_control_flags>
+      <metar_type>SPECI</metar_type>
+      <elevation_m>93.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>KIAD 311252Z 33004KT 10SM OVC060 10/02 A3000 RMK AO2 SLP160 T01000017</raw_text>
+      <station_id>KIAD</station_id>
+      <observation_time>2020-03-31T12:52:00Z</observation_time>
+      <latitude>38.93</latitude>
+      <longitude>-77.45</longitude>
+      <temp_c>10.0</temp_c>
+      <dewpoint_c>1.7</dewpoint_c>
+      <wind_dir_degrees>330</wind_dir_degrees>
+      <wind_speed_kt>4</wind_speed_kt>
+      <visibility_statute_mi>10.0</visibility_statute_mi>
+      <altim_in_hg>30.0</altim_in_hg>
+      <sea_level_pressure_mb>1016.0</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto_station>TRUE</auto_station>
+      </quality_control_flags>
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="6000" />
+      <flight_category>VFR</flight_category>
+      <metar_type>METAR</metar_type>
+      <elevation_m>93.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>KIAD 311152Z 35005KT 10SM FEW050 BKN060 10/02 A3000 RMK AO2 SLP159 T01000022 10111 20094 51014</raw_text>
+      <station_id>KIAD</station_id>
+      <observation_time>2020-03-31T11:52:00Z</observation_time>
+      <latitude>38.93</latitude>
+      <longitude>-77.45</longitude>
+      <temp_c>10.0</temp_c>
+      <dewpoint_c>2.2</dewpoint_c>
+      <wind_dir_degrees>350</wind_dir_degrees>
+      <wind_speed_kt>5</wind_speed_kt>
+      <visibility_statute_mi>10.0</visibility_statute_mi>
+      <altim_in_hg>30.0</altim_in_hg>
+      <sea_level_pressure_mb>1015.9</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto_station>TRUE</auto_station>
+      </quality_control_flags>
+      <sky_condition sky_cover="FEW" cloud_base_ft_agl="5000" />
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="6000" />
+      <flight_category>VFR</flight_category>
+      <three_hr_pressure_tendency_mb>1.4</three_hr_pressure_tendency_mb>
+      <maxT_c>11.1</maxT_c>
+      <minT_c>9.4</minT_c>
+      <metar_type>METAR</metar_type>
+      <elevation_m>93.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>KIAD 311052Z 36008KT 10SM BKN050 OVC250 10/02 A3000 RMK AO2 SLP157 T01000017</raw_text>
+      <station_id>KIAD</station_id>
+      <observation_time>2020-03-31T10:52:00Z</observation_time>
+      <latitude>38.93</latitude>
+      <longitude>-77.45</longitude>
+      <temp_c>10.0</temp_c>
+      <dewpoint_c>1.7</dewpoint_c>
+      <wind_dir_degrees>360</wind_dir_degrees>
+      <wind_speed_kt>8</wind_speed_kt>
+      <visibility_statute_mi>10.0</visibility_statute_mi>
+      <altim_in_hg>30.0</altim_in_hg>
+      <sea_level_pressure_mb>1015.7</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto_station>TRUE</auto_station>
+      </quality_control_flags>
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="5000" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="25000" />
+      <flight_category>VFR</flight_category>
+      <metar_type>METAR</metar_type>
+      <elevation_m>93.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>KIAD 310952Z 36007KT 10SM BKN055 OVC250 10/02 A2998 RMK AO2 SLP151 T01000017</raw_text>
+      <station_id>KIAD</station_id>
+      <observation_time>2020-03-31T09:52:00Z</observation_time>
+      <latitude>38.93</latitude>
+      <longitude>-77.45</longitude>
+      <temp_c>10.0</temp_c>
+      <dewpoint_c>1.7</dewpoint_c>
+      <wind_dir_degrees>360</wind_dir_degrees>
+      <wind_speed_kt>7</wind_speed_kt>
+      <visibility_statute_mi>10.0</visibility_statute_mi>
+      <altim_in_hg>29.97933</altim_in_hg>
+      <sea_level_pressure_mb>1015.1</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto_station>TRUE</auto_station>
+      </quality_control_flags>
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="5500" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="25000" />
+      <flight_category>VFR</flight_category>
+      <metar_type>METAR</metar_type>
+      <elevation_m>93.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>KIAD 310852Z 34007KT 10SM BKN060 OVC250 10/01 A2996 RMK AO2 SLP146 T01000011 58008</raw_text>
+      <station_id>KIAD</station_id>
+      <observation_time>2020-03-31T08:52:00Z</observation_time>
+      <latitude>38.93</latitude>
+      <longitude>-77.45</longitude>
+      <temp_c>10.0</temp_c>
+      <dewpoint_c>1.1</dewpoint_c>
+      <wind_dir_degrees>340</wind_dir_degrees>
+      <wind_speed_kt>7</wind_speed_kt>
+      <visibility_statute_mi>10.0</visibility_statute_mi>
+      <altim_in_hg>29.958662</altim_in_hg>
+      <sea_level_pressure_mb>1014.6</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto_station>TRUE</auto_station>
+      </quality_control_flags>
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="6000" />
+      <sky_condition sky_cover="OVC" cloud_base_ft_agl="25000" />
+      <flight_category>VFR</flight_category>
+      <three_hr_pressure_tendency_mb>-0.8</three_hr_pressure_tendency_mb>
+      <metar_type>METAR</metar_type>
+      <elevation_m>93.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>KIAD 310752Z 36007KT 10SM BKN055 11/01 A2997 RMK AO2 SLP148 T01060011</raw_text>
+      <station_id>KIAD</station_id>
+      <observation_time>2020-03-31T07:52:00Z</observation_time>
+      <latitude>38.93</latitude>
+      <longitude>-77.45</longitude>
+      <temp_c>10.6</temp_c>
+      <dewpoint_c>1.1</dewpoint_c>
+      <wind_dir_degrees>360</wind_dir_degrees>
+      <wind_speed_kt>7</wind_speed_kt>
+      <visibility_statute_mi>10.0</visibility_statute_mi>
+      <altim_in_hg>29.970472</altim_in_hg>
+      <sea_level_pressure_mb>1014.8</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto_station>TRUE</auto_station>
+      </quality_control_flags>
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="5500" />
+      <flight_category>VFR</flight_category>
+      <metar_type>METAR</metar_type>
+      <elevation_m>93.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>KIAD 310652Z 34007KT 10SM BKN060 11/01 A2999 RMK AO2 SLP153 T01110011</raw_text>
+      <station_id>KIAD</station_id>
+      <observation_time>2020-03-31T06:52:00Z</observation_time>
+      <latitude>38.93</latitude>
+      <longitude>-77.45</longitude>
+      <temp_c>11.1</temp_c>
+      <dewpoint_c>1.1</dewpoint_c>
+      <wind_dir_degrees>340</wind_dir_degrees>
+      <wind_speed_kt>7</wind_speed_kt>
+      <visibility_statute_mi>10.0</visibility_statute_mi>
+      <altim_in_hg>29.991142</altim_in_hg>
+      <sea_level_pressure_mb>1015.3</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto_station>TRUE</auto_station>
+      </quality_control_flags>
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="6000" />
+      <flight_category>VFR</flight_category>
+      <metar_type>METAR</metar_type>
+      <elevation_m>93.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>KIAD 310552Z 35010KT 10SM BKN070 11/01 A2999 RMK AO2 SLP153 T01110011 10167 20111 53003</raw_text>
+      <station_id>KIAD</station_id>
+      <observation_time>2020-03-31T05:52:00Z</observation_time>
+      <latitude>38.93</latitude>
+      <longitude>-77.45</longitude>
+      <temp_c>11.1</temp_c>
+      <dewpoint_c>1.1</dewpoint_c>
+      <wind_dir_degrees>350</wind_dir_degrees>
+      <wind_speed_kt>10</wind_speed_kt>
+      <visibility_statute_mi>10.0</visibility_statute_mi>
+      <altim_in_hg>29.991142</altim_in_hg>
+      <sea_level_pressure_mb>1015.3</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto_station>TRUE</auto_station>
+      </quality_control_flags>
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="7000" />
+      <flight_category>VFR</flight_category>
+      <three_hr_pressure_tendency_mb>0.3</three_hr_pressure_tendency_mb>
+      <maxT_c>16.7</maxT_c>
+      <minT_c>11.1</minT_c>
+      <metar_type>METAR</metar_type>
+      <elevation_m>93.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>KIAD 310452Z 34013G20KT 10SM BKN080 BKN250 11/01 A2997 RMK AO2 SLP149 T01110006 402330078</raw_text>
+      <station_id>KIAD</station_id>
+      <observation_time>2020-03-31T04:52:00Z</observation_time>
+      <latitude>38.93</latitude>
+      <longitude>-77.45</longitude>
+      <temp_c>11.1</temp_c>
+      <dewpoint_c>0.6</dewpoint_c>
+      <wind_dir_degrees>340</wind_dir_degrees>
+      <wind_speed_kt>13</wind_speed_kt>
+      <wind_gust_kt>20</wind_gust_kt>
+      <visibility_statute_mi>10.0</visibility_statute_mi>
+      <altim_in_hg>29.970472</altim_in_hg>
+      <sea_level_pressure_mb>1014.9</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto_station>TRUE</auto_station>
+      </quality_control_flags>
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="8000" />
+      <sky_condition sky_cover="BKN" cloud_base_ft_agl="25000" />
+      <flight_category>VFR</flight_category>
+      <maxT24hr_c>23.3</maxT24hr_c>
+      <minT24hr_c>7.8</minT24hr_c>
+      <metar_type>METAR</metar_type>
+      <elevation_m>93.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>KIAD 310352Z 34009G18KT 10SM SCT085 SCT250 12/01 A2998 RMK AO2 SLP153 T01220006</raw_text>
+      <station_id>KIAD</station_id>
+      <observation_time>2020-03-31T03:52:00Z</observation_time>
+      <latitude>38.93</latitude>
+      <longitude>-77.45</longitude>
+      <temp_c>12.2</temp_c>
+      <dewpoint_c>0.6</dewpoint_c>
+      <wind_dir_degrees>340</wind_dir_degrees>
+      <wind_speed_kt>9</wind_speed_kt>
+      <wind_gust_kt>18</wind_gust_kt>
+      <visibility_statute_mi>10.0</visibility_statute_mi>
+      <altim_in_hg>29.97933</altim_in_hg>
+      <sea_level_pressure_mb>1015.3</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto_station>TRUE</auto_station>
+      </quality_control_flags>
+      <sky_condition sky_cover="SCT" cloud_base_ft_agl="8500" />
+      <sky_condition sky_cover="SCT" cloud_base_ft_agl="25000" />
+      <flight_category>VFR</flight_category>
+      <metar_type>METAR</metar_type>
+      <elevation_m>93.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>KIAD 310252Z 34013G20KT 10SM SCT090 SCT250 13/01 A2998 RMK AO2 SLP151 T01280011 51023</raw_text>
+      <station_id>KIAD</station_id>
+      <observation_time>2020-03-31T02:52:00Z</observation_time>
+      <latitude>38.93</latitude>
+      <longitude>-77.45</longitude>
+      <temp_c>12.8</temp_c>
+      <dewpoint_c>1.1</dewpoint_c>
+      <wind_dir_degrees>340</wind_dir_degrees>
+      <wind_speed_kt>13</wind_speed_kt>
+      <wind_gust_kt>20</wind_gust_kt>
+      <visibility_statute_mi>10.0</visibility_statute_mi>
+      <altim_in_hg>29.97933</altim_in_hg>
+      <sea_level_pressure_mb>1015.1</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto_station>TRUE</auto_station>
+      </quality_control_flags>
+      <sky_condition sky_cover="SCT" cloud_base_ft_agl="9000" />
+      <sky_condition sky_cover="SCT" cloud_base_ft_agl="25000" />
+      <flight_category>VFR</flight_category>
+      <three_hr_pressure_tendency_mb>2.3</three_hr_pressure_tendency_mb>
+      <metar_type>METAR</metar_type>
+      <elevation_m>93.0</elevation_m>
+    </METAR>
+    <METAR>
+      <raw_text>KIAD 310152Z 36013KT 10SM FEW100 13/01 A2997 RMK AO2 SLP147 T01330011</raw_text>
+      <station_id>KIAD</station_id>
+      <observation_time>2020-03-31T01:52:00Z</observation_time>
+      <latitude>38.93</latitude>
+      <longitude>-77.45</longitude>
+      <temp_c>13.3</temp_c>
+      <dewpoint_c>1.1</dewpoint_c>
+      <wind_dir_degrees>360</wind_dir_degrees>
+      <wind_speed_kt>13</wind_speed_kt>
+      <visibility_statute_mi>10.0</visibility_statute_mi>
+      <altim_in_hg>29.970472</altim_in_hg>
+      <sea_level_pressure_mb>1014.7</sea_level_pressure_mb>
+      <quality_control_flags>
+        <auto_station>TRUE</auto_station>
+      </quality_control_flags>
+      <sky_condition sky_cover="FEW" cloud_base_ft_agl="10000" />
+      <flight_category>VFR</flight_category>
+      <metar_type>METAR</metar_type>
+      <elevation_m>93.0</elevation_m>
+    </METAR>
+  </data>
+</response>
+

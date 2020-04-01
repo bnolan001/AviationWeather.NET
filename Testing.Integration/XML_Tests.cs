@@ -52,7 +52,7 @@ namespace Testing.Integration
         [Test]
         public void GetPreviousMETAR_Observation_Single_Valid()
         {
-            var request = _aviationWeather.GetPreviousObservationsAsync(new List<string>() { "KIAD" }, 4);
+            var request = _aviationWeather.GetPreviousObservationsAsync(new List<string>() { "KIAD" }, 24);
             request.Wait();
             var obs = request.Result;
             obs.Should().NotBeNull();

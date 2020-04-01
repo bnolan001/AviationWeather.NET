@@ -84,7 +84,7 @@ namespace BNolan.AviationWx.NET.Accessors
         /// <param name="icaos"></param>
         /// <param name="numHours"></param>
         /// <returns></returns>
-        public async Task<List<ObservationDto>> GetPreviousHoursObservationsAsync(IList<string> icaos, int numHours)
+        public async Task<List<ObservationDto>> GetPreviousObservationsAsync(IList<string> icaos, int numHours)
         {
             var stations = String.Join("%20", icaos);
             var url = URLConstants.BaseURL + URLConstants.BasePath +

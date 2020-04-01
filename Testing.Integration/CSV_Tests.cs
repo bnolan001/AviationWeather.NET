@@ -106,7 +106,7 @@ namespace Testing.Integration
         [Test]
         public void GetLatestForecastsAsync_Multiple_Valid()
         {
-            var icaos = new List<string>() { "WALL", "ZBAA", "EGLL", "HECA", "KPWM", "SBSN", "FVRG"};
+            var icaos = new List<string>() { "WALL", "ZBAA", "EGLL", "HECA", "KPWM", "SBSN", "KMCO"};
             var request = _aviationWeather.GetLatestForecastsAsync(icaos);
             request.Wait();
             var forecasts = request.Result;

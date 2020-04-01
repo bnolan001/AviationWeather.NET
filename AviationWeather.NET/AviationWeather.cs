@@ -84,7 +84,7 @@ namespace BNolan.AviationWx.NET
             {
                 throw new ArgumentException($"{nameof(numHours)} must be greater than 0.");
             }
-            return await _metarAccessor.GetPreviousHoursObservationsAsync(icaos, numHours)
+            return await _metarAccessor.GetPreviousObservationsAsync(icaos, numHours)
                 .ConfigureAwait(false);
         }
 

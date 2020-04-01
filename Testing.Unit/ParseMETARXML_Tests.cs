@@ -155,5 +155,15 @@ namespace Testing.Unit
             metars[2].SixHourData.Should().BeNull();
             metars[2].ObsType.Should().Be(METARType.SPECI);
         }
+
+        [Test]
+        public void Parse_ObservationHistory()
+        {
+            var parser = new ParseMETARXML();
+            var obs = parser.Parse(Resource.KIAD_METAR_History, new[] { "KIAD" });
+            obs.Count.Should().Be(1);
+            obs[0].ICAO.Should().Be("KIAD");
+            obs[0].METAR.Count().Should().Be(25);
+        }
     }
 }

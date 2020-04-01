@@ -113,6 +113,25 @@ namespace Testing.Unit {
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
         ///&lt;response xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XML-Schema-instance&quot; version=&quot;1.2&quot; xsi:noNamespaceSchemaLocation=&quot;http://aviationweather.gov/adds/schema/metar1_2.xsd&quot;&gt;
+        ///  &lt;request_index&gt;93584933&lt;/request_index&gt;
+        ///  &lt;data_source name=&quot;metars&quot; /&gt;
+        ///  &lt;request type=&quot;retrieve&quot; /&gt;
+        ///  &lt;errors /&gt;
+        ///  &lt;warnings /&gt;
+        ///  &lt;time_taken_ms&gt;20&lt;/time_taken_ms&gt;
+        ///  &lt;data num_results=&quot;25&quot;&gt;
+        ///    &lt;METAR&gt;
+        ///      &lt;raw_text&gt;KIAD 010107Z 08009KT 8SM18 OVC04 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string KIAD_METAR_History {
+            get {
+                return ResourceManager.GetString("KIAD_METAR_History", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+        ///&lt;response xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XML-Schema-instance&quot; version=&quot;1.2&quot; xsi:noNamespaceSchemaLocation=&quot;http://aviationweather.gov/adds/schema/metar1_2.xsd&quot;&gt;
         ///	&lt;request_index&gt;15836447&lt;/request_index&gt;
         ///	&lt;data_source name = &quot;metars&quot; /&gt;
         ///	&lt;request type=&quot;retrieve&quot; /&gt;
