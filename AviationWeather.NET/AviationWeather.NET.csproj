@@ -3,10 +3,10 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>BNolan.AviationWx.NET</RootNamespace>
-    <Version>0.7.2-alpha</Version>
+    <Version>0.7.4-alpha</Version>
     <Authors>Brian Nolan</Authors>
     <Company>BNolan.org</Company>
-    <Copyright>BNolan.org 2020</Copyright>
+    <Copyright>BNolan.org 2021</Copyright>
     <PackageProjectUrl>https://github.com/bnolan001/AviationWeather.NET</PackageProjectUrl>
     <RepositoryType>Git</RepositoryType>
     <RepositoryUrl>https://github.com/bnolan001/AviationWeather.NET.git</RepositoryUrl>
@@ -15,9 +15,9 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageLicenseFile>License.txt</PackageLicenseFile>
     <PackageTags>taf, metar, aviationweather</PackageTags>
-    <PackageReleaseNotes>Fixed bug that caused exception to be thrown if no quality control flags were defined for an observation.</PackageReleaseNotes>
-    <AssemblyVersion>0.7.2.0</AssemblyVersion>
-    <FileVersion>0.7.2.0</FileVersion>
+    <PackageReleaseNotes>Added null checks for temperature, dewpoint, and wind fields.</PackageReleaseNotes>
+    <AssemblyVersion>0.7.4.0</AssemblyVersion>
+    <FileVersion>0.7.4.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

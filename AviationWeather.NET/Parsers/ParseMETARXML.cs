@@ -27,9 +27,9 @@ namespace BNolan.AviationWx.NET.Parsers
             return ConvertToDTO(responseObj, icaos);
         }
 
-        #endregion Public 
+        #endregion Public
 
-        #region Private 
+        #region Private
 
         private List<ObservationDto> ConvertToDTO(response xmlObjs,
             IList<string> icaos)
@@ -62,73 +62,22 @@ namespace BNolan.AviationWx.NET.Parsers
             return dtos;
         }
 
-
-
         /// <summary>
-        /// Transfers the ICAO
+        /// Transfers 24-hourly data
         /// </summary>
         /// <param name="dto"></param>
         /// <param name="xml"></param>
-        private void ParseIdentifier(ObservationDto dto, METAR xml)
+        private void Parse24HourWeatherData(METARDto dto, METAR xml)
         {
-            dto.ICAO = xml.station_id;
-        }
-
-        /// <summary>
-        /// Transfers the Lat/Lon and Elevations
-        /// </summary>
-        /// <param name="dto"></param>
-        /// <param name="xml"></param>
-        private void ParseGeographicData(ObservationDto dto, METAR xml)
-        {
-            dto.GeographicData = new GeographicDataDto()
+            if (xml.pcp24hr_inSpecified
+                || xml.maxT24hr_cSpecified
+                || xml.minT24hr_cSpecified)
             {
-                Latitude = xml.latitude,
-                Longitude = xml.longitude,
-                Elevation = xml.elevation_m
-            };
-        }
-
-        /// <summary>
-        /// Trnasfers the core weather observation data
-        /// </summary>
-        /// <param name="dto"></param>
-        /// <param name="xml"></param>
-        private void ParseCurrentWeatherData(METARDto dto, METAR xml)
-        {
-            dto.Altimeter = xml.altim_in_hg;
-            dto.Dewpoint = xml.dewpoint_c;
-            dto.ObsTime = ParserHelpers.ParseDateTime(xml.observation_time);
-            dto.Precipitation = ParserHelpers.GetValue(xml.precip_inSpecified, xml.precip_in);
-            dto.Snow = ParserHelpers.GetValue(xml.snow_inSpecified, xml.snow_in);
-            dto.RawMETAR = xml.raw_text;
-            dto.SeaLevelPressure = xml.sea_level_pressure_mb;
-            if (xml.sky_condition != null)
-            {
-                dto.SkyCondition.AddRange(xml.sky_condition.Select(sc => new SkyConditionDto()
+                dto.TwentyFourHourData = new TwentyFourHourObsDataDto()
                 {
-                    SkyCondition = SkyConditionType.ByName(sc.sky_cover),
-                    CloudBase = sc.cloud_base_ft_agl
-                }));
-            }
-            dto.Temperature = xml.temp_c;
-            dto.VerticalVisibility = ParserHelpers.GetValue(xml.vert_vis_ftSpecified, xml.vert_vis_ft);
-            dto.Visibility = xml.visibility_statute_mi;
-            dto.Weather = xml.wx_string;
-            dto.Wind = new WindDto()
-            {
-                Direction = xml.wind_dir_degrees,
-                Gust = ParserHelpers.GetValue(xml.wind_gust_ktSpecified, xml.wind_gust_kt),
-                Speed = xml.wind_speed_kt,
-            };
-            dto.FlightCagegory = FlightCategoryType.ByName(xml.flight_category);
-            dto.ObsType = METARType.ByName(xml.metar_type);
-            if (xml.maxT_cSpecified || xml.minT_cSpecified)
-            {
-                dto.TemperatureRange = new TemperatureRangeDto()
-                {
-                    MaxTemperature = ParserHelpers.GetValue(xml.maxT_cSpecified, xml.maxT_c),
-                    MinTemperature = ParserHelpers.GetValue(xml.minT_cSpecified, xml.minT_c)
+                    Precipitation = ParserHelpers.GetValue(xml.pcp24hr_inSpecified, xml.pcp24hr_in),
+                    MaxTemperature = ParserHelpers.GetValue(xml.maxT24hr_cSpecified, xml.maxT24hr_c),
+                    MinTemperature = ParserHelpers.GetValue(xml.minT24hr_cSpecified, xml.minT24hr_c)
                 };
             }
         }
@@ -167,23 +116,72 @@ namespace BNolan.AviationWx.NET.Parsers
         }
 
         /// <summary>
-        /// Transfers 24-hourly data
+        /// Trnasfers the core weather observation data
         /// </summary>
         /// <param name="dto"></param>
         /// <param name="xml"></param>
-        private void Parse24HourWeatherData(METARDto dto, METAR xml)
+        private void ParseCurrentWeatherData(METARDto dto, METAR xml)
         {
-            if (xml.pcp24hr_inSpecified
-                || xml.maxT24hr_cSpecified
-                || xml.minT24hr_cSpecified)
+            dto.Altimeter = xml.altim_in_hg;
+            dto.Dewpoint = ParserHelpers.GetValue(xml.dewpoint_cSpecified, xml.dewpoint_c);
+            dto.ObsTime = ParserHelpers.ParseDateTime(xml.observation_time);
+            dto.Precipitation = ParserHelpers.GetValue(xml.precip_inSpecified, xml.precip_in);
+            dto.Snow = ParserHelpers.GetValue(xml.snow_inSpecified, xml.snow_in);
+            dto.RawMETAR = xml.raw_text;
+            dto.SeaLevelPressure = ParserHelpers.GetValue(xml.sea_level_pressure_mbSpecified, xml.sea_level_pressure_mb);
+            if (xml.sky_condition != null)
             {
-                dto.TwentyFourHourData = new TwentyFourHourObsDataDto()
+                dto.SkyCondition.AddRange(xml.sky_condition.Select(sc => new SkyConditionDto()
                 {
-                    Precipitation = ParserHelpers.GetValue(xml.pcp24hr_inSpecified, xml.pcp24hr_in),
-                    MaxTemperature = ParserHelpers.GetValue(xml.maxT24hr_cSpecified, xml.maxT24hr_c),
-                    MinTemperature = ParserHelpers.GetValue(xml.minT24hr_cSpecified, xml.minT24hr_c)
+                    SkyCondition = SkyConditionType.ByName(sc.sky_cover),
+                    CloudBase = sc.cloud_base_ft_agl
+                }));
+            }
+            dto.Temperature = ParserHelpers.GetValue(xml.temp_cSpecified, xml.temp_c);
+            dto.VerticalVisibility = ParserHelpers.GetValue(xml.vert_vis_ftSpecified, xml.vert_vis_ft);
+            dto.Visibility = ParserHelpers.GetValue(xml.visibility_statute_miSpecified, xml.visibility_statute_mi);
+            dto.Weather = xml.wx_string;
+            dto.Wind = new WindDto()
+            {
+                Direction = ParserHelpers.GetValue(xml.wind_dir_degreesSpecified, xml.wind_dir_degrees),
+                Gust = ParserHelpers.GetValue(xml.wind_gust_ktSpecified, xml.wind_gust_kt),
+                Speed = ParserHelpers.GetValue(xml.wind_speed_ktSpecified, xml.wind_speed_kt)
+            };
+            dto.FlightCategory = FlightCategoryType.ByName(xml.flight_category);
+            dto.ObsType = METARType.ByName(xml.metar_type);
+            if (xml.maxT_cSpecified || xml.minT_cSpecified)
+            {
+                dto.TemperatureRange = new TemperatureRangeDto()
+                {
+                    MaxTemperature = ParserHelpers.GetValue(xml.maxT_cSpecified, xml.maxT_c),
+                    MinTemperature = ParserHelpers.GetValue(xml.minT_cSpecified, xml.minT_c)
                 };
             }
+        }
+
+        /// <summary>
+        /// Transfers the Lat/Lon and Elevations
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <param name="xml"></param>
+        private void ParseGeographicData(ObservationDto dto, METAR xml)
+        {
+            dto.GeographicData = new GeographicDataDto()
+            {
+                Latitude = xml.latitude,
+                Longitude = xml.longitude,
+                Elevation = xml.elevation_m
+            };
+        }
+
+        /// <summary>
+        /// Transfers the ICAO
+        /// </summary>
+        /// <param name="dto"></param>
+        /// <param name="xml"></param>
+        private void ParseIdentifier(ObservationDto dto, METAR xml)
+        {
+            dto.ICAO = xml.station_id;
         }
 
         private void ParseQualityControlFlags(METARDto dto, METAR xml)

@@ -9,7 +9,6 @@ namespace BNolan.AviationWx.NET.Parsers
 {
     public class ParseMETARCSV : IParser<ObservationDto>
     {
-
         public List<ObservationDto> Parse(string data, IList<string> icaos)
         {
             if (String.IsNullOrWhiteSpace(data))
@@ -17,7 +16,7 @@ namespace BNolan.AviationWx.NET.Parsers
                 throw new ArgumentException($"'{nameof(data)}' cannot be null or empty.");
             }
 
-            if (icaos == null 
+            if (icaos == null
                 || icaos.Count == 0)
             {
                 throw new ArgumentException($"'{nameof(icaos)}' cannot be null or empty.");
@@ -29,10 +28,9 @@ namespace BNolan.AviationWx.NET.Parsers
 
             var splitData = data.Split(new char[] { '\n' });
 
-            // Expect the format of the file to be the following
-            // Top few lines are status/error details on the request
-            // Header line with all of the columns defined
-            // Each line after is an individual observation for any of the ICAOs in the list in chronological order
+            // Expect the format of the file to be the following Top few lines are status/error
+            // details on the request Header line with all of the columns defined Each line after is
+            // an individual observation for any of the ICAOs in the list in chronological order
             // with the most recent observation first
             foreach (var line in splitData)
             {
@@ -71,14 +69,13 @@ namespace BNolan.AviationWx.NET.Parsers
         }
 
         /// <summary>
-        /// Builds a list with the order of the fields found based on the 
-        /// match between the METARCSVField values and the comma-separated
+        /// Builds a list with the order of the fields found based on the match between the
+        /// METARCSVField values and the comma-separated
         /// </summary>
         /// <param name="line"></param>
         /// <returns></returns>
         private List<METARCSVField> GetFieldOrder(string line)
         {
-
             if (String.IsNullOrWhiteSpace(line))
             {
                 throw new ArgumentException($"'{nameof(line)}' cannot be null or empty.");
@@ -152,8 +149,8 @@ namespace BNolan.AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == METARCSVField.cloud_base_ft_agl)
                 {
-                    obs.SkyCondition[obs.SkyCondition.Count() - 1].CloudBase = 
-                        ParserHelpers.ParseInt(fieldVal)?? DefaultValue.Height;
+                    obs.SkyCondition[obs.SkyCondition.Count() - 1].CloudBase =
+                        ParserHelpers.ParseInt(fieldVal) ?? DefaultValue.Height;
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.sky_cover)
@@ -176,7 +173,7 @@ namespace BNolan.AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == METARCSVField.flight_category)
                 {
-                    obs.FlightCagegory = FlightCategoryType.ByName(fieldVal);
+                    obs.FlightCategory = FlightCategoryType.ByName(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.freezing_rain_sensor_off)
@@ -321,7 +318,7 @@ namespace BNolan.AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == METARCSVField.wind_dir_degrees)
                 {
-                    obs.Wind.Direction = ParserHelpers.ParseInt(fieldVal);                    
+                    obs.Wind.Direction = ParserHelpers.ParseInt(fieldVal);
                     continue;
                 }
                 if (fieldOrder[idx] == METARCSVField.wind_gust_kt)
@@ -347,8 +344,8 @@ namespace BNolan.AviationWx.NET.Parsers
         }
 
         /// <summary>
-        /// Checks to see if the value passed in is set to true.  If it is not
-        /// set to a boolean or is set to false then it will return false
+        /// Checks to see if the value passed in is set to true. If it is not set to a boolean or is
+        /// set to false then it will return false
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -360,45 +357,13 @@ namespace BNolan.AviationWx.NET.Parsers
 
         #region Reset Fields
 
-        /// <summary>
-        /// Because not all properties will have values in each observation
-        /// reset those fields that are objects which have no values
-        /// </summary>
-        /// <param name="dto"></param>
-        private void ResetFieldsToNull(METARDto dto)
+        private void Reset24HourDataIfNullValues(METARDto dto)
         {
-            if (dto == null)
+            if (dto.TwentyFourHourData.MaxTemperature == null
+                && dto.TwentyFourHourData.MinTemperature == null
+                && dto.TwentyFourHourData.Precipitation == null)
             {
-                throw new ArgumentNullException($"'{nameof(dto)}' cannot be null.");
-            }
-
-            ResetWindDataIfNullValues(dto);
-
-            ResetTemperatureRangeIfNullValues(dto);
-
-            Reset3HourDataIfNullValues(dto);
-
-            Reset6HourDataIfNullValues(dto);
-
-            Reset24HourDataIfNullValues(dto);
-        }
-
-        private void ResetWindDataIfNullValues(METARDto dto)
-        {
-            if (dto.Wind.Direction == null
-                && dto.Wind.Speed == null
-                && dto.Wind.Gust == null)
-            {
-                dto.Wind = null;
-            }
-        }
-
-        private void ResetTemperatureRangeIfNullValues(METARDto dto)
-        {
-            if (dto.TemperatureRange.MaxTemperature == null
-                && dto.TemperatureRange.MinTemperature == null)
-            {
-                dto.TemperatureRange = null;
+                dto.TwentyFourHourData = null;
             }
         }
 
@@ -419,17 +384,48 @@ namespace BNolan.AviationWx.NET.Parsers
             }
         }
 
-        private void Reset24HourDataIfNullValues(METARDto dto)
+        /// <summary>
+        /// Because not all properties will have values in each observation reset those fields that
+        /// are objects which have no values
+        /// </summary>
+        /// <param name="dto"></param>
+        private void ResetFieldsToNull(METARDto dto)
         {
-            if (dto.TwentyFourHourData.MaxTemperature == null
-                && dto.TwentyFourHourData.MinTemperature == null
-                && dto.TwentyFourHourData.Precipitation == null)
+            if (dto == null)
             {
-                dto.TwentyFourHourData = null;
+                throw new ArgumentNullException($"'{nameof(dto)}' cannot be null.");
+            }
+
+            ResetWindDataIfNullValues(dto);
+
+            ResetTemperatureRangeIfNullValues(dto);
+
+            Reset3HourDataIfNullValues(dto);
+
+            Reset6HourDataIfNullValues(dto);
+
+            Reset24HourDataIfNullValues(dto);
+        }
+
+        private void ResetTemperatureRangeIfNullValues(METARDto dto)
+        {
+            if (dto.TemperatureRange.MaxTemperature == null
+                && dto.TemperatureRange.MinTemperature == null)
+            {
+                dto.TemperatureRange = null;
+            }
+        }
+
+        private void ResetWindDataIfNullValues(METARDto dto)
+        {
+            if (dto.Wind.Direction == null
+                && dto.Wind.Speed == null
+                && dto.Wind.Gust == null)
+            {
+                dto.Wind = null;
             }
         }
 
         #endregion Reset Fields
-
     }
 }
