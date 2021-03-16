@@ -43,7 +43,7 @@ namespace BNolan.AviationWx.NET.Models.DTOs
 
         public List<SkyConditionDto> SkyCondition { get => _skyCondition; }
 
-        public FlightCategoryType FlightCagegory { get; set; }
+        public FlightCategoryType FlightCategory { get; set; }
 
         /// <summary>
         /// Total precipitation recorded over the previous hour.  Measurement

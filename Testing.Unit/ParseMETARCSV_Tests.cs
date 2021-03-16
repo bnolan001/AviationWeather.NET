@@ -26,7 +26,7 @@ namespace Testing.Unit
             var metar = obs[0].METAR[0];
             metar.Altimeter.Should().Be(30.221457f);
             metar.Dewpoint.Should().Be(-16.7f);
-            metar.FlightCagegory.Should().Be(FlightCategoryType.VFR);
+            metar.FlightCategory.Should().Be(FlightCategoryType.VFR);
             metar.ObsTime.Should().Be(ParserHelpers.ParseDateTime("2019-10-31T01:53:00Z"));
             metar.ObsType.Should().Be(METARType.METAR);
             metar.Precipitation.Should().BeNull();

@@ -4,11 +4,20 @@ using FluentAssertions;
 using NUnit.Framework;
 using System.Linq;
 
-
 namespace Testing.Unit
 {
     public class ParseMETARXML_Tests
     {
+        [Test]
+        public void Parse_ObservationHistory()
+        {
+            var parser = new ParseMETARXML();
+            var obs = parser.Parse(Resource.KIAD_METAR_History, new[] { "KIAD" });
+            obs.Count.Should().Be(1);
+            obs[0].ICAO.Should().Be("KIAD");
+            obs[0].METAR.Count().Should().Be(25);
+        }
+
         /// <summary>
         /// Validate ability to parse multiple observations for the same station
         /// </summary>
@@ -27,7 +36,7 @@ namespace Testing.Unit
             metars.Count.Should().Be(2);
             metars[0].Altimeter.Should().Be(30.008858f);
             metars[0].Dewpoint.Should().Be(5.6f);
-            metars[0].FlightCagegory.Should().Be(FlightCategoryType.VFR);
+            metars[0].FlightCategory.Should().Be(FlightCategoryType.VFR);
             metars[0].ObsTime.Should().Be(ParserHelpers.ParseDateTime("2019-10-19T22:52:00Z"));
             metars[0].Precipitation.Should().BeNull();
             metars[0].QualityControlFlags.Should().NotBeEmpty();
@@ -98,7 +107,7 @@ namespace Testing.Unit
 
             metars[0].Altimeter.Should().Be(29.760826f);
             metars[0].Dewpoint.Should().Be(10.6f);
-            metars[0].FlightCagegory.Should().Be(FlightCategoryType.IFR);
+            metars[0].FlightCategory.Should().Be(FlightCategoryType.IFR);
             metars[0].ObsTime.Should().Be(ParserHelpers.ParseDateTime("2019-10-19T23:52:00Z"));
             metars[0].Precipitation.Should().Be(0.04f);
             metars[0].QualityControlFlags.Should().NotBeEmpty();
@@ -154,16 +163,6 @@ namespace Testing.Unit
             metars[2].ThreeHourObsData.Should().BeNull();
             metars[2].SixHourData.Should().BeNull();
             metars[2].ObsType.Should().Be(METARType.SPECI);
-        }
-
-        [Test]
-        public void Parse_ObservationHistory()
-        {
-            var parser = new ParseMETARXML();
-            var obs = parser.Parse(Resource.KIAD_METAR_History, new[] { "KIAD" });
-            obs.Count.Should().Be(1);
-            obs[0].ICAO.Should().Be("KIAD");
-            obs[0].METAR.Count().Should().Be(25);
         }
     }
 }
