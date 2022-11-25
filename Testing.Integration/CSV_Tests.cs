@@ -167,7 +167,7 @@ namespace Testing.Integration
             stations[0].Country.Should().Be("US");
             stations[0].Name.Should().Be("LOS ANGELES");
             stations[0].GeographicData.Should().NotBeNull();
-            stations[0].GeographicData.Elevation.Should().Be(46.0f);
+            stations[0].GeographicData.Elevation.Should().Be(30.0f);
             stations[0].GeographicData.Latitude.Should().Be(33.93f);
             stations[0].GeographicData.Longitude.Should().Be(-118.38f);
             stations[0].SiteType.Should().Contain(SiteType.METAR);
