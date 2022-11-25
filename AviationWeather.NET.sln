@@ -7,7 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Testing.Integration", "Test
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Testing.Unit", "Testing.Unit\Testing.Unit.csproj", "{94A88905-16E1-431A-93F1-967A6FBA760E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AviationWeather.NET", "AviationWeather.NET\AviationWeather.NET.csproj", "{E5A2B226-C138-4715-BF87-83CEC570B2A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AviationWeather.NET", "AviationWeather.NET\AviationWeather.NET.csproj", "{E5A2B226-C138-4715-BF87-83CEC570B2A5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D692AD21-CCC5-4AFC-B7D8-AFE50A6B4CEB}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+		CHANGELOG.md = CHANGELOG.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

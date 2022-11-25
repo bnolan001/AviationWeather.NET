@@ -6,7 +6,7 @@
     <title>AviationWeather.NET</title>
     <description>Library access to the AviationWeather Dataserver API.  Methods to retrieve METAR and TAF data available.</description>
     <language>en-US</language>
-    <copyright>BNolan.org 2019</copyright>
+    <copyright>BNolan.org 2022</copyright>
     <projectUrl>https://github.com/bnolan001/AviationWeather.NET</projectUrl>
     <repository type="git" url="https://github.com/bnolan001/AviationWeather.NET.git"></repository>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
