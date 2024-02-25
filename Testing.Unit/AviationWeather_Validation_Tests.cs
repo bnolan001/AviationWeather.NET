@@ -18,7 +18,7 @@ namespace Testing.Unit
         {
             var connector = new Mock<IConnector>();
             connector.Setup(conn => conn.GetAsync(String.Empty)).Returns(Task.FromResult(""));
-            _aviationWeather = new AviationWeather(ParserType.XML, connector.Object);
+            _aviationWeather = new AviationWeather(ParserType.CSV, connector.Object);
         }
 
         #region GetForecastsInBox

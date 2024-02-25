@@ -3,11 +3,7 @@ using BNolan.AviationWx.NET.Models.Constants;
 using BNolan.AviationWx.NET.Models.DTOs;
 using BNolan.AviationWx.NET.Models.Enums;
 using BNolan.AviationWx.NET.Parsers;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BNolan.AviationWx.NET.Accessors
 {
@@ -27,7 +23,7 @@ namespace BNolan.AviationWx.NET.Accessors
         /// </summary>
         public StationDataAccessor()
         {
-            _parserType = ParserType.XML;
+            _parserType = ParserType.CSV;
             _connector = new HttpConnector();
         }
 
@@ -81,7 +77,7 @@ namespace BNolan.AviationWx.NET.Accessors
         {
             // API expects states and provices to be prefixed with an AT symbol
             var cleanedAbbrevations = abbreviations.Select(a => $"@{a.Trim().Replace("@", String.Empty)}");
-            var stations = String.Join("%20", abbreviations);
+            var stations = String.Join("%20", cleanedAbbrevations);
             var url = URLConstants.BaseURL + URLConstants.BasePath +
                URLConstants.StationInfo.Replace("{format}", _parserType.Name)
                .Replace("{icao}", stations);
@@ -180,15 +176,7 @@ namespace BNolan.AviationWx.NET.Accessors
                 icaos = new List<string>();
             }
 
-            IParser<StationInfoDto> parser = null;
-            if (_parserType == ParserType.XML)
-            {
-                parser = new ParseStationInfoXML();
-            }
-            else
-            {
-                parser = new ParseStationInfoCSV();
-            }
+            IParser<StationInfoDto> parser = new ParseStationInfoCSV();
 
             return parser.Parse(data, icaos);
         }

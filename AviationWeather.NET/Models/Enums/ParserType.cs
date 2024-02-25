@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace BNolan.AviationWx.NET.Models.Enums
+﻿namespace BNolan.AviationWx.NET.Models.Enums
 {
     public class ParserType
     {
-        public static ParserType XML { get; } = new ParserType("XML", 1);
-        public static ParserType CSV { get; } = new ParserType("CSV", XML.Value + 1);
+        public static ParserType CSV { get; } = new ParserType("csv", 1);
         public static ParserType Unknown { get; } = new ParserType("Unknown", CSV.Value + 1);
 
         public int Value { get; private set; }
@@ -23,12 +17,12 @@ namespace BNolan.AviationWx.NET.Models.Enums
 
         public static List<ParserType> List()
         {
-            return new List<ParserType>() { XML, CSV, Unknown };
+            return new List<ParserType>() { CSV, Unknown };
         }
 
         public static ParserType ByValue(int value)
         {
-            if (value < XML.Value)
+            if (value < CSV.Value)
             {
                 throw new ArgumentException($"'{nameof(value)} 'must have a value greater than -1.");
             }

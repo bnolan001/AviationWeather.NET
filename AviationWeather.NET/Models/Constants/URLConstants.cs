@@ -4,7 +4,7 @@
     {
         public const string BaseURL = "https://aviationweather.gov";
 
-        public const string BasePath = "/adds/dataserver_current/httpparam?";
+        public const string BasePath = "/api/data/dataserver?";
 
         #region METAR
 

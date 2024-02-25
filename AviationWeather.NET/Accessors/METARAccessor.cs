@@ -3,11 +3,7 @@ using BNolan.AviationWx.NET.Models.Constants;
 using BNolan.AviationWx.NET.Models.DTOs;
 using BNolan.AviationWx.NET.Models.Enums;
 using BNolan.AviationWx.NET.Parsers;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BNolan.AviationWx.NET.Accessors
 {
@@ -26,7 +22,7 @@ namespace BNolan.AviationWx.NET.Accessors
         /// </summary>
         public METARAccessor()
         {
-            _parserType = ParserType.XML;
+            _parserType = ParserType.CSV;
             _connector = new HttpConnector();
         }
 
@@ -70,11 +66,11 @@ namespace BNolan.AviationWx.NET.Accessors
             }
             var results = await Task.WhenAll(requests.ToArray()).ConfigureAwait(false);
             var obsDTOs = new List<ObservationDto>();
-            for(var idx = 0; idx < icaos.Count; idx++)
+            for (var idx = 0; idx < icaos.Count; idx++)
             {
                 obsDTOs.Add(ConvertToDTO(results[idx], new List<string> { icaos[idx] }).First());
             }
-            
+
             return obsDTOs;
         }
 
@@ -106,15 +102,7 @@ namespace BNolan.AviationWx.NET.Accessors
         private List<ObservationDto> ConvertToDTO(string data,
             IList<string> icaos)
         {
-            IParser<ObservationDto> parser;
-            if (_parserType == ParserType.XML)
-            {
-                parser = new ParseMETARXML();
-            }
-            else
-            {
-                parser = new ParseMETARCSV();
-            }
+            IParser<ObservationDto> parser = new ParseMETARCSV();
 
             return parser.Parse(data, icaos);
         }
