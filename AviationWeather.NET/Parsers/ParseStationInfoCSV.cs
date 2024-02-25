@@ -1,8 +1,5 @@
 ﻿using BNolan.AviationWx.NET.Models.DTOs;
 using BNolan.AviationWx.NET.Models.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace BNolan.AviationWx.NET.Parsers
 {
@@ -140,7 +137,10 @@ namespace BNolan.AviationWx.NET.Parsers
                 }
                 if (fieldOrder[idx] == StationInfoCSVField.wmo_id)
                 {
-                    dto.WMOID = int.Parse(fieldVal);
+                    if (int.TryParse(fieldVal, out int wmoId))
+                    {
+                        dto.WMOID = wmoId;
+                    }
                     continue;
                 }
             }

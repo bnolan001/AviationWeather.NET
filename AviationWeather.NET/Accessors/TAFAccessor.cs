@@ -3,10 +3,7 @@ using BNolan.AviationWx.NET.Models.Constants;
 using BNolan.AviationWx.NET.Models.DTOs;
 using BNolan.AviationWx.NET.Models.Enums;
 using BNolan.AviationWx.NET.Parsers;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Threading.Tasks;
 
 namespace BNolan.AviationWx.NET.Accessors
 {
@@ -25,7 +22,7 @@ namespace BNolan.AviationWx.NET.Accessors
         /// </summary>
         public TAFAccessor()
         {
-            _parserType = ParserType.XML;
+            _parserType = ParserType.CSV;
             _connector = new HttpConnector();
         }
 
@@ -77,9 +74,9 @@ namespace BNolan.AviationWx.NET.Accessors
         /// <param name="minLatitude"></param>
         /// <param name="hoursBeforeNow"></param>
         /// <returns></returns>
-        public async Task<List<ForecastDto>> GetForecastsInBoxAsync(int maxLongitude, 
-            int minLongitude, 
-            int maxLatitude, 
+        public async Task<List<ForecastDto>> GetForecastsInBoxAsync(int maxLongitude,
+            int minLongitude,
+            int maxLatitude,
             int minLatitude,
             int hoursBeforeNow = 4)
         {
@@ -129,15 +126,7 @@ namespace BNolan.AviationWx.NET.Accessors
         private List<ForecastDto> ConvertToDTO(string data,
             IList<string> icaos)
         {
-            IParser<ForecastDto> parser = null;
-            if (_parserType == ParserType.XML)
-            {
-                parser = new ParseTAFXML();
-            }
-            else if (_parserType == ParserType.CSV)
-            {
-                parser = new ParseTAFCSV();
-            }
+            IParser<ForecastDto> parser = new ParseTAFCSV();
 
             return parser.Parse(data, icaos);
         }

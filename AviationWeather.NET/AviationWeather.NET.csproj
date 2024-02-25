@@ -14,12 +14,14 @@
     <RepositoryUrl>https://github.com/bnolan001/AviationWeather.NET</RepositoryUrl>
     <PackageTags>metar;taf;aviationweather;weather;observation;forecast</PackageTags>
     <PackageReleaseNotes>Updated build to .NET 6</PackageReleaseNotes>
-    <AssemblyVersion>0.7.5</AssemblyVersion>
-    <FileVersion>0.7.5</FileVersion>
+    <AssemblyVersion>0.8.0</AssemblyVersion>
+    <FileVersion>0.8.0</FileVersion>
     <IncludeSymbols>True</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <Version>0.8.0-alpha</Version>
+    <Authors>Brian Nolan</Authors>
   </PropertyGroup>
 
   <ItemGroup>

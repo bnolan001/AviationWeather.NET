@@ -3,9 +3,6 @@ using BNolan.AviationWx.NET.Connectors;
 using BNolan.AviationWx.NET.Models.DTOs;
 using BNolan.AviationWx.NET.Models.Enums;
 using BNolan.AviationWx.NET.Validators;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace BNolan.AviationWx.NET
 {
@@ -129,7 +126,7 @@ namespace BNolan.AviationWx.NET
             GeographicValidator.ValidateLongitude(minLongitude);
             GeographicValidator.ValidateLongitude(maxLongitude);
 
-            return await _tafAccessor.GetForecastsInBoxAsync(maxLongitude, minLongitude, 
+            return await _tafAccessor.GetForecastsInBoxAsync(maxLongitude, minLongitude,
                 maxLatitude, minLatitude, hoursBeforeNow).ConfigureAwait(false);
 
         }
@@ -155,7 +152,7 @@ namespace BNolan.AviationWx.NET
             GeographicValidator.ValidateLatitude(latitude);
             GeographicValidator.ValidateLongitude(longitude);
 
-            return await _tafAccessor.GetForecastsInRadialAsync(longitude, latitude, 
+            return await _tafAccessor.GetForecastsInRadialAsync(longitude, latitude,
                 radial, hoursBeforeNow).ConfigureAwait(false);
 
         }
@@ -224,7 +221,7 @@ namespace BNolan.AviationWx.NET
         /// <param name="longitude">-180.0 to 180.0</param>
         /// <param name="distance">Statute miles</param>
         /// <returns>Empty list if no stations are found in the area defined</returns>
-        public async Task<List<StationInfoDto>> GetStationsNearAsync(double latitude, double longitude, 
+        public async Task<List<StationInfoDto>> GetStationsNearAsync(double latitude, double longitude,
             int distance)
         {
             GeographicValidator.ValidateLatitude(latitude);
